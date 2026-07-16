@@ -16,7 +16,7 @@ import { LoadingSpinner } from "@/components/ui/LoadingSpinner";
 import "@/components/ui/loading.css";
 
 const SESSION_KEY = "has-seen-first-load-splash";
-const MIN_VISIBLE_MS = 500;
+const MIN_VISIBLE_MS = 500; // Change to 1000, 10 seconds
 
 export function FirstLoadSplash() {
   const [visible, setVisible] = useState(false);

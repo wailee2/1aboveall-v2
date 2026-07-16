@@ -17,6 +17,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://example.com"), // TODO: replace with real domain
   title: {
@@ -43,6 +44,18 @@ export default function RootLayout({
       lang="en" suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable}  antialiased`}
     >
+      <head>
+        {/* Blocking, dependency-free — must run before paint to avoid
+            a flash of the wrong theme. See contexts/ThemeContext.tsx. */}
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+          rel="stylesheet"
+        />
+        <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" />
+      </head>
       <body>
         <ThemeProvider>
           <AppQueryProvider>
