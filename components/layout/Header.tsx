@@ -4,7 +4,6 @@ import { AppLink } from "@/components/navigation/AppLink";
 import { useTheme } from "@/contexts/ThemeContext";
 import { useRateLimit } from "@/hooks/use-rate-limit";
 import { useToast } from "@/components/toast/ToastProvider";
-import Link from "next/link";
 
 const NAV_LINKS = [
   { href: "/about", label: "About" },
@@ -26,9 +25,9 @@ export function Header() {
 
   return (
     <header className="flex items-center justify-between px-6 py-5 max-w-[1100px] mx-auto">
-      <Link href="/" className="font-sans text-lg font-semibold text-text">
+      <AppLink href="/" className="font-sans text-lg font-semibold text-text">
         wailee<span className="text-accent">.</span>
-      </Link>
+      </AppLink>
 
       <nav aria-label="Primary" className="hidden md:flex items-center gap-8">
         {NAV_LINKS.map((link) => (

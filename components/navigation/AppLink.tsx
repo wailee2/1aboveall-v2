@@ -11,10 +11,12 @@
 
 import NextLink, { type LinkProps } from "next/link";
 import { useNavigation } from "./NavigationProvider";
+import { usePathname } from "next/navigation";
 
 export function AppLink({
   children,
   onClick,
+  href,
   ...props
 }: LinkProps & {
   children: React.ReactNode;
@@ -22,12 +24,21 @@ export function AppLink({
   onClick?: React.MouseEventHandler<HTMLAnchorElement>;
 }) {
   const { startNavigation } = useNavigation();
+  const pathname = usePathname();
+
+  const targetPath =
+    typeof href === "string" ? href.split("?")[0].split("#")[0] : href.pathname ?? "";
+
+  const isSameRoute = pathname === targetPath;
 
   return (
     <NextLink
+      href={href}
       {...props}
       onClick={(e) => {
-        startNavigation();
+        if (!isSameRoute) {
+          startNavigation();
+        }
         onClick?.(e);
       }}
     >
