@@ -1,0 +1,92 @@
+/**
+ * components/toast/toast.css
+ * ---------------------------------------------------------------
+ * BEM naming convention used across this project's custom CSS:
+ *
+ *   [Category]-[Context]-[State/Variant]
+ *
+ * Category  = the system this class belongs to (toast, spinner, skeleton...)
+ * Context   = the specific part within that system (container, item, icon...)
+ * Variant   = an optional state/variant modifier (success, error, active...)
+ *
+ * Tailwind utility classes still handle generic layout/spacing;
+ * this file only covers the parts of a system that need named,
+ * reusable, non-utility classes (animations, variants, structure
+ * that repeats across many call sites).
+ */
+
+.toast-container {
+  position: fixed;
+  bottom: var(--space-lg);
+  right: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  z-index: 100;
+  pointer-events: none;
+}
+
+.toast-item {
+  pointer-events: auto;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-xs);
+  min-width: 280px;
+  max-width: 360px;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  animation: toast-item-enter 0.2s ease;
+}
+
+.toast-item-success { border-color: color-mix(in srgb, var(--accent) 40%, var(--border)); }
+.toast-item-error   { border-color: #C4574970; }
+.toast-item-info    { border-color: var(--border); }
+
+.toast-item-exiting {
+  animation: toast-item-exit 0.18s ease forwards;
+}
+
+.toast-icon {
+  flex-shrink: 0;
+  margin-top: 2px;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+}
+
+.toast-message {
+  font-family: var(--font-sans);
+  font-size: var(--font-size-sm);
+  line-height: 1.5;
+  flex: 1;
+}
+
+.toast-close-button {
+  background: none;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: var(--font-size-sm);
+  line-height: 1;
+  padding: 2px;
+}
+.toast-close-button:hover { color: var(--text); }
+
+@keyframes toast-item-enter {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes toast-item-exit {
+  from { opacity: 1; transform: translateY(0); }
+  to   { opacity: 0; transform: translateY(8px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toast-item, .toast-item-exiting {
+    animation: none;
+  }
+}

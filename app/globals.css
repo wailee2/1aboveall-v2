@@ -1,5 +1,159 @@
 @import "tailwindcss";
 
+@theme {
+  --font-sans: "General Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Source Serif 4", ui-serif, Georgia, serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  /* Color tokens aliased to CSS custom properties (not raw hex) —
+     this indirection is what lets bg-bg / text-text / etc. repaint
+     automatically when the theme flips, with zero dark: variants
+     needed anywhere in component code. */
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-tint: var(--surface-tint);
+  --color-border: var(--border);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-tint: var(--accent-tint);
+  --color-on-accent: var(--on-accent);
+
+  /* Font-size scale */
+  --font-size-xs: 0.75rem;   /* 12px */
+  --font-size-sm: 0.875rem;  /* 14px */
+  --font-size-base: 1rem;    /* 16px */
+  --font-size-lg: 1.125rem;  /* 18px */
+  --font-size-xl: 1.5rem;    /* 24px */
+  --font-size-2xl: 2rem;     /* 32px */
+  --font-size-3xl: 2.75rem;  /* 44px */
+
+  /* Radius scale */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 14px;
+  --radius-full: 999px;
+
+  /* Spacing / padding scale (in addition to Tailwind's default,
+     named to match the rest of the token system for consistency) */
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1.25rem;
+  --space-lg: 2rem;
+  --space-xl: 3.5rem;
+  --space-2xl: 5.5rem;
+}
+
+/* ---- Light mode (default) ---- */
+:root {
+  --bg: #f5f5fa;
+  --surface: #FFFFFF;
+  --surface-tint: #eaeaf0;
+  --border: #dbdbe1;
+  --text: #141413;
+  --muted: #8B8D98;
+  --accent: #4a71c4;
+  --accent-hover: #3B5CA0;
+  --accent-tint: #E8EDF7;
+  --on-accent: #f5f5fa;
+}
+
+/* ---- Explicit dark mode (user toggled) ---- */
+html[data-theme="dark"] {
+  --bg: #141413;
+  --surface: #1e1e20;
+  --surface-tint: #292A33;
+  --border: #2d2d2f;
+  --text: #f5f5fa;
+  --muted: #9A9CA8;
+  --accent: #4a71c4;
+  --accent-hover: #6E90D6;
+  --accent-tint: #232B3D;
+  --on-accent: #F7F7F4;
+}
+
+/*
+ * ---- System preference fallback ----
+ * Only applies when the user hasn't made an explicit choice yet
+ * (no data-theme attribute present at all). Once ThemeProvider sets
+ * data-theme="light" or "dark" explicitly, that always wins over
+ * this media query — see contexts/ThemeContext.tsx.
+ */
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme]) {
+    --bg: #141413;
+    --surface: #1e1e20;
+    --surface-tint: #292A33;
+    --border: #2d2d2f;
+    --text: #f5f5fa;
+    --muted: #9A9CA8;
+    --accent: #4a71c4;
+    --accent-hover: #6E90D6;
+    --accent-tint: #232B3D;
+    --on-accent: #F7F7F4;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: light dark;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+}
+
+body {
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  transition: background 0.25s ease, color 0.25s ease;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Respect users who've asked the OS to reduce motion — this is
+   checked in JS too (see hooks that drive animation), but the CSS
+   fallback ensures nothing slips through. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+/*OverlayScrollbars*/
+.os-theme-custom {
+  --os-size: 5px;
+}
+
+.os-scrollbar {
+  width: 5px !important;
+  opacity: 1 !important;
+  z-index: 9999 !important;
+}
+
+.os-scrollbar-track {
+  background: var(--bg) !important;
+}
+
+.os-scrollbar-handle {
+  background: var(--text) !important;
+}
+
+.os-scrollbar-horizontal {
+  display: none;
+}
+/**
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -17,10 +171,10 @@
     --background: #0a0a0a;
     --foreground: #ededed;
   }
+}**/
+
+body{
+  background-color: var(--bg);
+  color: var(--text);
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}

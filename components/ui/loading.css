@@ -1,0 +1,41 @@
+/**
+ * components/ui/loading.css
+ * BEM: [Category]-[Context]-[State/Variant]
+ */
+
+.loading-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.25s ease;
+}
+
+.loading-overlay-first-load { background: #C45749; }
+.loading-overlay-route      { background: var(--accent); }
+
+.loading-overlay-exiting {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loading-spinner-ring {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-full);
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #FFFFFF;
+  animation: loading-spinner-rotate 0.8s linear infinite;
+}
+
+@keyframes loading-spinner-rotate {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loading-spinner-ring {
+    animation-duration: 1.6s;
+  }
+}

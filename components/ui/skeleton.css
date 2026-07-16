@@ -1,0 +1,38 @@
+/* BEM: [Category]-[Context]-[State/Variant] */
+
+.skeleton-image {
+  position: relative;
+  overflow: hidden;
+  background: var(--surface-tint);
+}
+
+.skeleton-image-shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.35),
+    transparent
+  );
+  animation: skeleton-image-sweep 1.4s ease-in-out infinite;
+}
+
+html[data-theme="dark"] .skeleton-image-shimmer::after {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.08),
+    transparent
+  );
+}
+
+@keyframes skeleton-image-sweep {
+  100% { transform: translateX(100%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton-image-shimmer::after { animation: none; opacity: 0.5; }
+}
