@@ -1,9 +1,9 @@
 import { AppLink } from "@/components/navigation/AppLink";
-import Link from "next/dist/client/link";
+import Link from "next/link";
 
 export function About() {
   return (
-    <section className="max-w-[1100px] mx-auto px-6 py-20 border-t border-border">
+    <section className="section-p-x">
       <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-8">
         <h2 className="font-sans text-2xl font-semibold tracking-tight text-text">
           About

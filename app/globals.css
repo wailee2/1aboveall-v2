@@ -39,18 +39,27 @@
      named to match the rest of the token system for consistency) */
   --space-xs: 0.5rem;
   --space-sm: 0.75rem;
-  --space-md: 1.25rem;
-  --space-lg: 2rem;
-  --space-xl: 3.5rem;
-  --space-2xl: 5.5rem;
+  --space-md: 1.125rem;   /* 18px */
+  --space-lg: 1.25rem;    /* 20px */
+  --space-xl: 1.75rem;    /* 28px */
+  --space-2xl: 5.5rem;    
+}
+
+@utility section-p-x {
+  @apply px-4.5 lg:px-5 xl:px-7;
+}
+
+@utility flex-center {
+  @apply flex items-center justify-between ;
 }
 
 /* ---- Light mode (default) ---- */
 :root {
-  --bg: #f5f5fa;
+  --bg: #f5faf6;
   --surface: #FFFFFF;
   --surface-tint: #eaeaf0;
   --border: #dbdbe1;
+
   --text: #141413;
   --muted: #8B8D98;
   --accent: #4a71c4;
@@ -136,7 +145,7 @@ body {
 }
 
 .os-scrollbar {
-  width: 5px !important;
+  width: 4.5px !important;
   opacity: 1 !important;
   z-index: 9999 !important;
 }
@@ -152,4 +161,3 @@ body {
 .os-scrollbar-horizontal {
   display: none;
 }
-

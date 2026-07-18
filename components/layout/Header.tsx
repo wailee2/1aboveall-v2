@@ -1,20 +1,19 @@
 "use client";
 
+import { useState } from "react";
 import { AppLink } from "@/components/navigation/AppLink";
-import { useTheme } from "@/contexts/ThemeContext";
+import { Theme } from '@/components/theme/Theme'
 import { useRateLimit } from "@/hooks/use-rate-limit";
 import { useToast } from "@/components/toast/ToastProvider";
+import { getNavLinks } from "@/content/navigation";
+import { MobileNav } from "./MobileNav";
 
-const NAV_LINKS = [
-  { href: "/about", label: "About" },
-  { href: "/services", label: "Services" },
-  { href: "/works", label: "Works" },
-];
+const headerLinks = getNavLinks("header");
 
 export function Header() {
-  const { preference, setPreference } = useTheme();
   const { showToast } = useToast();
   const { isLimited, trigger } = useRateLimit(3000);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleResumeDownload = () => {
     trigger(() => {
@@ -24,17 +23,17 @@ export function Header() {
   };
 
   return (
-    <header className="flex items-center justify-between px-6 py-5 max-w-[1100px] mx-auto">
-      <AppLink href="/" className="font-sans text-lg font-semibold text-text">
-        wailee<span className="text-accent">.</span>
+    <header className="flex-center section-p-x fixed w-full z-999 py-5 bg-transparent mix-blend-difference text-bg ">
+      <AppLink href="/" className="font-sans text-lg font-medium text-accent ">
+        wailee
       </AppLink>
 
-      <nav aria-label="Primary" className="hidden md:flex items-center gap-8">
-        {NAV_LINKS.map((link) => (
+      <nav aria-label="Primary" className="hiddend md:flex items-center gap-8 transition-colors duration-300  bg-transparent mix-blend-difference">
+        {headerLinks.map((link) => (
           <AppLink
             key={link.href}
             href={link.href}
-            className="font-sans text-sm text-muted hover:text-text transition-colors"
+            className="font-sans text-sm text-mutedm hover:text-text transition-colors"
           >
             {link.label}
           </AppLink>
@@ -42,32 +41,29 @@ export function Header() {
       </nav>
 
       <div className="flex items-center gap-3">
-        <button
-          type="button"
-          onClick={() =>
-            setPreference(
-              preference === "light"
-                ? "dark"
-                : preference === "dark"
-                  ? "system"
-                  : "light"
-            )
-          }
-          className="font-mono text-xs border border-border rounded-sm px-3 py-1.5 text-muted hover:text-accent hover:border-accent transition-colors"
-          aria-label={`Theme: ${preference}. Click to change.`}
-        >
-          {preference}
-        </button>
+        <Theme />
 
         <button
           type="button"
           onClick={handleResumeDownload}
           disabled={isLimited}
-          className="font-sans text-sm font-medium bg-accent text-on-accent hover:bg-accent-hover disabled:opacity-50 disabled:cursor-not-allowed px-4 py-2 rounded-sm transition-colors"
+          className="font-sans text-sm font-medium bg-accent text-on-accent hover:bg-accent-hover disabled:opacity-50 disabled:cursor-not-allowed px-4 py-2 rounded-sm transition-colors mix-blend-normal! isolate mix-blend-differences  "
         >
           Resume
         </button>
+
+        <button
+          type="button"
+          onClick={() => setMobileOpen(true)}
+          className="md:hidden font-mono text-xs border border-border rounded-sm px-3 py-2 text-text"
+          aria-label="Open menu"
+          aria-expanded={mobileOpen}
+        >
+          Menu
+        </button>
       </div>
+
+      <MobileNav open={mobileOpen} onClose={() => setMobileOpen(false)} />
     </header>
   );
 }

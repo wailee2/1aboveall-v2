@@ -17,9 +17,11 @@ export default function PublicLayout({
     <div className="min-h-screen flex flex-col">
       <Header />
       <ScrollProvider>
-        <main>{children}</main>
+        <div className="flex flex-col">
+          <main>{children}</main>
+          <Footer />
+        </div>
       </ScrollProvider>
-      <Footer />
     </div>
   );
 }

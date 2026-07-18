@@ -3,7 +3,7 @@ import ScrollReveal from '@/components/ScrollReveal';
 
 export function Hero() {
   return (
-    <section id="home">
+    <section id="home" className="section-p-x flex flex-col">
       <ScrollReveal
         className="p-0 text-[#22293c]" 
         innerClassName="bg-black pointer-events-none"

@@ -48,7 +48,7 @@ export function CTA() {
   const submitDisabled = isLimited || mutation.isPending;
 
   return (
-    <section className="max-w-[1100px] mx-auto px-6 py-20 border-t border-border">
+    <section className="section-p-x py-20 border-t border-border">
       <div className="max-w-xl">
         <h2 className="font-sans text-2xl font-semibold tracking-tight text-text mb-3">
           Start a project

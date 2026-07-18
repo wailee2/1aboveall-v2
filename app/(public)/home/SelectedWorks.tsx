@@ -12,7 +12,7 @@ export function SelectedWorks() {
   const works = getSelectedWorks();
 
   return (
-    <section className="max-w-[1100px] mx-auto px-6 py-20 border-t border-border">
+    <section className="section-p-x py-20 border-t border-border">
       <div className="flex items-baseline justify-between mb-12">
         <h2 className="font-sans text-2xl font-semibold tracking-tight text-text">
           Selected Works

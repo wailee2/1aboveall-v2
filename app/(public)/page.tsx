@@ -13,9 +13,9 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <div>
+    <div className="">
       <main>
-        <Hero/>m
+        <Hero/>
         <About/>
         <SelectedWorks/>
         <Services/>

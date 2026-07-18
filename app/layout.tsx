@@ -5,7 +5,10 @@ import { ThemeProvider, themeInitScript } from "@/contexts/ThemeContext";
 import { ToastProvider } from "@/components/toast/ToastProvider";
 import { AppQueryProvider } from "@/lib/query-client";
 import { NavigationProvider } from "@/components/navigation/NavigationProvider";
-import { FirstLoadSplash } from "@/components/navigation/FirstLoadSplash";
+import {
+  FirstLoadSplash,
+  firstLoadSplashInitScript,
+} from "@/components/navigation/FirstLoadSplash";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,7 +19,6 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
-
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://example.com"), // TODO: replace with real domain
@@ -48,6 +50,7 @@ export default function RootLayout({
         {/* Blocking, dependency-free — must run before paint to avoid
             a flash of the wrong theme. See contexts/ThemeContext.tsx. */}
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+        <script dangerouslySetInnerHTML={{ __html: firstLoadSplashInitScript }} />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
