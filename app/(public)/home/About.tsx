@@ -3,29 +3,12 @@ import Link from "next/link";
 
 export function About() {
   return (
-    <section className="section-p-x">
-      <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-8">
-        <h2 className="font-sans text-2xl font-semibold tracking-tight text-text">
-          About
-        </h2>
-        <div>
-          <p className="font-serif text-lg leading-relaxed text-muted max-w-[60ch] mb-6">
-            I'm a freelance web designer and developer working across
-            full-stack builds, UI/UX design, and the occasional data-heavy
-            project — the full about page has the longer version.
+    <section className="section-p-x p-[3em] ">
+      <div className="grid-main  xs:grid">
+        <div className="  col-span-full sm:col-span-10 md:col-span-7 lg:col-span-7 xl:col-span-4  lg:col-start-2 xl:col-start-2  leading-[1.27em] tracking-[0.02em] text-[clamp(1*1rem,((1-((1.25-1)/(128-20)*20))*1rem+((1.25-1)/(128-20))*100vw),1.25*1rem)]">
+          <p className="  ">
+            Hello, my name is Wailee. I’m a developer & designer. I build unique products and intriguing experiences.
           </p>
-          <AppLink
-            href="/about"
-            className="font-mono text-xs uppercase tracking-wide text-accent hover:text-accent-hover transition-colors"
-          >
-            Read more →
-          </AppLink>
-          <Link
-            href="/about"
-            className="font-mono text-xs uppercase tracking-wide text-accent hover:text-accent-hover transition-colors"
-          >
-            Read more →
-          </Link>
         </div>
       </div>
     </section>

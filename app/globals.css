@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+
 @theme {
   --font-sans: "General Sans", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Source Serif 4", ui-serif, Georgia, serif;
@@ -42,7 +43,9 @@
   --space-md: 1.125rem;   /* 18px */
   --space-lg: 1.25rem;    /* 20px */
   --space-xl: 1.75rem;    /* 28px */
-  --space-2xl: 5.5rem;    
+  --space-2xl: 5.5rem;
+
+  --breakpoint-xs: 480px;
 }
 
 @utility section-p-x {
@@ -51,6 +54,12 @@
 
 @utility flex-center {
   @apply flex items-center justify-between ;
+}
+
+/*sm(640px) md(768px) lg(1024px) xl(1280px) 2xl(1536px)*/
+
+@utility grid-main {
+  @apply flex flex-col sm:grid grid-cols-12 gap-[1.25em] ;
 }
 
 /* ---- Light mode (default) ---- */
@@ -160,4 +169,15 @@ body {
 
 .os-scrollbar-horizontal {
   display: none;
+}
+
+
+h1, h2, h3, h4, h5, h6, p, blockquote, label {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  text-wrap: inherit;
 }
