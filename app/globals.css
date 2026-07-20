@@ -169,7 +169,7 @@ p{
 .os-scrollbar {
   width: 4.5px !important;
   opacity: 1 !important;
-  z-index: 9999 !important;
+  z-index: 998 !important;
 }
 
 .os-scrollbar-track {

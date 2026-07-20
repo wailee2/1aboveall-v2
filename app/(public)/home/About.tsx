@@ -6,7 +6,7 @@ export function About() {
     <section className="section-p-x ">
       <div className=" grid-main sm:grid grid-cols-12 flex-center">
         <div className=" lg:col-start-3 xl:col-start-3 col-span-10 lg:col-span-7 xl:col-span-6  text-left">
-          <p className="indent-[1.5em] ">
+          <div className="indent-[1.5em] ">
             <div className="inline-block align-text-bottom aspect-square max-w-40 mr-[0.5em] ">
               <img
                 src="/img/picture-of-wailee.jpg"
@@ -15,9 +15,10 @@ export function About() {
               />
             </div>
 
-            Hey, I’m Wailee. I’m a developer & designer. I build unique products and intriguing experiences.
-            Established in 2021 — my work blends raw urban energy with bold editorial style. Each image is built to tell a story that feels alive, cinematic, and impossible to ignore. 
-          </p>
+            <span>
+              Hey, I’m Wailee. I’m a developer & designer. I’m a freelance web designer and developer working across full-stack builds, UI/UX design, and the occasional data-heavy project — I care as much about how a product feels to use as how well it's engineered underneath.
+            </span>
+          </div>
         </div>
       </div>
       

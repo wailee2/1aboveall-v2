@@ -36,7 +36,7 @@ export function MobileNav({ open, onClose }: { open: boolean; onClose: () => voi
       role="dialog"
       aria-modal="true"
       aria-label="Site navigation"
-      className="fixed inset-0 z-[150] bg-bg flex flex-col"
+      className="fixed inset-0 z-999 bg-red-500 flex flex-col"
     >
       <div className="flex items-center justify-between px-6 py-5">
         <span className="font-sans text-lg font-semibold text-text">

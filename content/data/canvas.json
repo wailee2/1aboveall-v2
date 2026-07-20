@@ -1,0 +1,63 @@
+[
+  {
+    "id": "canvas-001",
+    "slug": "night-market-illustration",
+    "category": "canvas",
+    "status": "published",
+    "title": "Night Market",
+    "publishedDate": "2026-06-25",
+    "heroImage": "/images/works/canvas/night-market/hero.jpg",
+    "heroMedia": {
+      "type": "image",
+      "src": "/images/works/canvas/night-market/hero.jpg",
+      "alt": "Digital illustration of a crowded night market"
+    },
+    "shortDescription": "A digital painting study exploring warm artificial light against a dark sky.",
+    "otherMedia": [
+      {
+        "type": "image",
+        "src": "/images/works/canvas/night-market/detail-1.jpg",
+        "alt": "Night Market illustration detail crop"
+      }
+    ]
+  },
+  {
+    "id": "canvas-002",
+    "slug": "glass-forms-loop",
+    "category": "canvas",
+    "status": "published",
+    "title": "Glass Forms",
+    "publishedDate": "2026-06-01",
+    "heroImage": "/images/works/canvas/glass-forms/hero.jpg",
+    "heroMedia": {
+      "type": "video",
+      "src": "/images/works/canvas/glass-forms/loop.mp4",
+      "poster": "/images/works/canvas/glass-forms/hero.jpg",
+      "alt": "Looping animation of abstract glass-like forms"
+    },
+    "shortDescription": "A short looping render exploring refraction and soft color transitions.",
+    "otherMedia": []
+  },
+  {
+    "id": "canvas-003",
+    "slug": "paper-birds-series",
+    "category": "canvas",
+    "status": "archived",
+    "title": "Paper Birds Series",
+    "publishedDate": "2026-03-14",
+    "heroImage": "/images/works/canvas/paper-birds/hero.jpg",
+    "heroMedia": {
+      "type": "image",
+      "src": "/images/works/canvas/paper-birds/hero.jpg",
+      "alt": "Illustration series of folded paper birds"
+    },
+    "shortDescription": "An older series revisiting origami forms in flat vector style — kept for archive.",
+    "otherMedia": [
+      {
+        "type": "image",
+        "src": "/images/works/canvas/paper-birds/detail-1.jpg",
+        "alt": "Paper Birds series alternate colorway"
+      }
+    ]
+  }
+]
