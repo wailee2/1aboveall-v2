@@ -28,10 +28,11 @@
   --font-size-lg: 1.125rem;  /* 18px */
   --font-size-xl: 1.5rem;    /* 24px */
   --font-size-2xl: 2rem;     /* 32px */
-  --font-size-3xl: 2.75rem;  /* 44px */
+  --font-size-3xl: 2.75rem;  /* 44px  font-size: clamp(.70rem, .3971rem + .49243vi, 1rem);*/
 
-  --text-small: clamp(14px, .75vw + 0.32rem, 24px);
-  --text-medium: clamp(17px, 0.9vw + 0.39rem, 28px);
+  --text-xsmall: clamp(11.5px, .57vw + 0.3rem, 22px);
+  --text-small: clamp(13.9px, .75vw + 0.35rem, 24px);
+  --text-medium: clamp(16px, 0.9vw + 0.39rem, 28px);
   
   --font-size-smallk: clamp(1rem, ((1 - ((1.25 - 1) / (128 - 20) * 20)) * 1rem + ((1.25 - 1) / (128 - 20)) * 100vw), 2rem);
   
@@ -74,7 +75,7 @@ font-size: var(--font-size-small);
   @apply flex flex-col sm:grid grid-cols-12 gap-[1.25em] ;
 }
 
-/* ---- Light mode (default) ---- */
+/* ---- Light mode (default) ----#707070 */
 :root {
   --bg: #f5faf6;
   --surface: #FFFFFF;
@@ -82,7 +83,7 @@ font-size: var(--font-size-small);
   --border: #dbdbe1;
 
   --text: #141413;
-  --muted: #8B8D98;
+  --muted: #707070;
   --accent: #4a71c4;
   --accent-hover: #3B5CA0;
   --accent-tint: #E8EDF7;
@@ -192,13 +193,33 @@ p{
   display: none;
 }
 
-
-h1, h2, h3, h4, h5, h6, blockquote, labeml {
-  font-family: inherit;
-  font-size: inherit;
-  font-weight: inherit;
-  line-height: inherit;
-  letter-spacing: inherit;
-  text-transform: inherit;
-  text-wrap: inherit;
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 500;
+  line-height: 100%;
+  letter-spacing: 0em;
+  text-transform: uppercase;
+  text-wrap: balance;
 }
+
+
+.clickable-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  padding: .5rem .7rem;
+  border: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: var(--text-xsmall);
+  text-transform: uppercase;
+  line-height: 100%;
+  letter-spacing: .025em;
+  background-color: transparent;
+  transition: all .2s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  .group:hover & {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+}
+

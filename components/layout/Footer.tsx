@@ -8,8 +8,8 @@ const footerLinks = getNavLinks("footer");
 export function Footer() {
   return (
     <footer className="bg-accent text-on-accent section-p-x py-[1.5em] ">
-      <div className='nw-[clamp(.91rem,.3283rem+.8765vw,1.55rem)]  '>
-        <div className="grid grid-cols-2 gap-[1.25em] md:flex md:gap-x-[3em] text-small ">
+      <div className=''>
+        <div className="w-full grid grid-cols-2 gap-[1.25em] md:flex md:gap-x-[3em] text-small ">
           <nav 
             aria-label="Footer" 
             className="flex flex-col md:grid grid-flow-col grid-rows-2 gap-x-[3em] gap-y-2"
@@ -39,6 +39,10 @@ export function Footer() {
               </a>
             ))}
           </div>
+        </div>
+
+        <div className="w-[3.9em] pt-[7em] pb-[5em] mx-auto">
+          <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none" viewBox="0 0 360 721"><path fill="#f3f4f6" d="M246 401h114v320H246zM0 607h187v114H0zM0 493h114v114H0zM0 0h114v320H0zM173 0h187v114H173zM246 114h114v114H246z"/></svg>
         </div>
       </div>
 

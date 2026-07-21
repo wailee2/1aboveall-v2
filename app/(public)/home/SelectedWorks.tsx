@@ -2,6 +2,7 @@ import { AppLink } from "@/components/navigation/AppLink";
 import { MediaRenderer } from "@/components/ui/MediaRenderer";
 import { getSelectedPublished } from "@/content/works-api";
 import type { WorkItem, CaseStudyItem } from "@/content/works-types";
+import ScaleOnScroll from "@/components/ui/ScaleOnScroll";
 
 /**
  * components/home/SelectedWorks.tsx
@@ -21,24 +22,24 @@ import type { WorkItem, CaseStudyItem } from "@/content/works-types";
 
 const itemClasses = [
   {
-    divClass: "col-start-1 col-span-6 mr-auto w-[95%]",
-    mediaClass: "aspect-[5/3]", // Item 1 (Wide landscape)
+    divClass: "col-start-1 col-span-3 w-full",
+    mediaClass: "aspect-[3/4]",
   },
   {
-    divClass: "col-start-9 col-span-2 mx-auto w-[80%]",
-    mediaClass: "aspect-[1/1]",  // Item 2 (Portrait)
+    divClass: "col-start-4 col-span-3 ml-auto w-[80%]",
+    mediaClass: "aspect-[1/1]",
   },
   {
-    divClass: "col-start-4 col-span-3 ml-auto w-[83%]",
-    mediaClass: "aspect-[4/3]",  // Item 3 (Standard 4:3)
+    divClass: "col-start-6 col-span-4 mx-auto w-[87%]",
+    mediaClass: "aspect-[4/3]",
   },
   {
-    divClass: "col-start-1 col-span-4 mx-auto w-[87%]",
-    mediaClass: "aspect-square", // Item 4 (Square 1:1)
+    divClass: "col-start-4 col-span-3 mx-auto w-[83%]",
+    mediaClass: "aspect-square", 
   },
   {
     divClass: "col-start-8 col-span-4 mr-auto w-[70%]",
-    mediaClass: "aspect-[3/4]",  // Item 5 (Portrait)
+    mediaClass: "aspect-[3/4]",
   },
   {
     divClass: "col-start-1 col-span-3 ml-auto w-[79%]",
@@ -65,7 +66,7 @@ export function SelectedWorks() {
         </AppLink>
       </div>
 
-      <div className=" grid-main gap-x-[.5em] gap-y-[3.7em] md:gap-y-[4.5em] ">
+      <div className=" grid-main gap-x-[.5em] gap-y-[3em] md:gap-y-[4.5em] ">
         {items.map((item, index) => {
           const layout = itemClasses[index % itemClasses.length];
 
@@ -93,36 +94,40 @@ interface SelectedWorkCardProps {
 
 function SelectedWorkCard({ item, mediaClass }: SelectedWorkCardProps) {
   const isCaseStudy = item.category === "case-studies";
+  const caseStudy = isCaseStudy ? (item as CaseStudyItem) : null;
 
-  const media = (
-    <div className={`relative ${mediaClass} overflow-hidden mb-3`}>
-      <MediaRenderer
-        media={{ 
-          type: "image", 
-          src: item.heroImage, 
-          alt: item.title
-        }}
-        className="absolute inset-0 size-full"
-        sizes="(max-width: 1024px) 100vw, 50vw"
-      />
-    </div>
-  );
+  return (
+    <AppLink 
+      href={`/works/${item.category}/${item.slug}`} 
+      className="group block"
+    >
+      {/* 1. Media Container */}
+      <div 
+        className={`relative ${mediaClass} overflow-hidden mb-[0.7em]`}
+      >
+        <MediaRenderer
+          media={{ 
+            type: "image", 
+            src: item.heroImage, 
+            alt: item.title 
+          }}
+          className="absolute inset-0 size-full object-cover  group-hover:scale-110 transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover:-translate-y-1 group-hover:shadow-2xl group-hover:blur-[2px]"
+          sizes="(max-width: 1024px) 100vw, 50vw"
+        />
+      </div>
 
-  if (isCaseStudy) {
-    const caseStudy = item as CaseStudyItem;
-    return (
-      <div>
-        {media}
-        <div className="flex flex-wrap items-start justify-between gap-4 mb-2">
-          <div>
-            <h3 className="font-sans text-lg font-semibold uppercase tracking-wide text-text">
+      {/* 2. Content Branching */}
+      {isCaseStudy && caseStudy ? (
+        <div className="flex flex-wrap items-start justify-between gap-[0.85em]">
+          <div className="space-y-[0.6em]">
+            <h3 className=" ">
               {item.title}
             </h3>
-            <ul className="flex flex-col gap-0.5 list-none p-0">
+            <ul className="flex flex-col gap-[0.24em] list-none p-0">
               {caseStudy.tags.map((tag) => (
                 <li 
                   key={tag} 
-                  className="font-mono text-[11px] uppercase tracking-wide text-muted"
+                  className="font-mono text-xsmall uppercase tracking-tight leading-[100%] text-muted  "
                 >
                   {tag}
                 </li>
@@ -130,26 +135,16 @@ function SelectedWorkCard({ item, mediaClass }: SelectedWorkCardProps) {
             </ul>
           </div>
 
-          <AppLink
-            href={`/works/case-studies/${item.slug}`}
-            className="shrink-0 font-mono text-[11px] uppercase tracking-wide border border-border px-3 py-2 hover:border-accent hover:text-accent transition-colors flex items-center gap-2"
-          >
+          {/* Rendered visually as a button, but safe inside the main AppLink */}
+          <span className="clickable-link">
             See case study →
-          </AppLink>
+          </span>
         </div>
-      </div>
-    );
-  }
-
-  return (
-    <AppLink 
-      href={`/works/${item.category}/${item.slug}`} 
-      className="block"
-    >
-      {media}
-      <h3 className="font-sans text-base font-semibold uppercase tracking-wide text-text">
-        {item.title}
-      </h3>
+      ) : (
+        <h3 className="">
+          {item.title}
+        </h3>
+      )}
     </AppLink>
   );
 }
