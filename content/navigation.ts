@@ -21,12 +21,13 @@ export interface NavLink {
   contexts: NavContext[];
 }
 
-export const navLinks: NavLink[] = [
-  { href: "/", label: "Home", contexts: ["mobile", "footer"] },
+export const navLinks: NavLink[] = [/** 
+  { href: "/", label: "Home", contexts: ["mobile", "footer"] },*/
   { href: "/about", label: "About", contexts: ["header", "mobile", "footer"] },
-  { href: "/services", label: "Services", contexts: ["mobile", "footer"] },
   { href: "/works", label: "Works", contexts: ["header", "mobile", "footer"] },
+  { href: "/services", label: "Services", contexts: ["mobile", "footer"] },
   { href: "/contact", label: "Contact", contexts: ["header", "mobile", "footer"] },
+  { href: "/blog", label: "Blog(soon)", contexts: ["header", "mobile", "footer"] },
 ];
 
 /**

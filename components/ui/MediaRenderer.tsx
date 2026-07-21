@@ -3,16 +3,36 @@
 /**
  * components/ui/MediaRenderer.tsx
  * ---------------------------------------------------------------
- * Renders any MediaItem (content/works-types.ts) correctly whether
- * it's an image or a video — callers never branch on `media.type`
- * themselves. This lives in the SHARED components/ui/ folder, not
- * inside app/(public)/works/components/, because nothing about it is
- * works-specific — any future gallery, blog post, or case study
- * elsewhere in the app can reuse it as-is.
+ * FIXED: previously this component's single wrapper div carried both
+ * a hardcoded `position: relative` (from the old `.skeleton-image`
+ * CSS class) AND whatever positioning className the caller passed in
+ * (almost always "absolute inset-0"). Two `position` values on one
+ * element is a real conflict, not a style preference — depending on
+ * CSS load order, one silently wins, and when `relative` won, the
+ * div never actually stretched to fill its sized parent. That left
+ * next/image's `fill` mode with a 0-height ancestor — exactly the
+ * "height value of 0" warning this produced.
  *
- * The wrapping element must be sized by the caller (aspect-ratio or
- * a fixed-height className) since both <video> and Next's fill-mode
- * <Image> need a positioned parent with real dimensions.
+ * FIX: two nested divs with two different jobs, so nothing ever
+ * competes for the same CSS property on the same element:
+ *
+ *   <div className={className}>          <- caller controls size/position
+ *                                            (e.g. "absolute inset-0",
+ *                                            sized by an aspect-ratio
+ *                                            ancestor the caller owns)
+ *     <div className="relative w-full h-full ...">  <- ALWAYS relative,
+ *                                            fills 100% of whatever
+ *                                            real size the outer div
+ *                                            ends up with — this is
+ *                                            what next/image's `fill`
+ *                                            actually needs
+ *       <Image fill .../>
+ *     </div>
+ *   </div>
+ *
+ * Caller-facing API is unchanged — every existing call site that
+ * passes className="absolute inset-0" keeps working exactly as
+ * before. Only this file's internals changed.
  */
 
 import { useState } from "react";
@@ -33,39 +53,39 @@ export function MediaRenderer({
 }) {
   const [loaded, setLoaded] = useState(false);
 
-  const wrapperClass = `skeleton-image ${!loaded ? "skeleton-image-shimmer" : ""} ${className}`;
-
-  if (media.type === "video") {
-    return (
-      <div className={wrapperClass}>
-        <video
-          src={media.src}
-          poster={media.poster}
-          autoPlay
-          loop
-          muted
-          playsInline
-          onLoadedData={() => setLoaded(true)}
-          aria-label={media.alt}
-          className="w-full h-full object-cover"
-          style={{ opacity: loaded ? 1 : 0, transition: "opacity 0.3s ease" }}
-        />
-      </div>
-    );
-  }
+  const innerClass = `relative w-full h-full overflow-hidden bg-surface-tint ${
+    !loaded ? "skeleton-shimmer" : ""
+  }`;
 
   return (
-    <div className={wrapperClass}>
-      <Image
-        src={media.src}
-        alt={media.alt}
-        fill
-        sizes={sizes}
-        priority={priority}
-        onLoad={() => setLoaded(true)}
-        className="object-cover"
-        style={{ opacity: loaded ? 1 : 0, transition: "opacity 0.3s ease" }}
-      />
+    <div className={className}>
+      <div className={innerClass}>
+        {media.type === "video" ? (
+          <video
+            src={media.src}
+            poster={media.poster}
+            autoPlay
+            loop
+            muted
+            playsInline
+            onLoadedData={() => setLoaded(true)}
+            aria-label={media.alt}
+            className="w-full h-full object-cover"
+            style={{ opacity: loaded ? 1 : 0, transition: "opacity 0.3s ease" }}
+          />
+        ) : (
+          <Image
+            src={media.src}
+            alt={media.alt}
+            fill
+            sizes={sizes}
+            priority={priority}
+            onLoad={() => setLoaded(true)}
+            className="object-cover"
+            style={{ opacity: loaded ? 1 : 0, transition: "opacity 0.3s ease" }}
+          />
+        )}
+      </div>
     </div>
   );
 }

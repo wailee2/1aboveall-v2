@@ -5,20 +5,18 @@ export function About() {
   return (
     <section className="section-p-x ">
       <div className=" grid-main sm:grid grid-cols-12 flex-center">
-        <div className=" lg:col-start-3 xl:col-start-3 col-span-10 lg:col-span-7 xl:col-span-6  text-left">
-          <div className="indent-[1.5em] ">
-            <div className="inline-block align-text-bottom aspect-square max-w-40 mr-[0.5em] ">
-              <img
-                src="/img/picture-of-wailee.jpg"
-                alt="Wailee Oluwaferanmi Ayeni"
-                className=" size-full object-cover "
-              />
-            </div>
-
-            <span>
-              Hey, I’m Wailee. I’m a developer & designer. I’m a freelance web designer and developer working across full-stack builds, UI/UX design, and the occasional data-heavy project — I care as much about how a product feels to use as how well it's engineered underneath.
-            </span>
+        <div className="indent-[1.5em] lg:col-start-3 xl:col-start-3 col-span-10 lg:col-span-7 xl:col-span-6  text-left">
+          <div className="inline-block align-text-bottom aspect-square min-w-60 max-w-[37%] mr-[0.5em] ">
+            <img
+              src="/img/picture-of-wailee.jpg"
+              alt="Wailee Oluwaferanmi Ayeni"
+              className=" size-full object-cover "
+            />
           </div>
+
+          <span>
+            Hey, I’m Wailee. I’m a developer & designer. I’m a freelance web designer and developer working across full-stack builds, UI/UX design, and the occasional data-heavy project — I care as much about how a product feels to use as how well it's engineered underneath.
+          </span>
         </div>
       </div>
       

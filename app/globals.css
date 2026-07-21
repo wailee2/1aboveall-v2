@@ -30,7 +30,8 @@
   --font-size-2xl: 2rem;     /* 32px */
   --font-size-3xl: 2.75rem;  /* 44px */
 
-  --font-size-small: clamp(17px, 0.9vw + 0.39rem, 28px);
+  --text-small: clamp(14px, .75vw + 0.32rem, 24px);
+  --text-medium: clamp(17px, 0.9vw + 0.39rem, 28px);
   
   --font-size-smallk: clamp(1rem, ((1 - ((1.25 - 1) / (128 - 20) * 20)) * 1rem + ((1.25 - 1) / (128 - 20)) * 100vw), 2rem);
   
@@ -63,6 +64,10 @@
   @apply flex items-center justify-between ;
 }
 
+.diva{
+font-size: var(--font-size-small);
+}
+
 /*sm(640px) md(768px) lg(1024px) xl(1280px) 2xl(1536px)*/
 
 @utility grid-main {
@@ -81,7 +86,9 @@
   --accent: #4a71c4;
   --accent-hover: #3B5CA0;
   --accent-tint: #E8EDF7;
-  --on-accent: #f5f5fa;
+  --on-accent: #ffffff;
+
+  --font-size-small: clamp(14px, .75vw + 0.32rem, 24px);
 }
 
 /* ---- Explicit dark mode (user toggled) ---- */
@@ -95,7 +102,7 @@ html[data-theme="dark"] {
   --accent: #4a71c4;
   --accent-hover: #6E90D6;
   --accent-tint: #232B3D;
-  --on-accent: #F7F7F4;
+  --on-accent: #ffffff;
 }
 
 /*
@@ -138,7 +145,7 @@ body {
   background: var(--bg);
   color: var(--text);
   font-family: var(--font-sans);
-  font-size: var(--font-size-small);
+  font-size: var(--text-medium);
   transition: background 0.25s ease, color 0.25s ease;
   -webkit-font-smoothing: antialiased;
 }
@@ -172,9 +179,10 @@ p{
   z-index: 998 !important;
 }
 
+/*
 .os-scrollbar-track {
   background: var(--bg) !important;
-}
+}*/
 
 .os-scrollbar-handle {
   background: var(--text) !important;
@@ -185,7 +193,7 @@ p{
 }
 
 
-h1, h2, h3, h4, h5, h6, blockquote, label {
+h1, h2, h3, h4, h5, h6, blockquote, labeml {
   font-family: inherit;
   font-size: inherit;
   font-weight: inherit;

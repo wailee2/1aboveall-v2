@@ -1,0 +1,76 @@
+[
+  {
+    "id": "design-001",
+    "slug": "fintra-dashboard-ui",
+    "category": "designs",
+    "status": "published",
+    "title": "Fintra Dashboard UI",
+    "publishedDate": "2026-06-12",
+    "heroImage": "/img/picture-of-wailee.jpg",
+    "heroMedia": {
+      "type": "image",
+      "src": "/img/picture-of-wailee.jpg",
+      "alt": "Fintra analytics dashboard interface"
+    },
+    "shortDescription": "A clean analytics dashboard concept for a fintech product, built around dense data without feeling cluttered.",
+    "otherMedia": [
+      {
+        "type": "image",
+        "src": "/img/picture-of-wailee.jpg",
+        "alt": "Fintra dashboard transaction table detail"
+      },
+      {
+        "type": "image",
+        "src": "/img/picture-of-wailee.jpg",
+        "alt": "Fintra dashboard mobile view"
+      }
+    ],
+    "selected": true,
+    "selectedLayout": {
+      "colStart": 1,
+      "colSpan": 4,
+      "widthPercent": 90,
+      "align": "left"
+    }
+  },
+  {
+    "id": "design-002",
+    "slug": "orin-mobile-banking-app",
+    "category": "designs",
+    "status": "published",
+    "title": "Orin Mobile Banking App",
+    "publishedDate": "2026-05-20",
+    "heroImage": "/images/works/designs/orin-banking/hero.jpg",
+    "heroMedia": {
+      "type": "image",
+      "src": "/img/picture-of-wailee.jpg",
+      "alt": "Orin mobile banking app home screen"
+    },
+    "shortDescription": "A warm, approachable interface exploration for a mobile-first digital bank.",
+    "otherMedia": [
+      {
+        "type": "image",
+        "src": "/img/picture-of-wailee.jpg",
+        "alt": "Orin banking app transfer flow"
+      }
+    ],
+    "selected": false
+  },
+  {
+    "id": "design-003",
+    "slug": "loop-podcast-player-concept",
+    "category": "designs",
+    "status": "draft",
+    "title": "Loop Podcast Player Concept",
+    "publishedDate": "2026-07-02",
+    "heroImage": "/img/picture-of-wailee.jpg",
+    "heroMedia": {
+      "type": "image",
+      "src": "/img/picture-of-wailee.jpg",
+      "alt": "Loop podcast player interface concept"
+    },
+    "shortDescription": "An unreleased player concept exploring waveform scrubbing and episode queuing.",
+    "otherMedia": [],
+    "selected": false
+  }
+]

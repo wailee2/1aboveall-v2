@@ -22,7 +22,7 @@ export function CanvasGrid({ items }: { items: CanvasItem[] }) {
           key={item.id}
           href={`/works/canvas/${item.slug}`}
           scroll={false}
-          className={`block ${i % 3 === 0 ? "sm:col-span-2" : ""}`}
+          className={`block`}
         >
           <div className="relative aspect-[16/10] rounded-sm overflow-hidden mb-3">
             <MediaRenderer media={item.heroMedia} className="absolute inset-0" sizes="(max-width: 640px) 100vw, 50vw" />

@@ -1,0 +1,67 @@
+[
+  {
+    "id": "design-001",
+    "slug": "fintra-dashboard-ui",
+    "category": "designs",
+    "status": "published",
+    "title": "Fintra Dashboard UI",
+    "publishedDate": "2026-06-12",
+    "heroImage": "/images/works/designs/fintra-dashboard/hero.jpg",
+    "heroMedia": {
+      "type": "image",
+      "src": "/images/works/designs/fintra-dashboard/hero.jpg",
+      "alt": "Fintra analytics dashboard interface"
+    },
+    "shortDescription": "A clean analytics dashboard concept for a fintech product, built around dense data without feeling cluttered.",
+    "otherMedia": [
+      {
+        "type": "image",
+        "src": "/images/works/designs/fintra-dashboard/detail-1.jpg",
+        "alt": "Fintra dashboard transaction table detail"
+      },
+      {
+        "type": "image",
+        "src": "/images/works/designs/fintra-dashboard/detail-2.jpg",
+        "alt": "Fintra dashboard mobile view"
+      }
+    ]
+  },
+  {
+    "id": "design-002",
+    "slug": "orin-mobile-banking-app",
+    "category": "designs",
+    "status": "published",
+    "title": "Orin Mobile Banking App",
+    "publishedDate": "2026-05-20",
+    "heroImage": "/images/works/designs/orin-banking/hero.jpg",
+    "heroMedia": {
+      "type": "image",
+      "src": "/images/works/designs/orin-banking/hero.jpg",
+      "alt": "Orin mobile banking app home screen"
+    },
+    "shortDescription": "A warm, approachable interface exploration for a mobile-first digital bank.",
+    "otherMedia": [
+      {
+        "type": "image",
+        "src": "/images/works/designs/orin-banking/detail-1.jpg",
+        "alt": "Orin banking app transfer flow"
+      }
+    ]
+  },
+  {
+    "id": "design-003",
+    "slug": "loop-podcast-player-concept",
+    "category": "designs",
+    "status": "draft",
+    "title": "Loop Podcast Player Concept",
+    "publishedDate": "2026-07-02",
+    "heroImage": "/images/works/designs/loop-podcast/hero.jpg",
+    "heroMedia": {
+      "type": "image",
+      "src": "/images/works/designs/loop-podcast/hero.jpg",
+      "alt": "Loop podcast player interface concept"
+    },
+    "shortDescription": "An unreleased player concept exploring waveform scrubbing and episode queuing.",
+    "otherMedia": []
+  }
+]

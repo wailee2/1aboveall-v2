@@ -19,9 +19,10 @@ export function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
-  const item = getItemBySlug("case-studies", params.slug) as CaseStudyItem | undefined;
+  const { slug } = await params;
+  const item = getItemBySlug("case-studies", slug) as CaseStudyItem | undefined;
   if (!item) return {};
 
   return {
@@ -36,15 +37,17 @@ export async function generateMetadata({
   };
 }
 
-export default function CaseStudyDetailPage({ params }: { params: { slug: string } }) {
-  const item = getItemBySlug("case-studies", params.slug) as CaseStudyItem | undefined;
+export default async function CaseStudyDetailPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const item = getItemBySlug("case-studies", slug) as CaseStudyItem | undefined;
   if (!item) notFound();
 
-  const { prev, next } = getAdjacentItems("case-studies", params.slug);
+  const { prev, next } = getAdjacentItems("case-studies", slug);
 
-  // Structured data so the project is independently discoverable and
-  // well-represented in Google search results, per the requirement
-  // that each project be searchable on its own.
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "CreativeWork",

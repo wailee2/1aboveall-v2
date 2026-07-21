@@ -33,6 +33,31 @@ interface BaseWorkItem {
    * wasteful or visually noisy.
    */
   heroImage: string;
+  /**
+   * Published alone is NOT enough to appear on the homepage's
+   * Selected Works section — that's a separate, deliberate curation
+   * flag. A project can be published (visible on its category grid)
+   * without being selected (not featured on the homepage).
+   */
+  selected: boolean;
+  /**
+   * Presentation-only data for the ONE place selected items render
+   * as an asymmetric mosaic (home Selected Works) — deliberately
+   * separate from the project's own identity fields, since this is
+   * "how does it look in this one curated layout," not an inherent
+   * property of the project itself. Only meaningful when
+   * selected: true. See components/home/SelectedWorks.tsx for why
+   * this is numeric/structured rather than a raw className.
+   */
+  selectedLayout?: {
+    /** 1–12, assuming a 12-column grid. */
+    colStart: number;
+    colSpan: number;
+    /** Narrows the item within its grid cell, e.g. 95 = 95% width. */
+    widthPercent?: number;
+    /** Which side the narrowed width hugs when narrower than its cell. */
+    align?: "left" | "right";
+  };
 }
 
 export interface DesignItem extends BaseWorkItem {

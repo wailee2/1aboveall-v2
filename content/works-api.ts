@@ -89,3 +89,18 @@ export function getRecentPublished(limit: number = RECENT_PROJECTS_COUNT): WorkI
     )
     .slice(0, limit);
 }
+
+/**
+ * Published AND selected — the two are independent flags. A project
+ * can be live on its category grid (published) without being
+ * featured on the homepage (selected). No count limit here, unlike
+ * Recents — this is a deliberate, hand-curated set, not a "latest N."
+ */
+export function getSelectedPublished(): WorkItem[] {
+  const all = [...designs, ...canvas, ...caseStudies];
+  return all
+    .filter((item) => item.status === "published" && item.selected)
+    .sort(
+      (a, b) => new Date(b.publishedDate).getTime() - new Date(a.publishedDate).getTime()
+    );
+}

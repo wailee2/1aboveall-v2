@@ -1,12 +1,19 @@
-/* BEM: [Category]-[Context]-[State/Variant] */
+/**
+ * components/ui/skeleton.css
+ * ---------------------------------------------------------------
+ * BEM: [Category]-[Context]-[State/Variant]
+ *
+ * `.skeleton-shimmer` is ONLY the sweep animation — it deliberately
+ * does NOT set `position`, `width`, `height`, or `background` itself.
+ * Every previous bug here came from this class (or its predecessor
+ * `.skeleton-image`) fighting a caller's own layout classes (e.g.
+ * "absolute inset-0") on the same element. Whatever element uses
+ * `.skeleton-shimmer` must already be `position: relative` (or
+ * absolute/fixed) from ITS OWN styling — never from this class — so
+ * there is never a second source of truth for that element's position.
+ */
 
-.skeleton-image {
-  position: relative;
-  overflow: hidden;
-  background: var(--surface-tint);
-}
-
-.skeleton-image-shimmer::after {
+.skeleton-shimmer::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -17,10 +24,10 @@
     rgba(255, 255, 255, 0.35),
     transparent
   );
-  animation: skeleton-image-sweep 1.4s ease-in-out infinite;
+  animation: skeleton-shimmer-sweep 1.4s ease-in-out infinite;
 }
 
-html[data-theme="dark"] .skeleton-image-shimmer::after {
+html[data-theme="dark"] .skeleton-shimmer::after {
   background: linear-gradient(
     90deg,
     transparent,
@@ -29,10 +36,10 @@ html[data-theme="dark"] .skeleton-image-shimmer::after {
   );
 }
 
-@keyframes skeleton-image-sweep {
+@keyframes skeleton-shimmer-sweep {
   100% { transform: translateX(100%); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .skeleton-image-shimmer::after { animation: none; opacity: 0.5; }
+  .skeleton-shimmer::after { animation: none; opacity: 0.5; }
 }

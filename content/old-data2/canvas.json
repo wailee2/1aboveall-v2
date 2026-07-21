@@ -1,0 +1,72 @@
+[
+  {
+    "id": "canvas-001",
+    "slug": "night-market-illustration",
+    "category": "canvas",
+    "status": "published",
+    "title": "Night Market",
+    "publishedDate": "2026-06-25",
+    "heroImage": "/img/picture-of-wailee.jpg",
+    "heroMedia": {
+      "type": "image",
+      "src": "/img/picture-of-wailee.jpg",
+      "alt": "Digital illustration of a crowded night market"
+    },
+    "shortDescription": "A digital painting study exploring warm artificial light against a dark sky.",
+    "otherMedia": [
+      {
+        "type": "image",
+        "src": "/img/picture-of-wailee.jpg",
+        "alt": "Night Market illustration detail crop"
+      }
+    ],
+    "selected": true,
+    "selectedLayout": {
+      "colStart": 5,
+      "colSpan": 3,
+      "widthPercent": 88,
+      "align": "left"
+    }
+  },
+  {
+    "id": "canvas-002",
+    "slug": "glass-forms-loop",
+    "category": "canvas",
+    "status": "published",
+    "title": "Glass Forms",
+    "publishedDate": "2026-06-01",
+    "heroImage": "/img/picture-of-wailee.jpg",
+    "heroMedia": {
+      "type": "video",
+      "src": "/images/works/canvas/glass-forms/loop.mp4",
+      "poster": "/img/picture-of-wailee.jpg",
+      "alt": "Looping animation of abstract glass-like forms"
+    },
+    "shortDescription": "A short looping render exploring refraction and soft color transitions.",
+    "otherMedia": [],
+    "selected": false
+  },
+  {
+    "id": "canvas-003",
+    "slug": "paper-birds-series",
+    "category": "canvas",
+    "status": "published",
+    "title": "Paper Birds Series",
+    "publishedDate": "2026-03-14",
+    "heroImage": "/img/picture-of-wailee.jpg",
+    "heroMedia": {
+      "type": "image",
+      "src": "/img/picture-of-wailee.jpg",
+      "alt": "Illustration series of folded paper birds"
+    },
+    "shortDescription": "An older series revisiting origami forms in flat vector style \u2014 kept for archive.",
+    "otherMedia": [
+      {
+        "type": "image",
+        "src": "/img/picture-of-wailee.jpg",
+        "alt": "Paper Birds series alternate colorway"
+      }
+    ],
+    "selected": true
+  }
+]

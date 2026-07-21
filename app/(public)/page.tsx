@@ -4,6 +4,7 @@ import { About } from "@/app/(public)/home/About";
 import { SelectedWorks } from "@/app/(public)/home/SelectedWorks";
 import { Services } from "@/app/(public)/home/Services";
 import { CTA } from "@/app/(public)/home/CTA";
+import FluidTypographyVisualizer from "@/components/FluidTypographyVisualizer";
 
 export const metadata: Metadata = {
   title: "Home",

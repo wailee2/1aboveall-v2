@@ -11,9 +11,10 @@ export function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
-  const item = getItemBySlug("canvas", params.slug) as CanvasItem | undefined;
+  const { slug } = await params;
+  const item = getItemBySlug("canvas", slug) as CanvasItem | undefined;
   if (!item) return {};
   return {
     title: item.title,
@@ -22,8 +23,13 @@ export async function generateMetadata({
   };
 }
 
-export default function CanvasDetailPage({ params }: { params: { slug: string } }) {
-  const item = getItemBySlug("canvas", params.slug) as CanvasItem | undefined;
+export default async function CanvasDetailPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const item = getItemBySlug("canvas", slug) as CanvasItem | undefined;
   if (!item) notFound();
   return <DesignCanvasDetail item={item} bgColor="#2E6B47" />;
 }

@@ -12,7 +12,7 @@ export default function WorksPage() {
   const recents = getRecentPublished();
 
   return (
-    <section className="max-w-[1100px] mx-auto px-6 py-20">
+    <section className="max-w-275 mx-auto px-6 py-20">
       <div className="font-mono text-xs uppercase tracking-wide text-accent mb-3">Works</div>
       <h1 className="font-sans text-3xl font-semibold tracking-tight text-text mb-12">
         Browse by category

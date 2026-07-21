@@ -3,11 +3,16 @@ import { getItemBySlug, getAdjacentItems } from "@/content/works-api";
 import { DribbbleModal } from "../../../components/DribbbleModal";
 import type { CanvasItem } from "@/content/works-types";
 
-export default function CanvasModal({ params }: { params: { slug: string } }) {
-  const item = getItemBySlug("canvas", params.slug) as CanvasItem | undefined;
+export default async function CanvasModal({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const item = getItemBySlug("canvas", slug) as CanvasItem | undefined;
   if (!item) notFound();
 
-  const { prev, next } = getAdjacentItems("canvas", params.slug);
+  const { prev, next } = getAdjacentItems("canvas", slug);
 
   return (
     <DribbbleModal

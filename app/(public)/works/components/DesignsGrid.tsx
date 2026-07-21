@@ -3,15 +3,15 @@ import { MediaRenderer } from "@/components/ui/MediaRenderer";
 import type { DesignItem } from "@/content/works-types";
 
 /**
- * Designs page style: light background (site default), a tight
- * symmetric 3-column tile grid, caption revealed on hover rather
- * than always visible — deliberately distinct from Canvas's darker,
- * asymmetric treatment below.
+ * FIXED: the title used to be hidden entirely until hover
+ * (opacity-0 group-hover:opacity-100), with no other affordance —
+ * genuinely bad UX, not just a stylistic choice, since there was no
+ * indication text was even there. Title is now always visible below
+ * the image, same as Canvas, while still keeping Designs visually
+ * distinct via the tighter 3-col grid and lighter card treatment.
  *
  * Uses plain <Link>, not <AppLink> — clicking here needs to trigger
- * the intercepted (.)[slug] MODAL route, not a full page navigation,
- * and the route-loading overlay firing on every image click would
- * fight the modal's own instant-open feel. See @modal/(.)[slug]/page.tsx.
+ * the intercepted (.)[slug] MODAL route, not a full page navigation.
  */
 export function DesignsGrid({ items }: { items: DesignItem[] }) {
   if (items.length === 0) {
@@ -19,18 +19,19 @@ export function DesignsGrid({ items }: { items: DesignItem[] }) {
   }
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {items.map((item) => (
-        <Link
-          key={item.id}
-          href={`/works/designs/${item.slug}`}
-          scroll={false}
-          className="group relative block aspect-[4/3] rounded-sm overflow-hidden"
-        >
-          <MediaRenderer media={item.heroMedia} className="absolute inset-0" sizes="(max-width: 1024px) 50vw, 33vw" />
-          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors flex items-end p-4 opacity-0 group-hover:opacity-100">
-            <span className="font-sans text-sm font-medium text-white">{item.title}</span>
+        <Link key={item.id} href={`/works/designs/${item.slug}`} scroll={false} className="group block">
+          <div className="relative aspect-[4/3] rounded-sm overflow-hidden mb-3">
+            <MediaRenderer
+              media={item.heroMedia}
+              className="absolute inset-0"
+              sizes="(max-width: 1024px) 50vw, 33vw"
+            />
           </div>
+          <span className="font-sans text-sm font-medium text-text group-hover:text-accent transition-colors">
+            {item.title}
+          </span>
         </Link>
       ))}
     </div>
