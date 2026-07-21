@@ -3,36 +3,24 @@
 /**
  * app/(public)/works/components/DribbbleModal.tsx
  * ---------------------------------------------------------------
- * Shared by both Designs and Canvas's intercepted (.)[slug] routes.
- * This is the "soft nav opens in place, hard nav has a real URL"
- * behavior — implemented with Next.js Parallel + Intercepting
- * Routes, which is the framework's own primitive for this pattern
- * (this is exactly how Instagram/Dribbble-style photo modals are
- * built in Next.js docs):
+ * Purely presentational + interaction — no router, no navigation
+ * dependency at all. The parent grid (DesignsGrid/CanvasGrid) owns
+ * all state and passes item/prev/next/onClose/onNavigate as props.
+ * That's what makes this reliable: opening/closing/navigating never
+ * triggers a fetch, a route change, or anything Next.js's router
+ * could get in the way of — it's a state flip, full stop.
  *
- *   works/designs/
- *     page.tsx                     <- the grid (clicking here is a soft nav)
- *     [slug]/page.tsx              <- the REAL page (visiting the URL directly)
- *     @modal/default.tsx           <- renders null when no modal is active
- *     @modal/(.)[slug]/page.tsx    <- intercepts [slug] when navigated to
- *                                     FROM the grid, rendering THIS modal
- *                                     instead of the full page
- *
- * Behavior implemented here:
- *  - Escape closes it (router.back(), returning to the grid)
- *  - Clicking the backdrop closes it the same way
- *  - ArrowLeft/ArrowRight navigate to the prev/next item via
- *    router.push — since that's still a soft client-side nav, it
- *    gets intercepted again and stays in the modal
- *  - Prev/next preview thumbnails + the arrow/esc controls all live
- *    in one bottom bar, as requested
+ * "Peek" effect: the backdrop is a translucent purple tint, not a
+ * solid color, and the card is inset with padding around it rather
+ * than edge-to-edge — the grid page stays visible (dimmed) around
+ * and behind the card, so it never looks like a full page swap.
  */
 
-import { useEffect, useCallback } from "react";
-import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 import Image from "next/image";
 import { MediaRenderer } from "@/components/ui/MediaRenderer";
 import type { DesignItem, CanvasItem } from "@/content/works-types";
+import "./modal-transitions.css";
 
 type ModalItem = DesignItem | CanvasItem;
 
@@ -40,89 +28,85 @@ export function DribbbleModal({
   item,
   prev,
   next,
-  basePath,
+  onClose,
+  onNavigate,
 }: {
   item: ModalItem;
   prev?: ModalItem;
   next?: ModalItem;
-  /** "/works/designs" or "/works/canvas" */
-  basePath: string;
+  onClose: () => void;
+  onNavigate: (item: ModalItem) => void;
 }) {
-  const router = useRouter();
-
-  const close = useCallback(() => router.back(), [router]);
-
   useEffect(() => {
     function handleKeydown(e: KeyboardEvent) {
-      if (e.key === "Escape") close();
-      if (e.key === "ArrowLeft" && prev) router.push(`${basePath}/${prev.slug}`);
-      if (e.key === "ArrowRight" && next) router.push(`${basePath}/${next.slug}`);
+      if (e.key === "Escape") onClose();
+      if (e.key === "ArrowLeft" && prev) onNavigate(prev);
+      if (e.key === "ArrowRight" && next) onNavigate(next);
     }
     window.addEventListener("keydown", handleKeydown);
-    // Always remove the listener on unmount/re-render — the "clean
-    // memory after use" rule applied to a global event listener.
     return () => window.removeEventListener("keydown", handleKeydown);
-  }, [close, prev, next, basePath, router]);
+  }, [onClose, onNavigate, prev, next]);
+
+  useEffect(() => {
+    const original = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = original;
+    };
+  }, []);
 
   return (
     <div
       role="dialog"
       aria-modal="true"
       aria-label={item.title}
-      onClick={close}
-      className="fixed inset-0 z-[180] bg-black/80 flex flex-col"
+      onClick={onClose}
+      className="fixed inset-0 z-[180] flex items-start justify-center overflow-y-auto p-4 sm:p-10 modal-backdrop-in"
+      style={{ backgroundColor: "rgba(76, 29, 149, 0.65)" }}
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="flex-1 flex items-center justify-center p-6 min-h-0"
+        className="relative w-full max-w-4xl mt-4 sm:mt-10 mb-4 sm:mb-10 rounded-lg overflow-hidden bg-[#1B1C22] shrink-0 modal-card-in"
       >
-        <div className="relative w-full max-w-4xl aspect-[4/3] rounded-md overflow-hidden">
+        <button
+          type="button"
+          onClick={onClose}
+          aria-label="Close"
+          className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-black/40 text-white text-lg leading-none flex items-center justify-center hover:bg-black/60 transition-colors"
+        >
+          ✕
+        </button>
+
+        <div className="relative w-full aspect-[4/3]">
           <MediaRenderer media={item.heroMedia} className="absolute inset-0" sizes="90vw" priority />
         </div>
-      </div>
 
-      <div
-        onClick={(e) => e.stopPropagation()}
-        className="shrink-0 bg-[#141414] px-6 py-4 flex items-center justify-center gap-4"
-      >
-        <PreviewThumb
-          item={prev}
-          label="Previous"
-          align="right"
-          onSelect={() => prev && router.push(`${basePath}/${prev.slug}`)}
-        />
-
-        <div className="flex items-center gap-2">
-          <NavButton
-            disabled={!prev}
-            onClick={() => prev && router.push(`${basePath}/${prev.slug}`)}
-            label="Previous item"
-          >
-            ←
-          </NavButton>
-          <button
-            type="button"
-            onClick={close}
-            aria-label="Close"
-            className="font-mono text-xs text-[#9A9CA8] hover:text-white border border-[#33343E] rounded-sm px-3 py-2 transition-colors"
-          >
-            Esc
-          </button>
-          <NavButton
-            disabled={!next}
-            onClick={() => next && router.push(`${basePath}/${next.slug}`)}
-            label="Next item"
-          >
-            →
-          </NavButton>
+        <div className="px-6 py-4">
+          <h2 className="font-sans text-lg font-medium text-[#F0F0EC]">{item.title}</h2>
         </div>
 
-        <PreviewThumb
-          item={next}
-          label="Next"
-          align="left"
-          onSelect={() => next && router.push(`${basePath}/${next.slug}`)}
-        />
+        <div className="bg-[#3B1D5C] px-6 py-4 flex items-center justify-center gap-4">
+          <PreviewThumb item={prev} label="Previous" onSelect={() => prev && onNavigate(prev)} />
+
+          <div className="flex items-center gap-2">
+            <NavButton disabled={!prev} onClick={() => prev && onNavigate(prev)} label="Previous item">
+              ←
+            </NavButton>
+            <button
+              type="button"
+              onClick={onClose}
+              aria-label="Close"
+              className="font-mono text-xs text-white/70 hover:text-white border border-white/20 rounded-sm px-3 py-2 transition-colors"
+            >
+              Esc
+            </button>
+            <NavButton disabled={!next} onClick={() => next && onNavigate(next)} label="Next item">
+              →
+            </NavButton>
+          </div>
+
+          <PreviewThumb item={next} label="Next" onSelect={() => next && onNavigate(next)} />
+        </div>
       </div>
     </div>
   );
@@ -145,7 +129,7 @@ function NavButton({
       onClick={onClick}
       disabled={disabled}
       aria-label={label}
-      className="font-sans text-lg text-[#F0F0EC] disabled:text-[#4A4A4A] disabled:cursor-not-allowed border border-[#33343E] rounded-sm w-10 h-10 flex items-center justify-center hover:border-[#6E90D6] transition-colors"
+      className="font-sans text-lg text-white disabled:text-white/25 disabled:cursor-not-allowed border border-white/20 rounded-sm w-10 h-10 flex items-center justify-center hover:border-white/60 transition-colors"
     >
       {children}
     </button>
@@ -155,12 +139,10 @@ function NavButton({
 function PreviewThumb({
   item,
   label,
-  align,
   onSelect,
 }: {
   item?: ModalItem;
   label: string;
-  align: "left" | "right";
   onSelect: () => void;
 }) {
   if (!item) return <div className="w-16 h-12 hidden sm:block" aria-hidden="true" />;
@@ -170,9 +152,7 @@ function PreviewThumb({
       type="button"
       onClick={onSelect}
       aria-label={`${label}: ${item.title}`}
-      className={`relative w-16 h-12 rounded-sm overflow-hidden hidden sm:block shrink-0 opacity-70 hover:opacity-100 transition-opacity ${
-        align === "left" ? "ml-2" : "mr-2"
-      }`}
+      className="relative w-16 h-12 rounded-sm overflow-hidden hidden sm:block shrink-0 opacity-70 hover:opacity-100 transition-opacity"
     >
       <Image src={item.heroImage} alt={item.title} fill sizes="64px" className="object-cover" />
     </button>

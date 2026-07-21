@@ -30,3 +30,22 @@ export const socialLinks: SocialLink[] = [
   { slug: "x", label: "X (Twitter)", href: "https://x.com/yourusername", Icon: XIcon },
   { slug: "instagram", label: "Instagram", href: "https://instagram.com/yourusername", Icon: InstagramIcon },
 ];
+
+
+/*usage
+*
+<div className="flex gap-4">
+          {socialLinks.map(({ slug, label, href, Icon }) => (
+            <a
+              key={slug}
+              href={href}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={label}
+              className="text-muted hover:text-accent transition-colors"
+            >
+              <Icon className="w-4 h-4" /><div>{label}</div>
+            </a>
+          ))}
+        </div>
+*/
