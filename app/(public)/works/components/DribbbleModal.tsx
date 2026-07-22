@@ -3,17 +3,18 @@
 /**
  * app/(public)/works/components/DribbbleModal.tsx
  * ---------------------------------------------------------------
- * Purely presentational + interaction — no router, no navigation
- * dependency at all. The parent grid (DesignsGrid/CanvasGrid) owns
- * all state and passes item/prev/next/onClose/onNavigate as props.
- * That's what makes this reliable: opening/closing/navigating never
- * triggers a fetch, a route change, or anything Next.js's router
- * could get in the way of — it's a state flip, full stop.
+ * Generic over T (DesignItem or CanvasItem) rather than typed to the
+ * union ModalItem directly. This matters for a concrete reason, not
+ * just style: a callback typed `(item: DesignItem) => void` cannot
+ * satisfy a prop typed `(item: DesignItem | CanvasItem) => void` —
+ * TypeScript correctly rejects that, because the union version must
+ * accept EITHER type, not just the one the callback actually knows
+ * how to handle. Making the component generic lets each call site
+ * (DesignsGrid passes T = DesignItem, CanvasGrid passes T =
+ * CanvasItem) lock in its own concrete type instead.
  *
- * "Peek" effect: the backdrop is a translucent purple tint, not a
- * solid color, and the card is inset with padding around it rather
- * than edge-to-edge — the grid page stays visible (dimmed) around
- * and behind the card, so it never looks like a full page swap.
+ * Otherwise unchanged: pure client state/props, no router
+ * dependency, purple "peek" backdrop, scale-up entrance.
  */
 
 import { useEffect } from "react";
@@ -22,20 +23,24 @@ import { MediaRenderer } from "@/components/ui/MediaRenderer";
 import type { DesignItem, CanvasItem } from "@/content/works-types";
 import "./modal-transitions.css";
 
-type ModalItem = DesignItem | CanvasItem;
+interface PreviewItem {
+  slug: string;
+  title: string;
+  heroImage: string;
+}
 
-export function DribbbleModal({
+export function DribbbleModal<T extends DesignItem | CanvasItem>({
   item,
   prev,
   next,
   onClose,
   onNavigate,
 }: {
-  item: ModalItem;
-  prev?: ModalItem;
-  next?: ModalItem;
+  item: T;
+  prev?: T;
+  next?: T;
   onClose: () => void;
-  onNavigate: (item: ModalItem) => void;
+  onNavigate: (item: T) => void;
 }) {
   useEffect(() => {
     function handleKeydown(e: KeyboardEvent) {
@@ -77,7 +82,7 @@ export function DribbbleModal({
           ✕
         </button>
 
-        <div className="relative w-full aspect-[4/3]">
+        <div className="relative w-full aspect-4/3">
           <MediaRenderer media={item.heroMedia} className="absolute inset-0" sizes="90vw" priority />
         </div>
 
@@ -136,12 +141,15 @@ function NavButton({
   );
 }
 
+// Only needs slug/title/heroImage — kept as a minimal structural
+// type rather than generic, since it doesn't need to know about
+// heroMedia, category, or anything else the full item type carries.
 function PreviewThumb({
   item,
   label,
   onSelect,
 }: {
-  item?: ModalItem;
+  item?: PreviewItem;
   label: string;
   onSelect: () => void;
 }) {

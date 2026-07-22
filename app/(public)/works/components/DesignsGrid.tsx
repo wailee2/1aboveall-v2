@@ -3,13 +3,8 @@
 /**
  * app/(public)/works/components/DesignsGrid.tsx
  * ---------------------------------------------------------------
- * The modal is now owned entirely by this component's state — NOT
- * Next.js intercepting routes. Opening it calls window.history.
- * pushState directly (bypassing Next's router entirely), so the URL
- * bar updates for shareability/back-button support without any
- * fetch, navigation, or route render ever happening. That's what
- * guarantees this can never look or feel like a page reload: nothing
- * is being loaded.
+ * Modal state now comes from the shared useWorksModal hook (see
+ * ../hooks/use-works-modal.ts) instead of being duplicated inline.
  *
  * The real dedicated page (app/(public)/works/designs/[slug]/page.tsx,
  * red background) is untouched and still handles every direct visit,
@@ -17,48 +12,16 @@
  * when someone is already on the grid.
  */
 
-import { useCallback, useEffect, useState } from "react";
 import { MediaRenderer } from "@/components/ui/MediaRenderer";
 import { DribbbleModal } from "./DribbbleModal";
+import { useWorksModal } from "@/hooks/use-works-modal";
 import type { DesignItem } from "@/content/works-types";
 
 export function DesignsGrid({ items }: { items: DesignItem[] }) {
-  const [openSlug, setOpenSlug] = useState<string | null>(null);
-
-  // Keeps state correct for the browser's own back/forward buttons,
-  // not just our own open/close actions.
-  useEffect(() => {
-    function syncFromPath() {
-      const match = window.location.pathname.match(/^\/works\/designs\/([^/]+)\/?$/);
-      setOpenSlug(match ? match[1] : null);
-    }
-    syncFromPath();
-    window.addEventListener("popstate", syncFromPath);
-    return () => window.removeEventListener("popstate", syncFromPath);
-  }, []);
-
-  const openItem = items.find((i) => i.slug === openSlug) ?? null;
-  const index = openItem ? items.findIndex((i) => i.slug === openItem.slug) : -1;
-  const prev = index > 0 ? items[index - 1] : undefined;
-  const next = index !== -1 && index < items.length - 1 ? items[index + 1] : undefined;
-
-  const openModal = useCallback((slug: string) => {
-    window.history.pushState(null, "", `/works/designs/${slug}`);
-    setOpenSlug(slug);
-  }, []);
-
-  const closeModal = useCallback(() => {
-    // We pushed exactly one history entry to open — back() pops it
-    // and lands cleanly on the grid URL we came from.
-    window.history.back();
-  }, []);
-
-  const navigateTo = useCallback((item: DesignItem) => {
-    // replaceState, not pushState — arrow-keying through items
-    // shouldn't pile up one history entry per item.
-    window.history.replaceState(null, "", `/works/designs/${item.slug}`);
-    setOpenSlug(item.slug);
-  }, []);
+  const { openItem, prev, next, openModal, closeModal, navigateTo } = useWorksModal(
+    "/works/designs",
+    items
+  );
 
   if (items.length === 0) {
     return <p className="font-serif text-base text-muted">New designs coming soon.</p>;
@@ -81,7 +44,7 @@ export function DesignsGrid({ items }: { items: DesignItem[] }) {
             }}
             className="group block"
           >
-            <div className="relative aspect-[4/3] rounded-sm overflow-hidden mb-3">
+            <div className="relative aspect-4/3 rounded-sm overflow-hidden mb-3">
               <MediaRenderer
                 media={item.heroMedia}
                 className="absolute inset-0"
