@@ -13,7 +13,7 @@ export default function CaseStudiesPage() {
   const items = getPublishedByCategory("case-studies") as CaseStudyItem[];
 
   return (
-    <div className="section-px section-py">
+    <div className="section-px page-py">
       <Breadcrumbs 
         items={[
           { label: "Works", href: "/works" }, 

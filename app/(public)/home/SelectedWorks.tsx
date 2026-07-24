@@ -55,7 +55,7 @@ export function SelectedWorks() {
   return (
     <section className="section-px py-20 border-t border-border">
       <div className="flex items-baseline justify-between mb-12">
-        <h2 className="font-sans text-2xl font-semibold tracking-tight text-text">
+        <h2 className="">
           Selected Works
         </h2>
         <AppLink

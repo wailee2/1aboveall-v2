@@ -15,7 +15,7 @@ export function WorksCategoryLinks() {
           href={`/works/${cat.slug}`}
           className="block border border-border rounded-md p-6 hover:border-accent transition-colors"
         >
-          <h2 className="font-sans text-xl font-medium text-text mb-2">{cat.title}</h2>
+          <h3 className="font-sans text-xl font-medium text-text mb-2">{cat.title}</h3>
           <p className="font-serif text-sm text-muted leading-relaxed">{cat.description}</p>
         </AppLink>
       ))}

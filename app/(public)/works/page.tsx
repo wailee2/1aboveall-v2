@@ -12,13 +12,13 @@ export default function WorksPage() {
   const recents = getRecentPublished();
 
   return (
-    <section className="section-px section-py">
-      <div className="font-mono text-xs uppercase tracking-wide text-accent mb-3">Works</div>
-      <h1 className="font-sans text-3xl font-semibold tracking-tight text-text mb-12">
-        Browse by category
-      </h1>
+    <section className="section-px page-py">
+      <h1 className="page_heading">Works</h1>
+      
+      <div className="text-medium  mb-3">Browse by category</div>
 
       <WorksCategoryLinks />
+
       <RecentsSection items={recents} />
     </section>
   );
