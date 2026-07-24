@@ -14,7 +14,16 @@ export function About() {
             />
           </div>
 
-          <span>
+          <h1 className="inline-block">Hey, I’m Wailee.</h1>
+
+          <span className="">
+            I’m a developer & designer. I’m a freelance web designer and developer working 
+            across full-stack builds, UI/UX design, and the occasional data-heavy project — 
+            I care as much about how a product feels to use as how well it's engineered underneath.
+          </span>
+
+
+          <span className="hidden">
             Hey, I’m Wailee. I’m a developer & designer. I’m a freelance web designer and developer working across full-stack builds, UI/UX design, and the occasional data-heavy project — I care as much about how a product feels to use as how well it's engineered underneath.
           </span>
         </div>

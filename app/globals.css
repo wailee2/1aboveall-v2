@@ -21,19 +21,20 @@
   --color-accent-tint: var(--accent-tint);
   --color-on-accent: var(--on-accent);
 
-  /* Font-size scale */
-  --font-size-xs: 0.75rem;   /* 12px */
-  --font-size-sm: 0.875rem;  /* 14px */
-  --font-size-base: 1rem;    /* 16px */
-  --font-size-lg: 1.125rem;  /* 18px */
-  --font-size-xl: 1.5rem;    /* 24px */
-  --font-size-2xl: 2rem;     /* 32px */
-  --font-size-3xl: 2.75rem;  /* 44px  font-size: clamp(.70rem, .3971rem + .49243vi, 1rem);*/
+  /* Font-size scale *
+  --font-size-xs: 0.75rem;   /* 12px /
+  --font-size-sm: 0.875rem;  /* 14px /
+  --font-size-base: 1rem;    /* 16px /
+  --font-size-lg: 1.125rem;  /* 18px /
+  --font-size-xl: 1.5rem;    /* 24px /
+  --font-size-2xl: 2rem;     /* 32px /
+  --font-size-3xl: 2.75rem;  /* 44px / font-size: clamp(.70rem, .3971rem + .49243vi, 1rem);*/
 
   --text-xsmall: clamp(11.5px, .57vw + 0.3rem, 22px);
-  --text-small: clamp(13.9px, .75vw + 0.35rem, 24px);
-  --text-medium: clamp(16px, 0.9vw + 0.39rem, 28px);
-  
+  --text-small: clamp(13px, .7vw + 0.33rem, 23px);
+  --text-medium: clamp(16px, 0.9vw + 0.37rem, 28px);
+  --text-large: clamp(18px, 1vw + 0.40rem, 30px);
+
   --font-size-smallk: clamp(1rem, ((1 - ((1.25 - 1) / (128 - 20) * 20)) * 1rem + ((1.25 - 1) / (128 - 20)) * 100vw), 2rem);
   
 
@@ -43,7 +44,7 @@
   --radius-sm: 4px;
   --radius-md: 8px;
   --radius-lg: 14px;
-  --radius-full: 999px;
+  --radius-full: calc(infinity * 1px);
 
   /* Spacing / padding scale (in addition to Tailwind's default,
      named to match the rest of the token system for consistency) */
@@ -88,15 +89,13 @@ font-size: var(--font-size-small);
   --accent-hover: #3B5CA0;
   --accent-tint: #E8EDF7;
   --on-accent: #ffffff;
-
-  --font-size-small: clamp(14px, .75vw + 0.32rem, 24px);
 }
 
 /* ---- Explicit dark mode (user toggled) ---- */
 html[data-theme="dark"] {
   --bg: #141413;
   --surface: #1e1e20;
-  --surface-tint: #292A33;
+  --surface-tint: #333333;
   --border: #2d2d2f;
   --text: #f5f5fa;
   --muted: #9A9CA8;
@@ -117,7 +116,7 @@ html[data-theme="dark"] {
   html:not([data-theme]) {
     --bg: #141413;
     --surface: #1e1e20;
-    --surface-tint: #292A33;
+    --surface-tint: #333333;
     --border: #2d2d2f;
     --text: #f5f5fa;
     --muted: #9A9CA8;
@@ -149,6 +148,18 @@ body {
   font-size: var(--text-medium);
   transition: background 0.25s ease, color 0.25s ease;
   -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 500;
+  line-height: 100%;
+  letter-spacing: 0em;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+h3{
+  font-size: var(--text-large);
 }
 
 p{
@@ -193,13 +204,8 @@ p{
   display: none;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-weight: 500;
-  line-height: 100%;
-  letter-spacing: 0em;
-  text-transform: uppercase;
-  text-wrap: balance;
-}
+
+
 
 
 .clickable-link {

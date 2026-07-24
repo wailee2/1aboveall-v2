@@ -45,10 +45,12 @@ export function Footer() {
           <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none" viewBox="0 0 360 721"><path fill="#f3f4f6" d="M246 401h114v320H246zM0 607h187v114H0zM0 493h114v114H0zM0 0h114v320H0zM173 0h187v114H173zM246 114h114v114H246z"/></svg>
         </div>
 
-        <div className="flex  justify-between items-center">
-          <span className="font-mono text-xsmall">
-          © {new Date().getFullYear()} Wailee. — web design & development
+        <div className="flex justify-between items-center text-xsmall capitalize  ">
+          <span className="">
+          © {new Date().getFullYear()} Wailee
           </span>
+
+          <div>privacy</div>
         </div>
       </div>
     </footer>

@@ -29,7 +29,7 @@ export function DesignsGrid({ items }: { items: DesignItem[] }) {
 
   return (
     <>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid-main grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-y-[2.5em]">
         {items.map((item) => (
           // Real <a href> (not a plain button) so keyboard nav,
           // "open in new tab", and crawlers all still see a genuine
@@ -44,14 +44,14 @@ export function DesignsGrid({ items }: { items: DesignItem[] }) {
             }}
             className="group block"
           >
-            <div className="relative aspect-4/3 rounded-sm overflow-hidden mb-3">
+            <div className="relative aspect-square rounded-[0.25em] overflow-hidden mb-3">
               <MediaRenderer
                 media={item.heroMedia}
                 className="absolute inset-0"
                 sizes="(max-width: 1024px) 50vw, 33vw"
               />
             </div>
-            <span className="font-sans text-sm font-medium text-text group-hover:text-accent transition-colors">
+            <span className="text-small ">
               {item.title}
             </span>
           </a>

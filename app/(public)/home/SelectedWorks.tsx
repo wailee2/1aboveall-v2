@@ -111,7 +111,7 @@ function SelectedWorkCard({ item, mediaClass }: SelectedWorkCardProps) {
             src: item.heroImage, 
             alt: item.title 
           }}
-          className="absolute inset-0 size-full object-cover  group-hover:scale-110 transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover:-translate-y-1 group-hover:shadow-2xl group-hover:blur-[2px]"
+          className="absolute inset-0 size-full object-cover object-center group-hover:scale-110 transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:blur-[2px]"
           sizes="(max-width: 1024px) 100vw, 50vw"
         />
       </div>

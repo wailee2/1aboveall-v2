@@ -81,7 +81,7 @@ export function MediaRenderer({
             sizes={sizes}
             priority={priority}
             onLoad={() => setLoaded(true)}
-            className="object-cover"
+            className="object-cover object-center"
             style={{ opacity: loaded ? 1 : 0, transition: "opacity 0.3s ease" }}
           />
         )}

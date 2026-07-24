@@ -26,7 +26,7 @@
   height: 48px;
   border-radius: var(--radius-full);
   border: 3px solid rgba(255, 255, 255, 0.3);
-  border-top-color: #FFFFFF;
+  border-top-color: #eb0000;
   animation: loading-spinner-rotate 0.8s linear infinite;
 }
 

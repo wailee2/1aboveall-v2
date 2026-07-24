@@ -12,9 +12,13 @@ export default function DesignsPage() {
   const items = getPublishedByCategory("designs") as DesignItem[];
 
   return (
-    <section className="max-w-275 mx-auto px-6 py-20">
-      <div className="font-mono text-xs uppercase tracking-wide text-accent mb-3">Works</div>
+    <section className="section-p-x py-[7em]">
+      <h2 className="font-mono text-xs uppercase tracking-wide text-accent mb-3">Works</h2>
       <h1 className="font-sans text-3xl font-semibold tracking-tight text-text mb-12">Designs</h1>
+
+      <h1></h1>
+
+      <h2>Works &gt; Designs</h2>
       <DesignsGrid items={items} />
     </section>
   );

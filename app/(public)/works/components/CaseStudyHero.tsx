@@ -1,9 +1,18 @@
 import { MediaRenderer } from "@/components/ui/MediaRenderer";
 import type { CaseStudyItem } from "@/content/works-types";
+import { Breadcrumbs } from "./Breadcrumbs";
 
 export function CaseStudyHero({ item }: { item: CaseStudyItem }) {
   return (
     <header className="max-w-[1000px] mx-auto px-6 pt-16 pb-12">
+      <Breadcrumbs
+        items={[
+          { label: "Works", href: "/works" },
+          { label: "Case Studies", href: "/works/case-studies" },
+          { label: item.title },
+        ]}
+      />
+      
       <h1 className="font-sans text-3xl md:text-4xl font-semibold tracking-tight text-text mb-3">
         {item.title}
       </h1>
