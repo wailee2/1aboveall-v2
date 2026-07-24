@@ -39,8 +39,6 @@ export function DesignCanvasDetail({
             { label: CATEGORY_LABELS[item.category], href: `/works/${item.category}` },
             { label: item.title },
           ]}
-          textColor={textColor}
-          mutedColor={mutedColor}
         />
         
         <h1

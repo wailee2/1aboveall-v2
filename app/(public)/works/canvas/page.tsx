@@ -10,7 +10,8 @@ export const metadata: Metadata = {
 };
 
 export default function CanvasPage() {
-  const items = getPublishedByCategory("canvas") as CanvasItem[];
+  const items = getPublishedByCategory
+  ("canvas") as CanvasItem[];
 
   return (
     <div className="section-px page-py ">

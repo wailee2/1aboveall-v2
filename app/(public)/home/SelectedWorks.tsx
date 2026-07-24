@@ -66,7 +66,7 @@ export function SelectedWorks() {
         </AppLink>
       </div>
 
-      <div className=" grid-main gap-x-[.5em] gap-y-[3em] md:gap-y-[4.5em] ">
+      <div className=" md:grid-main gap-x-[.5em] gap-y-[3em] md:gap-y-[4.5em] ">
         {items.map((item, index) => {
           const layout = itemClasses[index % itemClasses.length];
 
