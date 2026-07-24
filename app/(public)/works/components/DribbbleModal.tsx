@@ -66,7 +66,7 @@ export function DribbbleModal<T extends DesignItem | CanvasItem>({
       aria-modal="true"
       aria-label={item.title}
       onClick={onClose}
-      className="fixed inset-0 z-[180] flex items-start justify-center overflow-y-auto p-4 sm:p-10 modal-backdrop-in"
+      className="fixed inset-0 z-180 flex items-start justify-center overflow-y-auto p-4 sm:p-10 modal-backdrop-in"
       style={{ backgroundColor: "rgba(76, 29, 149, 0.65)" }}
     >
       <div
@@ -77,6 +77,7 @@ export function DribbbleModal<T extends DesignItem | CanvasItem>({
           type="button"
           onClick={onClose}
           aria-label="Close"
+          title="close"
           className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-black/40 text-white text-lg leading-none flex items-center justify-center hover:bg-black/60 transition-colors"
         >
           ✕

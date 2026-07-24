@@ -101,50 +101,42 @@ function SelectedWorkCard({ item, mediaClass }: SelectedWorkCardProps) {
       href={`/works/${item.category}/${item.slug}`} 
       className="group block"
     >
-      {/* 1. Media Container */}
-      <div 
-        className={`relative ${mediaClass} overflow-hidden mb-[0.7em]`}
-      >
+
+      <div className={`relative ${mediaClass} overflow-hidden mb-[0.7em]`}>
         <MediaRenderer
-          media={{ 
-            type: "image", 
-            src: item.heroImage, 
-            alt: item.title 
+          media={{
+            type: "image",
+            src: item.heroImage,
+            alt: item.title,
           }}
-          className="absolute inset-0 size-full object-cover object-center group-hover:scale-110 transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:blur-[2px]"
+          className="absolute inset-0 size-full object-cover object-center transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover:scale-110 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:blur-[2px]"
           sizes="(max-width: 1024px) 100vw, 50vw"
         />
+
+        {isCaseStudy && caseStudy ? (
+          <div>
+            <div className="bg-text rounded-full size-[2em] absolute inset-x-0 top-0  ml-auto z-10 p-4 m-1.5 "/>
+
+            <div className="absolute inset-x-0 bottom-0 z-10 p-4  ">
+              <div className="hidden group-hover:block absolute inset-0 bg-linear-to-t from-black/60 to-transparent " />
+
+              <ul className="md:translate-hide flex flex-wrap gap-x-[0.8em] gap-y-[0.2em]">
+                {caseStudy.tags.map((tag) => (
+                  <li
+                    key={tag}
+                    className="leading-none font-mono text-xsmall uppercase tracking-tight text-text/90 flex-center truncate"
+                  >
+                    <div className="mr-[0.2em] bg-text rounded-full size-[0.5em]"/>
+                    {tag}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ) : null}
       </div>
 
-      {/* 2. Content Branching */}
-      {isCaseStudy && caseStudy ? (
-        <div className="flex flex-wrap items-start justify-between gap-[0.85em]">
-          <div className="space-y-[0.6em]">
-            <h3 className=" ">
-              {item.title}
-            </h3>
-            <ul className="flex flex-col gap-[0.24em] list-none p-0">
-              {caseStudy.tags.map((tag) => (
-                <li 
-                  key={tag} 
-                  className="font-mono text-xsmall uppercase tracking-tight leading-[100%] text-muted  "
-                >
-                  {tag}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Rendered visually as a button, but safe inside the main AppLink */}
-          <span className="clickable-link">
-            See case study →
-          </span>
-        </div>
-      ) : (
-        <h3 className="">
-          {item.title}
-        </h3>
-      )}
+      <h3>{item.title}</h3>
     </AppLink>
   );
 }

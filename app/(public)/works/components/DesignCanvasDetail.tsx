@@ -32,7 +32,7 @@ export function DesignCanvasDetail({
 
   return (
     <div className="-mx-6 px-6 py-20 min-h-[80vh]" style={{ backgroundColor: bgColor }}>
-      <div className="max-w-[1000px] mx-auto">
+      <div className="max-w-250 mx-auto">
         <Breadcrumbs
           items={[
             { label: "Works", href: "/works" },
@@ -57,7 +57,7 @@ export function DesignCanvasDetail({
           {publishedLabel}
         </time>
 
-        <div className="w-[80%] mx-auto relative aspect-[4/3] rounded-md overflow-hidden mb-8">
+        <div className="w-[80%] mx-auto relative aspect-4/3 rounded-md overflow-hidden mb-8">
           <MediaRenderer media={item.heroMedia} className="absolute inset-0" sizes="80vw" priority />
         </div>
 
@@ -71,7 +71,7 @@ export function DesignCanvasDetail({
         {item.otherMedia && item.otherMedia.length > 0 && (
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {item.otherMedia.map((media, i) => (
-              <div key={i} className="relative aspect-[4/3] rounded-sm overflow-hidden">
+              <div key={i} className="relative aspect-4/3 rounded-sm overflow-hidden">
                 <MediaRenderer media={media} className="absolute inset-0" sizes="(max-width: 640px) 100vw, 50vw" />
               </div>
             ))}
