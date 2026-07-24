@@ -1,4 +1,6 @@
 import { MediaRenderer } from "@/components/ui/MediaRenderer";
+import { Breadcrumbs } from "./Breadcrumbs";
+import { CATEGORY_LABELS } from "@/content/works-config";
 import type { DesignItem, CanvasItem } from "@/content/works-types";
 
 /**
@@ -31,6 +33,16 @@ export function DesignCanvasDetail({
   return (
     <div className="-mx-6 px-6 py-20 min-h-[80vh]" style={{ backgroundColor: bgColor }}>
       <div className="max-w-[1000px] mx-auto">
+        <Breadcrumbs
+          items={[
+            { label: "Works", href: "/works" },
+            { label: CATEGORY_LABELS[item.category], href: `/works/${item.category}` },
+            { label: item.title },
+          ]}
+          textColor={textColor}
+          mutedColor={mutedColor}
+        />
+        
         <h1
           className="font-sans text-3xl md:text-4xl font-bold tracking-tight mb-3"
           style={{ color: textColor }}

@@ -30,10 +30,11 @@
   --font-size-2xl: 2rem;     /* 32px /
   --font-size-3xl: 2.75rem;  /* 44px / font-size: clamp(.70rem, .3971rem + .49243vi, 1rem);*/
 
-  --text-xsmall: clamp(11.5px, .57vw + 0.3rem, 22px);
+  --text-xsmall: clamp(11.5px, .52vw + 0.3rem, 22px);
   --text-small: clamp(13px, .7vw + 0.33rem, 23px);
   --text-medium: clamp(16px, 0.9vw + 0.37rem, 28px);
   --text-large: clamp(18px, 1vw + 0.40rem, 30px);
+  --text-xlarge: clamp(22px, 1.2vw + 0.60rem, 40px);
 
   --font-size-smallk: clamp(1rem, ((1 - ((1.25 - 1) / (128 - 20) * 20)) * 1rem + ((1.25 - 1) / (128 - 20)) * 100vw), 2rem);
   
@@ -62,18 +63,27 @@
   @apply px-4.5 lg:px-5 xl:px-7;
 }
 
+@utility section-py {
+  @apply py-[6.5em];
+}
+
 @utility flex-center {
   @apply flex items-center justify-between ;
 }
 
-.diva{
-font-size: var(--font-size-small);
-}
 
 /*sm(640px) md(768px) lg(1024px) xl(1280px) 2xl(1536px)*/
 
 @utility grid-main {
   @apply flex flex-col sm:grid grid-cols-12 gap-[1.25em] ;
+}
+
+@utility work-grids {
+  @apply grid-main grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-x-[1em] gap-y-[2.5em] ;
+}
+
+@utility works-card-img {
+  @apply relative aspect-square rounded-[0.25em] overflow-hidden mb-[0.35em] ;
 }
 
 /* ---- Light mode (default) ----#707070 */
@@ -158,6 +168,11 @@ h1, h2, h3, h4, h5, h6 {
   text-wrap: balance;
 }
 
+.page_heading{
+  font-size: var(--text-xlarge);
+  margin-bottom: 1.9em;
+}
+
 h3{
   font-size: var(--text-large);
 }
@@ -189,6 +204,7 @@ p{
   width: 4.5px !important;
   opacity: 1 !important;
   z-index: 998 !important;
+  pointer-events: none !important; 
 }
 
 /*
@@ -197,11 +213,12 @@ p{
 }*/
 
 .os-scrollbar-handle {
-  background: var(--text) !important;
+  background: var(--text) !important; 
 }
 
 .os-scrollbar-horizontal {
   display: none;
+  pointer-events: none !important; 
 }
 
 

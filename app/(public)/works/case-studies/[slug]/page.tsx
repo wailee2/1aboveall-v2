@@ -5,11 +5,11 @@ import {
   getPublishedByCategory,
   getAdjacentItems,
 } from "@/content/works-api";
-import { CaseStudyHero } from "../../components/CaseStudyHero";
-import { CaseStudyBrief } from "../../components/CaseStudyBrief";
-import { CaseStudySectionBlock } from "../../components/CaseStudySectionBlock";
-import { CaseStudyResult } from "../../components/CaseStudyResult";
-import { CaseStudyFooter } from "../../components/CaseStudyFooter";
+import { CaseStudyHero } from "./components/CaseStudyHero";
+import { CaseStudyBrief } from "./components/CaseStudyBrief";
+import { CaseStudySectionBlock } from "./components/CaseStudySectionBlock";
+import { CaseStudyResult } from "./components/CaseStudyResult";
+import { CaseStudyFooter } from "./components/CaseStudyFooter";
 import type { CaseStudyItem } from "@/content/works-types";
 
 export function generateStaticParams() {

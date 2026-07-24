@@ -19,7 +19,7 @@ export function CaseStudiesGrid({ items }: { items: CaseStudyItem[] }) {
     <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-14">
       {items.map((item) => (
         <AppLink key={item.id} href={`/works/case-studies/${item.slug}`} className="group block">
-          <div className="relative aspect-[16/10] rounded-sm overflow-hidden mb-4">
+          <div className="relative aspect-16/10 rounded-sm overflow-hidden mb-4">
             <MediaRenderer
               media={item.heroMedia}
               className="absolute inset-0"

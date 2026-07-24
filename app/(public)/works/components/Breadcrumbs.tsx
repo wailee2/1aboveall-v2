@@ -45,16 +45,15 @@ export function Breadcrumbs({
   };
 
   return (
-    <nav aria-label="Breadcrumb" className="mb-8">
-      {/* eslint-disable-next-line react/no-danger */}
+    <nav aria-label="Breadcrumb" className="mb-[1.1em]">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <ol className="flex flex-wrap items-center gap-2 font-mono text-xs list-none p-0 m-0">
+      <ol className="flex flex-wrap items-center gap-2 text-xsmall list-none p-0 m-0">
         {items.map((item, i) => {
           const isLast = i === items.length - 1;
-          const linkColorClass = mutedColor ? "" : "text-muted hover:text-accent";
+          const linkColorClass = mutedColor ? "" : "text-muted hover:text-text";
           const currentColorClass = textColor ? "" : "text-text";
           const otherColorClass = mutedColor ? "" : "text-muted";
 
@@ -64,7 +63,6 @@ export function Breadcrumbs({
                 <AppLink
                   href={item.href}
                   className={`transition-colors ${linkColorClass}`}
-                  style={mutedColor ? { color: mutedColor } : undefined}
                 >
                   {item.label}
                 </AppLink>

@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { getPublishedByCategory } from "@/content/works-api";
-import { DesignsGrid } from "../components/DesignsGrid";
+import { DesignsGrid } from "./DesignsGrid";
 import type { DesignItem } from "@/content/works-types";
+import { Breadcrumbs } from "../components/Breadcrumbs";
 
 export const metadata: Metadata = {
   title: "Designs",
@@ -12,14 +13,16 @@ export default function DesignsPage() {
   const items = getPublishedByCategory("designs") as DesignItem[];
 
   return (
-    <section className="section-p-x py-[7em]">
-      <h2 className="font-mono text-xs uppercase tracking-wide text-accent mb-3">Works</h2>
-      <h1 className="font-sans text-3xl font-semibold tracking-tight text-text mb-12">Designs</h1>
+    <div className="section-p-x section-py">
+      <Breadcrumbs 
+        items={[
+          { label: "Works", href: "/works" }, 
+          { label: "Designs" }]}
+      />
 
-      <h1></h1>
+      <h1 className="page_heading ">Designs</h1>
 
-      <h2>Works &gt; Designs</h2>
       <DesignsGrid items={items} />
-    </section>
+    </div>
   );
 }

@@ -1,6 +1,6 @@
 import { MediaRenderer } from "@/components/ui/MediaRenderer";
 import type { CaseStudyItem } from "@/content/works-types";
-import { Breadcrumbs } from "./Breadcrumbs";
+import { Breadcrumbs } from "../../../components/Breadcrumbs";
 
 export function CaseStudyHero({ item }: { item: CaseStudyItem }) {
   return (

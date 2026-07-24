@@ -13,7 +13,7 @@
  */
 
 import { MediaRenderer } from "@/components/ui/MediaRenderer";
-import { DribbbleModal } from "./DribbbleModal";
+import { DribbbleModal } from "../components/DribbbleModal";
 import { useWorksModal } from "@/hooks/use-works-modal";
 import type { DesignItem } from "@/content/works-types";
 
@@ -28,13 +28,9 @@ export function DesignsGrid({ items }: { items: DesignItem[] }) {
   }
 
   return (
-    <>
-      <div className="grid-main grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-y-[2.5em]">
+    <div>
+      <div className="work-grids ">
         {items.map((item) => (
-          // Real <a href> (not a plain button) so keyboard nav,
-          // "open in new tab", and crawlers all still see a genuine
-          // link — the click handler just intercepts the default
-          // navigation in favor of the modal.
           <a
             key={item.id}
             href={`/works/designs/${item.slug}`}
@@ -44,16 +40,16 @@ export function DesignsGrid({ items }: { items: DesignItem[] }) {
             }}
             className="group block"
           >
-            <div className="relative aspect-square rounded-[0.25em] overflow-hidden mb-3">
+            <div className="works-card-img">
               <MediaRenderer
                 media={item.heroMedia}
                 className="absolute inset-0"
                 sizes="(max-width: 1024px) 50vw, 33vw"
               />
             </div>
-            <span className="text-small ">
+            <div className="text-small  ">
               {item.title}
-            </span>
+            </div>
           </a>
         ))}
       </div>
@@ -61,6 +57,6 @@ export function DesignsGrid({ items }: { items: DesignItem[] }) {
       {openItem && (
         <DribbbleModal item={openItem} prev={prev} next={next} onClose={closeModal} onNavigate={navigateTo} />
       )}
-    </>
+    </div>
   );
 }

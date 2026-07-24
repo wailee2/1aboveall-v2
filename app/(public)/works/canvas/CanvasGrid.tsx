@@ -1,14 +1,6 @@
 "use client";
 
 /**
- * app/(public)/works/components/CanvasGrid.tsx
- * ---------------------------------------------------------------
- * Asymmetric layout removed — now the same 3-col symmetric grid as
- * DesignsGrid. Canvas still stays visually distinct through its
- * local dark palette (see the wrapping override in canvas/page.tsx)
- * and its richer title+description caption, not through a different
- * grid structure.
- *
  * Kept as its own file rather than merged with DesignsGrid — see the
  * earlier explanation: the two now share identical STATE logic (via
  * useWorksModal) but still render enough real differences (colors,
@@ -18,7 +10,7 @@
  */
 
 import { MediaRenderer } from "@/components/ui/MediaRenderer";
-import { DribbbleModal } from "./DribbbleModal";
+import { DribbbleModal } from "../components/DribbbleModal";
 import { useWorksModal } from "@/hooks/use-works-modal";
 import type { CanvasItem } from "@/content/works-types";
 
@@ -33,8 +25,8 @@ export function CanvasGrid({ items }: { items: CanvasItem[] }) {
   }
 
   return (
-    <>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div>
+      <div className="work-grids">
         {items.map((item) => (
           <a
             key={item.id}
@@ -45,15 +37,16 @@ export function CanvasGrid({ items }: { items: CanvasItem[] }) {
             }}
             className="block"
           >
-            <div className="relative aspect-4/3 rounded-sm overflow-hidden mb-3">
+            <div className="works-card-img">
               <MediaRenderer
                 media={item.heroMedia}
                 className="absolute inset-0"
                 sizes="(max-width: 1024px) 50vw, 33vw"
               />
             </div>
-            <div className="font-sans text-base font-medium text-[#F0F0EC]">{item.title}</div>
-            <div className="font-serif text-sm text-[#9A9CA8] mt-1">{item.shortDescription}</div>
+            <div className="text-small">
+              {item.title}
+            </div>
           </a>
         ))}
       </div>
@@ -61,6 +54,6 @@ export function CanvasGrid({ items }: { items: CanvasItem[] }) {
       {openItem && (
         <DribbbleModal item={openItem} prev={prev} next={next} onClose={closeModal} onNavigate={navigateTo} />
       )}
-    </>
+    </div>
   );
 }
