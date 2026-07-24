@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <section className="section-p-x py-20">
+    <section className="section-px py-20">
       <div className="font-mono text-xs uppercase tracking-wide text-accent mb-3">
         About
       </div>

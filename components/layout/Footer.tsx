@@ -7,7 +7,7 @@ const footerLinks = getNavLinks("footer");
 
 export function Footer() {
   return (
-    <footer className="bg-accent text-on-accent section-p-x py-[1.5em] ">
+    <footer className="bg-accent text-on-accent section-px py-[1.5em] ">
       <div className=''>
         <div className="w-full grid grid-cols-2 gap-[1.25em] md:flex md:gap-x-[3em] text-small ">
           <nav 

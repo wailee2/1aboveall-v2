@@ -6,7 +6,7 @@ const SERVICES = [
 
 export function Services() {
   return (
-    <section className="section-p-xpy-20 border-t border-border">
+    <section className="section-pxpy-20 border-t border-border">
       <h2 className="font-sans text-2xl font-semibold tracking-tight text-text mb-12">
         Services
       </h2>

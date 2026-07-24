@@ -59,7 +59,8 @@
   --breakpoint-xs: 480px;
 }
 
-@utility section-p-x {
+
+@utility section-px {
   @apply px-4.5 lg:px-5 xl:px-7;
 }
 

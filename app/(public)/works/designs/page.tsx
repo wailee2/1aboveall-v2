@@ -13,7 +13,7 @@ export default function DesignsPage() {
   const items = getPublishedByCategory("designs") as DesignItem[];
 
   return (
-    <div className="section-p-x section-py">
+    <div className="section-px section-py">
       <Breadcrumbs 
         items={[
           { label: "Works", href: "/works" }, 

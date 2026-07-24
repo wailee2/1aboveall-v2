@@ -24,7 +24,7 @@ export function Header() {
 
   return (
     <header className="flex-center">
-      <div className="section-p-x fixed w-full flex-center z-800 top-0 ">
+      <div className="section-px fixed w-full flex-center z-800 top-0 ">
         <AppLink href="/" className="font-sans text-lg font-medium text-accent  ">
           wailee
         </AppLink>
@@ -53,7 +53,7 @@ export function Header() {
         </div>
       </div>
 
-      <div className="section-p-x py-2  fixed top-0 right-50 z-800 mix-blend-difference dark:text-on-accent  hiddenn md:block ">
+      <div className="section-px py-2  fixed top-0 right-50 z-800 mix-blend-difference dark:text-on-accent  hiddenn md:block ">
         <nav aria-label="Primary" className="hiddend md:flex items-center gap-8 transition-colors duration-300">
           {headerLinks.map((link) => (
             <AppLink

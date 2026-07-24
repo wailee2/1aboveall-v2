@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export function About() {
   return (
-    <section className="section-p-x ">
+    <section className="section-px ">
       <div className=" grid-main sm:grid grid-cols-12 flex-center">
         <div className="indent-[1.5em] lg:col-start-3 xl:col-start-3 col-span-10 lg:col-span-7 xl:col-span-6  text-left">
           <div className="inline-block align-text-bottom aspect-square min-w-60 max-w-[37%] mr-[0.5em] ">

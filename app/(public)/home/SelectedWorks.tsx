@@ -53,7 +53,7 @@ export function SelectedWorks() {
   if (items.length === 0) return null;
 
   return (
-    <section className="section-p-x py-20 border-t border-border">
+    <section className="section-px py-20 border-t border-border">
       <div className="flex items-baseline justify-between mb-12">
         <h2 className="font-sans text-2xl font-semibold tracking-tight text-text">
           Selected Works

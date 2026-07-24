@@ -13,7 +13,7 @@ export default function CanvasPage() {
   const items = getPublishedByCategory("canvas") as CanvasItem[];
 
   return (
-    <div className="section-p-x section-py">
+    <div className="section-px section-py ">
       <Breadcrumbs
         items={[
           { label: "Works", href: "/works" },
