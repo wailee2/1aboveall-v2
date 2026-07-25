@@ -101,103 +101,106 @@ export function DribbbleModal<T extends DesignItem | CanvasItem>({
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
-      className="fixed inset-0 z-180 flex items-start justify-center overflow-y-auto p-4 sm:p-10 bg-black/80"
+      className="fixed inset-0 w-full z-120  overflow-y-auto scrollbar-nonex bg-black/80 "
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="relative w-full max-w-4xl mt-4 sm:mt-10 mb-4 sm:mb-10 rounded-lg overflow-hidden bg-[#1B1C22] shrink-0"
+        className=" bg-bg section-px lg:grid grid-cols-12 gap-[1.25em] rounded-t-sm mt-[5em] "
       >
         <button
           type="button"
           onClick={onClose}
           aria-label="Close"
-          className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-black/40 text-white text-lg leading-none flex items-center justify-center hover:bg-black/60 transition-colors"
+          className="fixed top-[2.7em] right-[1.7em] z-10 w-9 h-9 rounded-full bg-text/40 text-bg text-sm leading-none flex items-center justify-center hover:bg-text/60 transition-colors cursor-pointer "
         >
           ✕
         </button>
 
-        {/* Static wrapper owns overflow/rounding (rounded corners come
-            for free from the card's own overflow-hidden above — this
-            inner wrapper has neither, so nothing about border-radius
-            is ever part of the animated element's own style). */}
-        <motion.div
-          layoutId={`work-media-${originSlug}`}
-          className="relative w-full aspect-4/3"
-          transition={FRAME_TRANSITION}
+        <div
+          className=" md:col-start-2 md:col-span-10 relative w-full py-[3em] shrink-0 "
         >
-          <AnimatePresence mode="wait" initial={false}>
-            <motion.div
-              key={item.slug}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.15 }}
-              className="absolute inset-0"
-            >
-              <LightboxTrigger media={item.heroMedia} className="absolute inset-0" sizes="90vw" priority />
-            </motion.div>
-          </AnimatePresence>
-        </motion.div>
+          <h2 className="text-large!">{item.title}</h2>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3, duration: 0.25 }}
-          className="px-6 py-5"
-        >
-          <div className="flex items-start justify-between gap-4 mb-2">
-            <h2 className="font-sans text-lg font-medium text-[#F0F0EC]">{item.title}</h2>
-            <button
-              type="button"
-              onClick={handleShare}
-              aria-label="Copy link to this item"
-              className="shrink-0 font-mono text-[11px] uppercase tracking-wide text-white/70 hover:text-white border border-white/20 rounded-sm px-3 py-1.5 transition-colors flex items-center gap-1.5"
-            >
-              <ShareIcon /> Share
-            </button>
-          </div>
+          <motion.div
+            layoutId={`work-media-${originSlug}`}
+            className="relative w-full aspect-4/3"
+            transition={FRAME_TRANSITION}
+          >
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.div
+                key={item.slug}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.15 }}
+                className="absolute inset-0"
+              >
+                <LightboxTrigger media={item.heroMedia} className="absolute inset-0" sizes="90vw" priority />
+              </motion.div>
+            </AnimatePresence>
+          </motion.div>
 
-          <time dateTime={item.publishedDate} className="font-mono text-[11px] uppercase tracking-wide text-white/50 block mb-3">
-            {publishedLabel}
-          </time>
-
-          <p className="font-serif text-sm text-white/70 leading-relaxed max-w-[60ch] mb-5">
-            {item.shortDescription}
-          </p>
-
-          {item.otherMedia && item.otherMedia.length > 0 && (
-            <div className="grid grid-cols-3 gap-2">
-              {item.otherMedia.map((media, i) => (
-                <div key={i} className="relative aspect-square rounded-sm overflow-hidden">
-                  <LightboxTrigger media={media} className="absolute inset-0" sizes="200px" />
-                </div>
-              ))}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3, duration: 0.25 }}
+            className="px-6 py-5"
+          >
+            <div className="flex items-start justify-between gap-4 mb-2">
+              <h2 className="font-sans text-lg font-medium text-[#F0F0EC]">{item.title}</h2>
+              <button
+                type="button"
+                onClick={handleShare}
+                title="copy"
+                aria-label="Copy link to this item"
+                className="shrink-0 font-mono text-[11px] uppercase tracking-wide text-white/70 hover:text-white border border-white/20 rounded-sm px-3 py-1.5 transition-colors flex items-center gap-1.5"
+              >
+                <ShareIcon /> Share
+              </button>
             </div>
-          )}
-        </motion.div>
 
-        <div className="bg-[#3B1D5C] px-6 py-4 flex items-center justify-center gap-4">
-          <PreviewThumb item={prev} label="Previous" onSelect={() => prev && onNavigate(prev)} />
+            <time dateTime={item.publishedDate} className="font-mono text-[11px] uppercase tracking-wide text-white/50 block mb-3">
+              {publishedLabel}
+            </time>
 
-          <div className="flex items-center gap-2">
-            <NavButton disabled={!prev} onClick={() => prev && onNavigate(prev)} label="Previous item">
-              ←
-            </NavButton>
-            <button
-              type="button"
-              onClick={onClose}
-              aria-label="Close"
-              className="font-mono text-xs text-white/70 hover:text-white border border-white/20 rounded-sm px-3 py-2 transition-colors"
-            >
-              Esc
-            </button>
-            <NavButton disabled={!next} onClick={() => next && onNavigate(next)} label="Next item">
-              →
-            </NavButton>
+            <p className="font-serif text-sm text-white/70 leading-relaxed max-w-[60ch] mb-5">
+              {item.shortDescription}
+            </p>
+
+            {item.otherMedia && item.otherMedia.length > 0 && (
+              <div className="grid grid-cols-3 gap-2">
+                {item.otherMedia.map((media, i) => (
+                  <div key={i} className="relative aspect-square rounded-sm overflow-hidden">
+                    <LightboxTrigger media={media} className="absolute inset-0" sizes="200px" />
+                  </div>
+                ))}
+              </div>
+            )}
+          </motion.div>
+
+          <div className="bg-[#3B1D5C] px-6 py-4 flex items-center justify-center gap-4">
+            <PreviewThumb item={prev} label="Previous" onSelect={() => prev && onNavigate(prev)} />
+
+            <div className="flex items-center gap-2">
+              <NavButton disabled={!prev} onClick={() => prev && onNavigate(prev)} label="Previous item">
+                ←
+              </NavButton>
+              <button
+                type="button"
+                onClick={onClose}
+                aria-label="Close"
+                className="font-mono text-xs text-white/70 hover:text-white border border-white/20 rounded-sm px-3 py-2 transition-colors"
+              >
+                Esc
+              </button>
+              <NavButton disabled={!next} onClick={() => next && onNavigate(next)} label="Next item">
+                →
+              </NavButton>
+            </div>
+
+            <PreviewThumb item={next} label="Next" onSelect={() => next && onNavigate(next)} />
           </div>
-
-          <PreviewThumb item={next} label="Next" onSelect={() => next && onNavigate(next)} />
-        </div>
+        </div>      
       </div>
     </motion.div>
   );
