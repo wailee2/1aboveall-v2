@@ -16,12 +16,12 @@
     "otherMedia": [
       {
         "type": "image",
-        "src": "/img/picture-of-wailee.jpg",
+        "src": "/img/placeholder-image.jpg",
         "alt": "Fintra dashboard transaction table detail"
       },
       {
-        "type": "image",
-        "src": "/img/picture-of-wailee.jpg",
+        "type": "video",
+        "src": "/video/placeholder-video.mp4",
         "alt": "Fintra dashboard mobile view"
       }
     ],

@@ -26,7 +26,6 @@
 import { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { MediaRenderer } from "@/components/ui/MediaRenderer";
 import { LightboxTrigger } from "@/components/ui/LightboxTrigger";
 import { useToast } from "@/components/toast/ToastProvider";
 import type { DesignItem, CanvasItem } from "@/content/works-types";
@@ -102,8 +101,7 @@ export function DribbbleModal<T extends DesignItem | CanvasItem>({
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
-      className="fixed inset-0 z-180 flex items-start justify-center overflow-y-auto p-4 sm:p-10"
-      style={{ backgroundColor: "rgba(76, 29, 149, 0.65)" }}
+      className="fixed inset-0 z-180 flex items-start justify-center overflow-y-auto p-4 sm:p-10 bg-black/80"
     >
       <div
         onClick={(e) => e.stopPropagation()}

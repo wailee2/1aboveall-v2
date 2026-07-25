@@ -9,14 +9,14 @@
     "heroImage": "/img/picture-of-wailee.jpg",
     "heroMedia": {
       "type": "image",
-      "src": "/img/picture-of-wailee.jpg",
+      "src": "/img/placeholder-image.jpg",
       "alt": "Digital illustration of a crowded night market"
     },
     "shortDescription": "A digital painting study exploring warm artificial light against a dark sky.",
     "otherMedia": [
       {
-        "type": "image",
-        "src": "/img/picture-of-wailee.jpg",
+        "type": "video",
+        "src": "/video/placeholder-video",
         "alt": "Night Market illustration detail crop"
       }
     ],

@@ -40,7 +40,7 @@
             "description": "A single serif carries every headline, paired with a plain, almost austere sans for body copy \u2014 the contrast does the work of signaling both heritage and precision.",
             "media": {
               "type": "image",
-              "src": "/img/picture-of-wailee.jpg",
+              "src": "/img/placeholder-image.jpg",
               "alt": "Meridian Capital typography specimen"
             }
           },
@@ -83,7 +83,7 @@
     ],
     "resultMedia": {
       "type": "video",
-      "src": "/images/works/case-studies/meridian-capital/walkthrough.mp4",
+      "src": "/video/placeholder-video.mp4",
       "poster": "/img/picture-of-wailee.jpg",
       "alt": "Full walkthrough of the finished Meridian Capital website"
     },

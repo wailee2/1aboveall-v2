@@ -31,7 +31,7 @@
   --font-size-3xl: 2.75rem;  /* 44px / font-size: clamp(.70rem, .3971rem + .49243vi, 1rem);*/
 
   --text-xsmall: clamp(11.5px, .57vw + 0.31rem, 23px);
-  --text-small: clamp(13px, .7vw + 0.33rem, 25px);
+  --text-small: clamp(13.5px, .7vw + 0.33rem, 25px);
   --text-medium: clamp(16px, 0.9vw + 0.37rem, 28px);
   --text-large: clamp(18px, 1vw + 0.5rem, 30px);
   --text-xlarge: clamp(25px, 1.5vw + 1rem, 48px);

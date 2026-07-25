@@ -51,8 +51,7 @@ export function CanvasGrid({ items }: { items: CanvasItem[] }) {
                 />
               </motion.div>
             </div>
-            <div className="font-sans text-base font-medium text-[#F0F0EC]">{item.title}</div>
-            <div className="font-serif text-sm text-[#9A9CA8] mt-1">{item.shortDescription}</div>
+            <h3 className="text-small! ">{item.title}</h3>
           </a>
         ))}
       </div>

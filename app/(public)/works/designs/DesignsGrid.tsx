@@ -55,9 +55,7 @@ export function DesignsGrid({ items }: { items: DesignItem[] }) {
                 />
               </motion.div>
             </div>
-            <span className="text-small">
-              {item.title}
-            </span>
+            <h3 className="text-small! ">{item.title}</h3>
           </a>
         ))}
       </div>
