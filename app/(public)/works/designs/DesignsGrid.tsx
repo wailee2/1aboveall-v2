@@ -3,11 +3,12 @@
 /**
  * app/(public)/works/components/DesignsGrid.tsx
  * ---------------------------------------------------------------
- * Each tile's image wrapper carries layoutId={`work-media-${slug}`}
- * — the shared-element anchor DribbbleModal's frame animates to/from.
- * LayoutGroup scopes these ids to this grid specifically (cheap
- * insurance against collisions, since Designs and Canvas never
- * render on the same page anyway).
+ * The layoutId'd motion.div no longer carries rounded-sm/overflow-
+ * hidden itself — those live on the static outer <div> now, so
+ * border-radius is never part of what Framer Motion has to
+ * interpolate mid-transform. Explicit tween transition (no spring)
+ * matches the one used in DribbbleModal's frame, so open and close
+ * feel identical in speed/easing.
  */
 
 import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
@@ -15,6 +16,8 @@ import { MediaRenderer } from "@/components/ui/MediaRenderer";
 import { DribbbleModal } from "../components/DribbbleModal";
 import { useWorksModal } from "@/hooks/use-works-modal";
 import type { DesignItem } from "@/content/works-types";
+
+const FRAME_TRANSITION = { duration: 0.4, ease: [0.22, 1, 0.36, 1] as const };
 
 export function DesignsGrid({ items }: { items: DesignItem[] }) {
   const { openItem, prev, next, originSlug, openModal, closeModal, navigateTo } = useWorksModal(
@@ -28,11 +31,8 @@ export function DesignsGrid({ items }: { items: DesignItem[] }) {
 
   return (
     <LayoutGroup id="designs-grid">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="work-grids ">
         {items.map((item) => (
-          // Real <a href> so keyboard nav, "open in new tab", and
-          // crawlers all still see a genuine link — the click handler
-          // just intercepts the default navigation in favor of the modal.
           <a
             key={item.id}
             href={`/works/designs/${item.slug}`}
@@ -40,19 +40,22 @@ export function DesignsGrid({ items }: { items: DesignItem[] }) {
               e.preventDefault();
               openModal(item.slug);
             }}
-            className="group block"
+            className="block"
           >
-            <motion.div
-              layoutId={`work-media-${item.slug}`}
-              className="relative aspect-4/3 rounded-sm overflow-hidden mb-3"
-            >
-              <MediaRenderer
-                media={item.heroMedia}
-                className="absolute inset-0"
-                sizes="(max-width: 1024px) 50vw, 33vw"
-              />
-            </motion.div>
-            <span className="font-sans text-sm font-medium text-text group-hover:text-accent transition-colors">
+            <div className="works-card">
+              <motion.div
+                layoutId={`work-media-${item.slug}`}
+                className="works-card-img"
+                transition={FRAME_TRANSITION}
+              >
+                <MediaRenderer
+                  media={item.heroMedia}
+                  className="absolute inset-0"
+                  sizes="(max-width: 1024px) 50vw, 33vw"
+                />
+              </motion.div>
+            </div>
+            <span className="text-small">
               {item.title}
             </span>
           </a>

@@ -3,11 +3,8 @@
 /**
  * app/(public)/works/components/CanvasGrid.tsx
  * ---------------------------------------------------------------
- * Same shared-element pattern as DesignsGrid — see that file's
- * comments for the full explanation. Kept as a separate file for the
- * same reasons discussed earlier (different colors/caption content),
- * even though the modal mechanics are now identical via
- * useWorksModal + DribbbleModal.
+ * Same fix as DesignsGrid — see that file's comments. Kept separate
+ * for the same reasons discussed earlier.
  */
 
 import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
@@ -15,6 +12,8 @@ import { MediaRenderer } from "@/components/ui/MediaRenderer";
 import { DribbbleModal } from "../components/DribbbleModal";
 import { useWorksModal } from "@/hooks/use-works-modal";
 import type { CanvasItem } from "@/content/works-types";
+
+const FRAME_TRANSITION = { duration: 0.4, ease: [0.22, 1, 0.36, 1] as const };
 
 export function CanvasGrid({ items }: { items: CanvasItem[] }) {
   const { openItem, prev, next, originSlug, openModal, closeModal, navigateTo } = useWorksModal(
@@ -28,7 +27,7 @@ export function CanvasGrid({ items }: { items: CanvasItem[] }) {
 
   return (
     <LayoutGroup id="canvas-grid">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="work-grids ">
         {items.map((item) => (
           <a
             key={item.id}
@@ -39,16 +38,19 @@ export function CanvasGrid({ items }: { items: CanvasItem[] }) {
             }}
             className="block"
           >
-            <motion.div
-              layoutId={`work-media-${item.slug}`}
-              className="relative aspect-4/3 rounded-sm overflow-hidden mb-3"
-            >
-              <MediaRenderer
-                media={item.heroMedia}
-                className="absolute inset-0"
-                sizes="(max-width: 1024px) 50vw, 33vw"
-              />
-            </motion.div>
+            <div className="works-card">
+              <motion.div
+                layoutId={`work-media-${item.slug}`}
+                className="works-card-img"
+                transition={FRAME_TRANSITION}
+              >
+                <MediaRenderer
+                  media={item.heroMedia}
+                  className="absolute inset-0"
+                  sizes="(max-width: 1024px) 50vw, 33vw"
+                />
+              </motion.div>
+            </div>
             <div className="font-sans text-base font-medium text-[#F0F0EC]">{item.title}</div>
             <div className="font-serif text-sm text-[#9A9CA8] mt-1">{item.shortDescription}</div>
           </a>

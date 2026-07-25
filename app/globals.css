@@ -87,8 +87,12 @@
   @apply grid-main grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-x-[1em] gap-y-[2.5em] ;
 }
 
+@utility works-card {
+  @apply rounded-[0.25em] overflow-hidden mb-[0.35em] ;
+}
+
 @utility works-card-img {
-  @apply relative aspect-square rounded-[0.25em] overflow-hidden mb-[0.35em] ;
+  @apply relative aspect-square ;
 }
 
 @utility translate-hide {

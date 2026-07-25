@@ -3,30 +3,35 @@
 /**
  * app/(public)/works/components/DribbbleModal.tsx
  * ---------------------------------------------------------------
- * SHARED ELEMENT TRANSITION: the image frame uses layoutId={"work-
- * media-" + originSlug} — the SAME id as the grid tile it was
- * clicked from (see DesignsGrid/CanvasGrid). Framer Motion detects
- * the matching id and automatically animates the FLIP transform
- * between the tile's on-screen rect and this frame's rect, both on
- * mount (fly in) and on exit (fly back), no manual measuring needed.
+ * FIXED (smooth scale-up, no jump/shadow):
  *
- * originSlug is intentionally stable for the whole modal session
- * (see use-works-modal.ts) — prev/next navigation crossfades the
- * MEDIA CONTENT inside this same frame instead of re-triggering a
- * flight animation to a different grid tile on every arrow press.
+ * 1. The layoutId frame now has an EXPLICIT tween transition
+ *    (duration 0.4s, ease-out curve) instead of relying on Framer
+ *    Motion's default spring — springs can overshoot/settle unevenly,
+ *    which reads as a "jump" rather than a clean scale.
  *
- * The rest of the content (title, description, other media, etc.)
- * fades in on a short delay after the frame lands, so the image is
- * clearly the "hero" of the entrance motion.
+ * 2. The image content no longer fades in independently on the
+ *    FIRST open — AnimatePresence's `initial={false}` means only the
+ *    frame's own scale/position animation is visible on open/close;
+ *    the crossfade only applies to LATER prev/next navigation. A
+ *    fully-opaque image that's still sliding into place is exactly
+ *    what read as jumping/shadowing before.
+ *
+ * 3. border-radius/overflow-hidden moved OFF the animated element
+ *    onto a static, non-animating wrapper div — Framer Motion no
+ *    longer needs to interpolate corner radius mid-transform, which
+ *    was a secondary source of the edge/shadow artifact.
  */
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { MediaRenderer } from "@/components/ui/MediaRenderer";
 import { LightboxTrigger } from "@/components/ui/LightboxTrigger";
 import { useToast } from "@/components/toast/ToastProvider";
 import type { DesignItem, CanvasItem } from "@/content/works-types";
+
+const FRAME_TRANSITION = { duration: 0.4, ease: [0.22, 1, 0.36, 1] as const };
 
 interface PreviewItem {
   slug: string;
@@ -47,7 +52,6 @@ export function DribbbleModal<T extends DesignItem | CanvasItem>({
   prev?: T;
   next?: T;
   originSlug: string;
-  /** "/works/designs" or "/works/canvas" — used only to build the share link. */
   basePath: string;
   onClose: () => void;
   onNavigate: (item: T) => void;
@@ -97,7 +101,7 @@ export function DribbbleModal<T extends DesignItem | CanvasItem>({
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.2 }}
+      transition={{ duration: 0.3 }}
       className="fixed inset-0 z-180 flex items-start justify-center overflow-y-auto p-4 sm:p-10"
       style={{ backgroundColor: "rgba(76, 29, 149, 0.65)" }}
     >
@@ -114,11 +118,16 @@ export function DribbbleModal<T extends DesignItem | CanvasItem>({
           ✕
         </button>
 
-        {/* Shared-element frame — layoutId anchored to originSlug,
-            stable across prev/next. This is the piece that flies in
-            from and back out to the grid tile it was opened from. */}
-        <motion.div layoutId={`work-media-${originSlug}`} className="relative w-full aspect-4/3">
-          <AnimatePresence mode="wait">
+        {/* Static wrapper owns overflow/rounding (rounded corners come
+            for free from the card's own overflow-hidden above — this
+            inner wrapper has neither, so nothing about border-radius
+            is ever part of the animated element's own style). */}
+        <motion.div
+          layoutId={`work-media-${originSlug}`}
+          className="relative w-full aspect-4/3"
+          transition={FRAME_TRANSITION}
+        >
+          <AnimatePresence mode="wait" initial={false}>
             <motion.div
               key={item.slug}
               initial={{ opacity: 0 }}
@@ -132,11 +141,10 @@ export function DribbbleModal<T extends DesignItem | CanvasItem>({
           </AnimatePresence>
         </motion.div>
 
-        {/* Rest of the content fades in shortly after the frame lands. */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.25, duration: 0.25 }}
+          transition={{ delay: 0.3, duration: 0.25 }}
           className="px-6 py-5"
         >
           <div className="flex items-start justify-between gap-4 mb-2">
