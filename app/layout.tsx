@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider, themeInitScript } from "@/contexts/ThemeContext";
 import { ToastProvider } from "@/components/toast/ToastProvider";
+import { ImageLightboxProvider } from "@/components/ui/ImageLightboxProvider";
 import { AppQueryProvider } from "@/lib/query-client";
 import { NavigationProvider } from "@/components/navigation/NavigationProvider";
 import {
@@ -60,13 +61,15 @@ export default function RootLayout({
         <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" />
       </head>
       <body>
+        <FirstLoadSplash />
         <ThemeProvider>
           <AppQueryProvider>
             <ToastProvider>
-              <NavigationProvider>
-                <FirstLoadSplash />
-                {children}
-              </NavigationProvider>
+              <ImageLightboxProvider>
+                <NavigationProvider>
+                  {children}
+                </NavigationProvider>
+              </ImageLightboxProvider>
             </ToastProvider>
           </AppQueryProvider>
         </ThemeProvider>

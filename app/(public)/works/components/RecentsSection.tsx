@@ -1,35 +1,60 @@
 import { AppLink } from "@/components/navigation/AppLink";
 import Image from "next/image";
 import type { WorkItem } from "@/content/works-types";
+import HorizontalScroller, { HorizontalContent } from "@/components/ui/HorizontalScroller";
+import VerticalScroller, { VerticalContent }  from "@/components/ui/VerticalScroller";
 
 export function RecentsSection({ items }: { items: WorkItem[] }) {
   return (
-    <section>
-      <h3 className="mb-8">Recent</h3>
 
-      {items.length === 0 ? (
-        <p className="font-serif text-base text-muted">Nothing published yet.</p>
-      ) : (
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
-          {items.map((item) => (
-            <AppLink key={item.id} href={`/works/${item.category}/${item.slug}`} className="group">
-              <div className="relative aspect-4/3 rounded-sm overflow-hidden bg-surface-tint mb-2">
-                <Image
-                  src={item.heroImage}
-                  alt={item.title}
-                  fill
-                  sizes="(max-width: 640px) 50vw, 20vw"
-                  className="object-cover group-hover:opacity-90 transition-opacity"
-                />
-              </div>
-              <div className="font-sans text-sm font-medium text-text truncate">{item.title}</div>
-              <div className="font-mono text-[10px] uppercase tracking-wide text-muted">
-                {item.category}
-              </div>
-            </AppLink>
-          ))}
-        </div>
-      )}
-    </section>
+<section>
+  <h3 className="mb-8">Recent</h3>
+
+
+
+  <VerticalScroller
+       className=""
+        panelClassName=""
+      >
+        <VerticalContent>
+          <div className="relative aspect-square bg-green-800 h-full w-full">
+            <img
+              src="/placeholder-image.png"
+              alt="project 1"
+              className="h-full w-full object-cover"
+            />
+            <p className="absolute left-4 bottom-4 text-white text-lg font-bold">
+              hey this is project1
+            </p>
+          </div>
+        </VerticalContent>
+
+        <VerticalContent>
+          <div className="relative aspect-square bg-amber-400 h-full w-full">
+            <img
+              src="/placeholder-image.png"
+              alt="project 2"
+              className="h-full w-full object-cover"
+            />
+            <p className="absolute left-4 bottom-4 text-white text-lg font-bold">
+              hey this is project2
+            </p>
+          </div>
+        </VerticalContent>
+
+        <VerticalContent>
+          <div className="relative aspect-square bg-red-700 h-full w-full">
+            <img
+              src="/placeholder-image.png"
+              alt="project 3"
+              className="h-full w-full object-cover"
+            />
+            <p className="absolute left-4 bottom-4 text-white text-lg font-bold">
+              hey this is project3
+            </p>
+          </div>
+        </VerticalContent>
+      </VerticalScroller>
+</section>
   );
 }

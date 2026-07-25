@@ -3,15 +3,19 @@
 /**
  * app/(public)/works/hooks/use-works-modal.ts
  * ---------------------------------------------------------------
- * The state management behind the Dribbble-style modal was
- * identical between DesignsGrid and CanvasGrid — same popstate sync,
- * same pushState/replaceState/back() calls — differing only in the
- * URL prefix. That's genuine duplication (unlike the grids'
- * rendering, which differs on purpose per the brief), so it's
- * extracted here once. The two grid components stay separate
- * because THEIR job — how a row of items looks — is meant to be
- * different; this hook's job — how the modal's open/closed state is
- * tracked — is meant to be identical, so it only exists in one place.
+ * Same responsibility as before (modal open/close/navigate state,
+ * synced with the URL via the History API, not Next's router) — plus
+ * `originSlug`, which is new.
+ *
+ * originSlug is set once, when the modal is FIRST opened from a grid
+ * click, and does NOT change when navigating prev/next inside an
+ * already-open modal. It's the anchor for the shared-element
+ * (layoutId) transition: the modal's image "frame" stays tied to
+ * originSlug for its whole session, so the big fly-in/fly-out
+ * animation only ever happens on open and close — arrow-key
+ * navigation between items crossfades content inside that same
+ * stable frame instead of re-triggering a flight animation to a
+ * different grid tile every time you press an arrow key.
  */
 
 import { useCallback, useEffect, useState } from "react";
@@ -22,14 +26,18 @@ interface HasSlug {
 
 export function useWorksModal<T extends HasSlug>(basePath: string, items: T[]) {
   const [openSlug, setOpenSlug] = useState<string | null>(null);
+  const [originSlug, setOriginSlug] = useState<string | null>(null);
 
-  // Keeps state correct for the browser's own back/forward buttons,
-  // not just this hook's own open/close actions.
   useEffect(() => {
     const pattern = new RegExp(`^${basePath}/([^/]+)/?$`);
     function syncFromPath() {
       const match = window.location.pathname.match(pattern);
-      setOpenSlug(match ? match[1] : null);
+      const slug = match ? match[1] : null;
+      setOpenSlug(slug);
+      // A genuine back/forward navigation (this only fires for
+      // those — pushState/replaceState never trigger popstate) is
+      // treated as a fresh origin too.
+      setOriginSlug(slug);
     }
     syncFromPath();
     window.addEventListener("popstate", syncFromPath);
@@ -45,6 +53,7 @@ export function useWorksModal<T extends HasSlug>(basePath: string, items: T[]) {
     (slug: string) => {
       window.history.pushState(null, "", `${basePath}/${slug}`);
       setOpenSlug(slug);
+      setOriginSlug(slug);
     },
     [basePath]
   );
@@ -59,11 +68,12 @@ export function useWorksModal<T extends HasSlug>(basePath: string, items: T[]) {
     (item: T) => {
       // replaceState, not pushState — arrow-keying through several
       // items shouldn't pile up one history entry per item.
+      // originSlug is deliberately NOT touched here.
       window.history.replaceState(null, "", `${basePath}/${item.slug}`);
       setOpenSlug(item.slug);
     },
     [basePath]
   );
 
-  return { openItem, prev, next, openModal, closeModal, navigateTo };
+  return { openItem, prev, next, originSlug, openModal, closeModal, navigateTo };
 }

@@ -1,4 +1,4 @@
-import { LightboxTrigger } from "@/components/ui/LightboxTrigger";
+import { MediaRenderer } from "@/components/ui/MediaRenderer";
 import { Breadcrumbs } from "./Breadcrumbs";
 import { CATEGORY_LABELS } from "@/content/works-config";
 import type { DesignItem, CanvasItem } from "@/content/works-types";
@@ -6,13 +6,12 @@ import type { DesignItem, CanvasItem } from "@/content/works-types";
 /**
  * app/(public)/works/components/DesignCanvasDetail.tsx
  * ---------------------------------------------------------------
- * Designs and Canvas sub-item pages share this exact layout — the
- * two categories are "similar" per the brief, differing only in
- * background color (red for Designs, green for Canvas).
- *
- * Hero and otherMedia images now go through LightboxTrigger instead
- * of MediaRenderer directly, so clicking any image here opens the
- * same natural-size zoom/pan lightbox used inside the Dribbble modal.
+ * Designs and Canvas sub-item pages share this exact layout (hero
+ * media at 80% width, bold title, short description, other media,
+ * published date) — the two categories are "similar" per the brief,
+ * differing only in background color (red for Designs, green for
+ * Canvas), passed in as a prop rather than duplicating this whole
+ * component twice.
  */
 export function DesignCanvasDetail({
   item,
@@ -40,10 +39,8 @@ export function DesignCanvasDetail({
             { label: CATEGORY_LABELS[item.category], href: `/works/${item.category}` },
             { label: item.title },
           ]}
-          textColor={textColor}
-          mutedColor={mutedColor}
         />
-
+        
         <h1
           className="font-sans text-3xl md:text-4xl font-bold tracking-tight mb-3"
           style={{ color: textColor }}
@@ -59,7 +56,7 @@ export function DesignCanvasDetail({
         </time>
 
         <div className="w-[80%] mx-auto relative aspect-4/3 rounded-md overflow-hidden mb-8">
-          <LightboxTrigger media={item.heroMedia} className="absolute inset-0" sizes="80vw" priority />
+          <MediaRenderer media={item.heroMedia} className="absolute inset-0" sizes="80vw" priority />
         </div>
 
         <p
@@ -73,7 +70,7 @@ export function DesignCanvasDetail({
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {item.otherMedia.map((media, i) => (
               <div key={i} className="relative aspect-4/3 rounded-sm overflow-hidden">
-                <LightboxTrigger media={media} className="absolute inset-0" sizes="(max-width: 640px) 100vw, 50vw" />
+                <MediaRenderer media={media} className="absolute inset-0" sizes="(max-width: 640px) 100vw, 50vw" />
               </div>
             ))}
           </div>
