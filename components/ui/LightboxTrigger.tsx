@@ -40,7 +40,7 @@ export function LightboxTrigger({
       type="button"
       onClick={() => open(media.src, media.alt)}
       aria-label={`View larger: ${media.alt}`}
-      className={`cursor-zoom-in ${className ?? ""}`}
+      className={`cursor-pointer ${className ?? ""}`}
     >
       <MediaRenderer media={media} className="w-full h-full" sizes={sizes} priority={priority} />
     </button>

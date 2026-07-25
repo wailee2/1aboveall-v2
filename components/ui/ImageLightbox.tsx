@@ -46,7 +46,7 @@ export function ImageLightbox({
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.2 }}
-      className="fixed inset-0 z-[220] flex items-center justify-center bg-black/85 p-6"
+      className="fixed inset-0 z-220 flex items-center justify-center bg-black/85 p-6"
     >
       <button
         type="button"
