@@ -117,7 +117,7 @@ export function DribbbleModal<T extends DesignItem | CanvasItem>({
         </button>
 
         <div
-          className=" md:col-start-2 md:col-span-10 relative w-full py-[3em] shrink-0 "
+          className=" md:col-start-2 md:col-span-10 relative w-full py-[4em] shrink-0 "
         >
           <h2 className="text-large!">{item.title}</h2>
 
@@ -178,27 +178,47 @@ export function DribbbleModal<T extends DesignItem | CanvasItem>({
             )}
           </motion.div>
 
-          <div className="bg-[#3B1D5C] px-6 py-4 flex items-center justify-center gap-4">
-            <PreviewThumb item={prev} label="Previous" onSelect={() => prev && onNavigate(prev)} />
+          <div className="flex-center mx-auto mt-[3em] mb-[2em] ">
+            <button
+              type="button"
+              onClick={onClose}
+              aria-label="Close"
+              className="clickable-button px-[1.4em] py-[0.7em] text-xsmall font-mono"
+            >
+              Esc
+            </button>
+          </div>
 
-            <div className="flex items-center gap-2">
-              <NavButton disabled={!prev} onClick={() => prev && onNavigate(prev)} label="Previous item">
-                ←
-              </NavButton>
-              <button
-                type="button"
-                onClick={onClose}
-                aria-label="Close"
-                className="font-mono text-xs text-white/70 hover:text-white border border-white/20 rounded-sm px-3 py-2 transition-colors"
+          <div className="grid grid-cols-12 gap-[1.25em] lg:gap-[2em]">
+            <div className=' col-span-6 lg:col-start-3 lg:col-span-4 flex flex-col gap-1 '>
+              <NavButton 
+                disabled={!prev} 
+                onClick={() => prev && onNavigate(prev)} label="Previous item"
               >
-                Esc
-              </button>
-              <NavButton disabled={!next} onClick={() => next && onNavigate(next)} label="Next item">
-                →
+                ← Next Work
               </NavButton>
+
+              <PreviewThumb 
+                item={prev} 
+                label="Previous" 
+                onSelect={() => prev && onNavigate(prev)} 
+              />
             </div>
 
-            <PreviewThumb item={next} label="Next" onSelect={() => next && onNavigate(next)} />
+            <div className='col-span-6 lg:col-span-4 flex flex-col gap-1 '>
+              <NavButton 
+                disabled={!next} 
+                onClick={() => next && onNavigate(next)} label="Next item"
+              >
+                → Previous Work
+              </NavButton>
+
+              <PreviewThumb 
+                item={next} 
+                label="Next" 
+                onSelect={() => next && onNavigate(next)}
+              />
+            </div>
           </div>
         </div>      
       </div>
@@ -234,7 +254,7 @@ function NavButton({
       onClick={onClick}
       disabled={disabled}
       aria-label={label}
-      className="font-sans text-lg text-white disabled:text-white/25 disabled:cursor-not-allowed border border-white/20 rounded-sm w-10 h-10 flex items-center justify-center hover:border-white/60 transition-colors"
+      className="clickable-button w-fit px-[1.4em] py-[0.7em] text-xsmall disabled:hidden disabled:cursor-not-allowed flex-center truncate font-mono"
     >
       {children}
     </button>
@@ -257,9 +277,14 @@ function PreviewThumb({
       type="button"
       onClick={onSelect}
       aria-label={`${label}: ${item.title}`}
-      className="relative w-16 h-12 rounded-sm overflow-hidden hidden sm:block shrink-0 opacity-70 hover:opacity-100 transition-opacity"
+      className="relative aspect-square overflow-hidden"
     >
-      <Image src={item.heroImage} alt={item.title} fill sizes="64px" className="object-cover" />
+      <Image 
+        src={item.heroImage} 
+        alt={item.title} 
+        fill sizes="(max-width: 640px) 50vw, 20vw"
+        className="object-cover size-full "
+      />
     </button>
   );
 }

@@ -28,6 +28,7 @@ export function CanvasGrid({ items }: { items: CanvasItem[] }) {
   return (
     <LayoutGroup id="canvas-grid">
       <div className="work-grids ">
+        <div className="clickable-button">hey</div>
         {items.map((item) => (
           <a
             key={item.id}

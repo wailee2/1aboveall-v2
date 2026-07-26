@@ -124,7 +124,7 @@ function SelectedWorkCard({ item, mediaClass }: SelectedWorkCardProps) {
                 {caseStudy.tags.map((tag) => (
                   <li
                     key={tag}
-                    className="leading-none font-mono text-xsmall uppercase tracking-tight text-text/90 flex-center truncate"
+                    className="leading-none font-mono text-xsmall uppercase tracking-tight text-text/90 flex-between truncate"
                   >
                     <div className="mr-[0.2em] bg-text rounded-full size-[0.5em]"/>
                     {tag}

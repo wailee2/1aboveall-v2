@@ -23,8 +23,8 @@ export function Header() {
   };
 
   return (
-    <header className="flex-center">
-      <div className="section-px fixed w-full flex-center z-800 top-0 ">
+    <header className="flex-between">
+      <div className="section-px fixed w-full flex-between z-800 top-0 ">
         <AppLink href="/" className="font-sans text-lg font-medium text-accent  ">
           wailee
         </AppLink>
