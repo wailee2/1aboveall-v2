@@ -2,7 +2,7 @@ import type { CaseStudyItem } from "@/content/works-types";
 
 export function CaseStudyBrief({ item }: { item: CaseStudyItem }) {
   return (
-    <section className="max-w-[760px] mx-auto px-6 py-16 border-t border-border">
+    <section className="section-px py-16 border-t border-border">
       {item.pullQuote && (
         <blockquote className="font-serif text-2xl leading-snug text-text italic mb-14 max-w-[50ch]">
           “{item.pullQuote}”

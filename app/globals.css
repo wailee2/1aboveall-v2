@@ -87,6 +87,10 @@
   @apply flex flex-col sm:grid grid-cols-12 gap-[1.25em] ;
 }
 
+@utility grid-main-cs {
+  @apply grid grid-cols-12 gap-[1.25em] ;
+}
+
 @utility work-grids {
   @apply grid-main grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-x-[1em] gap-y-[2.5em] ;
 }
@@ -190,8 +194,24 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 1.9em;
 }
 
+.case_heading {
+  font-weight: 400;
+  letter-spacing: 0em;
+}
+
 h2{
   font-size: var(--text-xlarge);
+}
+
+.case_h2{
+  font-size: var(--text-xsmall);
+  font-weight: 400;
+  color: var(--muted);
+  margin-bottom: .5em;
+  line-height: 100%;
+  letter-spacing: 0em;
+  text-transform: uppercase;
+  text-wrap: balance;
 }
 
 h3{
@@ -248,7 +268,7 @@ p{
   background-color: var(--text);
   color: var(--bg);
   border: 1px solid transparent;
-  border-radius: 0.2em;
+  border-radius: 0.25em;
   text-transform: uppercase;
   line-height: 100%;
   letter-spacing: .025em;
@@ -266,6 +286,26 @@ p{
   background-color: transparent;
   color: var(--text);
   border: 1px solid var(--text);
+}
+
+.secondary-clickable-button {
+  background-color: var(--bg);
+  color: rgb(from var(--muted) r g b / 0.9);
+  border: 1px solid var(--border);
+  border-radius: 0.25em;
+  text-transform: uppercase;
+  line-height: 100%;
+  letter-spacing: .025em;
+  transition: all .2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  cursor: pointer;
+
+  .group:hover & {
+    color: var(--text);
+  }
+}
+
+.secondary-clickable-button:hover {
+  color: var(--text);
 }
 
 .clickable-link {

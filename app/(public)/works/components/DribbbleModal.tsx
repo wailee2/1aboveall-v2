@@ -111,7 +111,7 @@ export function DribbbleModal<T extends DesignItem | CanvasItem>({
           type="button"
           onClick={onClose}
           aria-label="Close"
-          className="fixed top-[2.7em] right-[1.7em] z-10 w-9 h-9 rounded-full bg-text/40 text-bg text-sm leading-none flex items-center justify-center hover:bg-text/60 transition-colors cursor-pointer "
+          className="secondary-clickable-button fixed top-[6.5em] right-[1.7em] z-10 size-[2.2em] text-sm flex-center "
         >
           ✕
         </button>
@@ -159,11 +159,11 @@ export function DribbbleModal<T extends DesignItem | CanvasItem>({
               </button>
             </div>
 
-            <time dateTime={item.publishedDate} className="font-mono text-[11px] uppercase tracking-wide text-white/50 block mb-3">
+            <time dateTime={item.publishedDate} className="font-mono text-xsmall uppercase tracking-wide text-muted block mb-3">
               {publishedLabel}
             </time>
 
-            <p className="font-serif text-sm text-white/70 leading-relaxed max-w-[60ch] mb-5">
+            <p className="font-serif text-sm  leading-relaxed max-w-[60ch] mb-5">
               {item.shortDescription}
             </p>
 
@@ -183,7 +183,7 @@ export function DribbbleModal<T extends DesignItem | CanvasItem>({
               type="button"
               onClick={onClose}
               aria-label="Close"
-              className="clickable-button px-[1.4em] py-[0.7em] text-xsmall font-mono"
+              className="secondary-clickable-button px-[1.4em] py-[0.7em] text-xsmall font-mono"
             >
               Esc
             </button>
@@ -254,7 +254,7 @@ function NavButton({
       onClick={onClick}
       disabled={disabled}
       aria-label={label}
-      className="clickable-button w-fit px-[1.4em] py-[0.7em] text-xsmall disabled:hidden disabled:cursor-not-allowed flex-center truncate font-mono"
+      className="secondary-clickable-button w-fit px-[1.4em] py-[0.7em] text-xsmall disabled:hidden disabled:cursor-not-allowed flex-center truncate font-mono"
     >
       {children}
     </button>

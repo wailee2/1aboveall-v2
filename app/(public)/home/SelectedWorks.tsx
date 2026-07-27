@@ -66,7 +66,7 @@ export function SelectedWorks() {
         </AppLink>
       </div>
 
-      <div className=" md:grid-main gap-x-[.5em] gap-y-[3em] md:gap-y-[4.5em] ">
+      <div className="space-y-[3.5em] md:grid-main gap-x-[.5em] gap-y-[3em] md:gap-y-[4.5em] ">
         {items.map((item, index) => {
           const layout = itemClasses[index % itemClasses.length];
 
@@ -101,7 +101,6 @@ function SelectedWorkCard({ item, mediaClass }: SelectedWorkCardProps) {
       href={`/works/${item.category}/${item.slug}`} 
       className="group block"
     >
-
       <div className={`relative ${mediaClass} overflow-hidden mb-[0.7em]`}>
         <MediaRenderer
           media={{
@@ -121,13 +120,13 @@ function SelectedWorkCard({ item, mediaClass }: SelectedWorkCardProps) {
               <div className="hidden group-hover:block absolute inset-0 bg-linear-to-t from-black/60 to-transparent " />
 
               <ul className="md:translate-hide flex flex-wrap gap-x-[0.8em] gap-y-[0.2em]">
-                {caseStudy.tags.map((tag) => (
+                {caseStudy.services.map((service) => (
                   <li
-                    key={tag}
+                    key={service}
                     className="leading-none font-mono text-xsmall uppercase tracking-tight text-text/90 flex-between truncate"
                   >
                     <div className="mr-[0.2em] bg-text rounded-full size-[0.5em]"/>
-                    {tag}
+                    {service}
                   </li>
                 ))}
               </ul>

@@ -34,12 +34,12 @@ export function CaseStudiesGrid({ items }: { items: CaseStudyItem[] }) {
           </div>
           <p className="font-serif text-sm text-muted mb-3">{item.tagline}</p>
           <ul className="flex flex-wrap gap-2 list-none p-0">
-            {item.tags.map((tag) => (
+            {item.services.map((service) => (
               <li
-                key={tag}
+                key={service}
                 className="font-mono text-[10px] uppercase tracking-wide bg-accent-tint text-accent px-2 py-1 rounded-sm"
               >
-                {tag}
+                {service}
               </li>
             ))}
           </ul>

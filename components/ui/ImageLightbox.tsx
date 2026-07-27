@@ -46,30 +46,32 @@ export function ImageLightbox({
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.2 }}
-      className="fixed inset-0 z-220 flex items-center justify-center bg-black/85 p-6"
+      className="fixed inset-0 z-990 flex items-center justify-center bg-black/85 p-6"
     >
-      <button
-        type="button"
-        onClick={onClose}
-        aria-label="Close"
-        className="absolute top-5 right-5 z-10 w-10 h-10 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-white/20 transition-colors"
-      >
-        <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" strokeWidth={2} fill="none">
-          <path d="M6 6l12 12M18 6L6 18" strokeLinecap="round" />
-        </svg>
-      </button>
+      <div className="flex gap-[.6em] absolute top-7 right-7 z-10">
+        <button
+          type="button"
+          onClick={onClose}
+          aria-label="Close"
+          className="secondary-clickable-button size-[2em] flex-center text-text! hover:text-bg! hover:bg-text! "
+        >
+          <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" strokeWidth={2} fill="none">
+            <path d="M6 6l12 12M18 6L6 18" strokeLinecap="round" />
+          </svg>
+        </button>
 
-      <button
-        type="button"
-        onClick={(e) => {
-          e.stopPropagation();
-          setZoomed((z) => !z);
-        }}
-        aria-label={zoomed ? "Zoom out" : "Zoom in"}
-        className="absolute bottom-5 right-5 z-10 w-11 h-11 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-white/20 transition-colors"
-      >
-        <MagnifyIcon zoomed={zoomed} />
-      </button>
+        <button
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            setZoomed((z) => !z);
+          }}
+          aria-label={zoomed ? "Zoom out" : "Zoom in"}
+          className="secondary-clickable-button size-[2em] flex-center text-text! hover:text-bg! hover:bg-text!"
+        >
+          <MagnifyIcon zoomed={zoomed} />
+        </button>
+      </div>
 
       <motion.img
         src={src}

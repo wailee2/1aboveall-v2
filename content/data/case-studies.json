@@ -6,14 +6,14 @@
     "status": "published",
     "title": "Meridian Capital",
     "publishedDate": "2026-06-26",
-    "heroImage": "/img/picture-of-wailee.jpg",
+    "heroImage": "/img/placeholder-image-2.jpg",
     "heroMedia": {
       "type": "image",
-      "src": "/img/picture-of-wailee.jpg",
+      "src": "/img/placeholder-image-2.jpg",
       "alt": "Meridian Capital website homepage mockup"
     },
     "tagline": "Financial investment and consulting firm.",
-    "tags": [
+    "services": [
       "Web Design",
       "Webflow",
       "Brandinggggggggggggggg"
@@ -24,11 +24,6 @@
     "client": "Meridian Capital",
     "context": "Meridian had grown from a two-person advisory into a firm managing significant client portfolios, but their web presence hadn't kept pace \u2014 it still read like a placeholder site from their earliest days.",
     "objective": "Design and build a site that projected the confidence and precision clients expect from a financial firm, without leaning on tired corporate-finance visual clich\u00e9s.",
-    "services": [
-      "UI Design",
-      "Motion",
-      "Development"
-    ],
     "credits": "Copywriting by an external freelance writer.",
     "sections": [
       {
@@ -114,7 +109,7 @@
       "alt": "Hearth Studio website homepage mockup"
     },
     "tagline": "Independent interior design studio.",
-    "tags": [
+    "services": [
       "Web Design",
       "Development"
     ],
@@ -123,10 +118,6 @@
     "client": "Hearth Studio",
     "context": "A two-person interior design studio with a strong portfolio of residential work, but no site \u2014 client discovery happened entirely through referrals and Instagram.",
     "objective": "Build a portfolio site that could stand in for an in-person walkthrough of their work, for prospective clients who'd never met them.",
-    "services": [
-      "UI Design",
-      "Development"
-    ],
     "sections": [
       {
         "title": "01. Visual Identity & Web Design",
@@ -199,7 +190,7 @@
       "alt": "Arclight Labs product site mockup"
     },
     "tagline": "Developer tooling startup \u2014 pre-launch site.",
-    "tags": [
+    "services": [
       "Web Design",
       "Development",
       "Branding"
@@ -208,11 +199,6 @@
     "client": "Arclight Labs",
     "context": "An early-stage startup building developer tooling, needing a pre-launch marketing site before their public beta.",
     "objective": "Build a fast, technically credible landing experience that developers would trust before the product itself even existed yet.",
-    "services": [
-      "UI Design",
-      "Branding",
-      "Development"
-    ],
     "sections": [
       {
         "title": "01. Visual Identity & Web Design",

@@ -32,7 +32,7 @@ export function DesignCanvasDetail({
   });
 
   return (
-    <div className="-mx-6 px-6 py-20 min-h-[80vh]" style={{ backgroundColor: bgColor }}>
+    <div className="-mx-6 px-6 py-20 min-h-[80vh]">
       <div className="max-w-250 mx-auto">
         <Breadcrumbs
           items={[
