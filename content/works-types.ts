@@ -87,23 +87,33 @@ export interface CaseStudySection {
   blocks: FeatureBlock[];
 }
 
+export interface MobileExperienceBlock {
+  description: string;
+  media: MediaItem[];
+}
+
 export interface CaseStudyItem extends BaseWorkItem {
   category: "case-studies";
   heroMedia: MediaItem;
   tagline: string;
-  /** Deliverable tags, e.g. ["Web Design", "Webflow", "Branding"] */
-  tags: string[];
+  /** Deliverable services, e.g. ["Web Design", "Webflow", "Branding"] */
+  services: string[];
   year: string;
   /** Empty/omitted -> detail page renders a "CASE COMING SOON" block instead of a link. */
   liveSiteUrl?: string;
-  hero_statement?: string;
-  client: string;
+
+  heroStatement?: string;
+  client?: string;
   context: string;
   objective: string;
-  services: string[];
+
   showcaseMedia: MediaItem;
   sections: CaseStudySection[];
+
+  mobileExperience?: MobileExperienceBlock;
+
   visualMedia: MediaItem;
+
   impact?: string;
   testimonial?: { quote: string; author: string };
 }

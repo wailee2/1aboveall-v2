@@ -4,9 +4,9 @@ import { MediaRenderer } from "@/components/ui/MediaRenderer";
 export function CaseStudyBrief({ item }: { item: CaseStudyItem }) {
   return (
     <section className="section-px py-16 border-t border-border">
-      {item.hero_statement && (
+      {item.heroStatement && (
         <blockquote className="font-serif text-2xl leading-snug text-text italic mb-14 max-w-[50ch]">
-          “{item.hero_statement}”
+          “{item.heroStatement}”
         </blockquote>
       )}
 
