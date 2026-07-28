@@ -16,7 +16,7 @@ export function CaseStudyFooter({
   next?: CaseStudyItem;
 }) {
   return (
-    <footer className="max-w-[1000px] mx-auto px-6 py-16 border-t border-border">
+    <footer className=" py-16 border-t border-border">
       <AppLink
         href="/works/case-studies"
         className="font-mono text-xs uppercase tracking-wide text-muted hover:text-accent transition-colors block mb-12"
@@ -30,7 +30,7 @@ export function CaseStudyFooter({
             <div className="font-mono text-[10px] uppercase tracking-wide text-muted mb-3">
               Previous
             </div>
-            <div className="relative aspect-[16/10] rounded-sm overflow-hidden mb-3">
+            <div className="relative aspect-16/10 rounded-sm overflow-hidden mb-3">
               <Image
                 src={prev.heroImage}
                 alt={prev.title}
@@ -50,7 +50,7 @@ export function CaseStudyFooter({
             <div className="font-mono text-[10px] uppercase tracking-wide text-muted mb-3">
               Next
             </div>
-            <div className="relative aspect-[16/10] rounded-sm overflow-hidden mb-3">
+            <div className="relative aspect-16/10 rounded-sm overflow-hidden mb-3">
               <Image
                 src={next.heroImage}
                 alt={next.title}

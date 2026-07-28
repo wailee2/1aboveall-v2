@@ -2,9 +2,12 @@
   {
     "id": "case-001",
     "slug": "meridian-capital-rebrand",
+    "title": "Meridian Capital",
+    "client": "Meridian Capital",
     "category": "case-studies",
     "status": "published",
-    "title": "Meridian Capital",
+    "selected": true,
+    
     "publishedDate": "2026-06-26",
     "heroImage": "/img/placeholder-image-2.jpg",
     "heroMedia": {
@@ -12,22 +15,31 @@
       "src": "/img/placeholder-image-2.jpg",
       "alt": "Meridian Capital website homepage mockup"
     },
-    "tagline": "Financial investment and consulting firm.",
     "services": [
       "Web Design",
       "Webflow",
-      "Brandinggggggggggggggg"
+      "Brandinggggggggggggggg",
+      "Graphic Design",
+      "UI / UX"
     ],
     "year": "2026",
     "liveSiteUrl": "https://example.com/meridian-capital",
-    "pullQuote": "Develop a dynamic website, true to the bold identity we've built over a decade.",
-    "client": "Meridian Capital",
-    "context": "Meridian had grown from a two-person advisory into a firm managing significant client portfolios, but their web presence hadn't kept pace \u2014 it still read like a placeholder site from their earliest days.",
-    "objective": "Design and build a site that projected the confidence and precision clients expect from a financial firm, without leaning on tired corporate-finance visual clich\u00e9s.",
-    "credits": "Copywriting by an external freelance writer.",
+    
+    "hero_statement": "Develop a dynamic website, true to the bold identity we've built over a decade.",
+    "context": "Meridian had grown from a two-person advisory into a firm managing significant client portfolios, but their web presence hadn't kept pace \u2014 it still read like a placeholder site from their earliest days. After years of operating with a minimal holding page that drove curiosity, the agency is maturing. They are refocusing on top-tier digital and analog aesthetics and require a platform that scales with their ambition.",
+    "objective": "Design and build a site that projected the confidence and precision clients expect from a financial firm, without leaning on tired corporate-finance visual clich\u00e9s. Transform their digital presence into an immersive 24/7 showcase that validates their credibility and attracts high-profile clients.",
+    
+    "showcaseMedia": {
+      "type": "video",
+      "src": "/video/placeholder-video.mp4",
+      "poster": "/img/picture-of-wailee.jpg",
+      "alt": "Full walkthrough of the finished Meridian Capital website"
+    },
+
     "sections": [
       {
-        "title": "01. Visual Identity & Web Design",
+        "id": "section-design",
+        "title": "Visual Identity & Web Design",
         "overview": "The direction leaned into restraint \u2014 a lot of finance sites over-explain themselves with charts and jargon. Meridian's audience already knows what they want; the site's job was to feel trustworthy at a glance.",
         "blocks": [
           {
@@ -51,7 +63,8 @@
         ]
       },
       {
-        "title": "02. Website Development",
+        "id": "section-development",
+        "title": "engineered for scale",
         "overview": "Built in Webflow for the client's own team to manage day-to-day content, with custom interactions layered on top where Webflow's native tools weren't enough.",
         "blocks": [
           {
@@ -76,23 +89,18 @@
         ]
       }
     ],
-    "resultMedia": {
+
+    "visualMedia": {
       "type": "video",
       "src": "/video/placeholder-video.mp4",
       "poster": "/img/picture-of-wailee.jpg",
       "alt": "Full walkthrough of the finished Meridian Capital website"
     },
+
     "impact": "Client-reported inbound consultation requests rose in the months following launch.",
     "testimonial": {
       "quote": "The site finally looks like the firm we actually are.",
       "author": "Meridian Capital, Partner"
-    },
-    "selected": true,
-    "selectedLayout": {
-      "colStart": 7,
-      "colSpan": 6,
-      "widthPercent": 95,
-      "align": "right"
     }
   },
   {
@@ -114,10 +122,18 @@
       "Development"
     ],
     "year": "2026",
-    "pullQuote": "Make the portfolio feel as considered as the interiors themselves.",
+    "hero_statement": "Make the portfolio feel as considered as the interiors themselves.",
     "client": "Hearth Studio",
     "context": "A two-person interior design studio with a strong portfolio of residential work, but no site \u2014 client discovery happened entirely through referrals and Instagram.",
     "objective": "Build a portfolio site that could stand in for an in-person walkthrough of their work, for prospective clients who'd never met them.",
+    
+    "showcaseMedia": {
+      "type": "video",
+      "src": "/video/placeholder-video.mp4",
+      "poster": "/img/picture-of-wailee.jpg",
+      "alt": "Full walkthrough of the finished Meridian Capital website"
+    },
+    
     "sections": [
       {
         "title": "01. Visual Identity & Web Design",
@@ -168,7 +184,7 @@
         ]
       }
     ],
-    "resultMedia": {
+    "visualMedia": {
       "type": "image",
       "src": "/img/picture-of-wailee.jpg",
       "alt": "Full-page mockup of the finished Hearth Studio site"
@@ -199,6 +215,14 @@
     "client": "Arclight Labs",
     "context": "An early-stage startup building developer tooling, needing a pre-launch marketing site before their public beta.",
     "objective": "Build a fast, technically credible landing experience that developers would trust before the product itself even existed yet.",
+    
+    "showcaseMedia": {
+      "type": "video",
+      "src": "/video/placeholder-video.mp4",
+      "poster": "/img/picture-of-wailee.jpg",
+      "alt": "Full walkthrough of the finished Meridian Capital website"
+    },
+    
     "sections": [
       {
         "title": "01. Visual Identity & Web Design",
@@ -249,7 +273,7 @@
         ]
       }
     ],
-    "resultMedia": {
+    "visualMedia": {
       "type": "image",
       "src": "/img/picture-of-wailee.jpg",
       "alt": "Arclight Labs placeholder result visual"

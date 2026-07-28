@@ -4,7 +4,7 @@ import { Breadcrumbs } from "../../../components/Breadcrumbs";
 
 export function CaseStudyHero({ item }: { item: CaseStudyItem }) {
   return (
-    <header className=" pb-12 pt-[7em] ">
+    <div className=" pb-12 pt-[7em] ">
       <div className="section-px">
         <Breadcrumbs
           items={[
@@ -15,12 +15,25 @@ export function CaseStudyHero({ item }: { item: CaseStudyItem }) {
         />
       </div>
 
-      <div className="md:grid-main-cs section-px">
-        <div className='col-start-3 xl:col-start-2 col-span-full'>
-          <h1 className=" mb-[0.5em] text-[45px] sm:text-[64px] md:text-[96px] lg:text-[clamp(73px,6.4vw+11px,183px)] case_heading">
-            {item.title}
-          </h1>
-        </div>
+      <div className="section-px mb-[0.5em] flex-between items-baseline flex-wrap space-y-[0.2em] ">
+        <h1 className="  text-[45px] sm:text-[64px] md:text-[96px] lg:text-[clamp(73px,6.4vw+11px,183px)] case_heading">
+          {item.title}
+        </h1>
+        
+        {item.liveSiteUrl ? (
+          <a
+            href={item.liveSiteUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="clickable-link inline-block text-xsmall "
+          >
+            Visit live site ↗
+          </a>
+        ) : (
+          <div className="clickable-link pointer-events-none inline-block text-xsmall text-black! bg-disabled! ">
+            Case coming soon
+          </div>
+        )}
       </div>
 
       <div className="flex flex-col-reverse gap-[2em] md:grid-main-cs mb-[2em] relative ">
@@ -33,7 +46,7 @@ export function CaseStudyHero({ item }: { item: CaseStudyItem }) {
           <div>
             <dt className="case_h2">Services</dt>
             <dd>
-              <ul className="uppercase space-y-[0.5em] wrap-break-word">
+              <ul className="uppercase space-y-[0.45em] wrap-break-word">
                 {item.services.map((service) => (
                   <li key={service}>{service}</li>
                 ))}
@@ -46,7 +59,7 @@ export function CaseStudyHero({ item }: { item: CaseStudyItem }) {
           </div>
         </dl>
 
-        <div className='col-start-4 col-span-full bg-yellow-700'>
+        <div className='col-start-4 col-span-full'>
           <div className=" relative aspect-video overflow-hidden">
             <MediaRenderer 
               media={item.heroMedia}
@@ -56,41 +69,6 @@ export function CaseStudyHero({ item }: { item: CaseStudyItem }) {
           </div>
         </div>
       </div>
-      
-
-
-
-
-
-      <div className="grid grid-cols-12 gap-[1.25em]">
-        <h1 className="col-start-3 xl:col-start-2 col-span-full mb-3 sm:text-[64px] md:text-[96px] lg:text-[clamp(73px,6.4vw+11px,183px)] case_heading">
-          {item.title}
-        </h1>
-      </div>
-      <p className="font-serif text-lg text-muted mb-6 max-w-[60ch]">{item.tagline}</p>
-
-      <div className="flex flex-wrap items-center gap-4 mb-8">
-        <span className="font-mono text-xs text-muted">{item.year}</span>
-      </div>
-
-      <div className="w-[90%] mx-auto relative aspect-video rounded-md overflow-hidden mb-8">
-        <MediaRenderer media={item.heroMedia} className="absolute inset-0" sizes="90vw" priority />
-      </div>
-
-      {item.liveSiteUrl ? (
-        <a
-          href={item.liveSiteUrl}
-          target="_blank"
-          rel="noreferrer"
-          className="inline-block font-sans text-sm font-medium bg-accent text-on-accent hover:bg-accent-hover px-6 py-3 rounded-sm transition-colors"
-        >
-          Visit live site ↗
-        </a>
-      ) : (
-        <div className="inline-block font-mono text-xs uppercase tracking-wide text-muted border border-border rounded-sm px-6 py-3">
-          Case coming soon
-        </div>
-      )}
-    </header>
+    </div>
   );
 }

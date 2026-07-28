@@ -3,13 +3,21 @@ import type { CaseStudyItem } from "@/content/works-types";
 
 export function CaseStudyResult({ item }: { item: CaseStudyItem }) {
   return (
-    <section className="max-w-[1000px] mx-auto px-6 py-16 border-t border-border">
+    <section className=" py-16 border-t border-border">
       <h2 className="font-sans text-2xl font-semibold tracking-tight text-text mb-8">
         The Result
       </h2>
 
       <div className="relative aspect-video rounded-md overflow-hidden mb-10">
-        <MediaRenderer media={item.resultMedia} className="absolute inset-0" sizes="90vw" />
+        <MediaRenderer media={item.showcaseMedia} className="absolute inset-0" sizes="90vw" />
+      </div>
+
+      <div className=" relative aspect-video overflow-hidden">
+        <MediaRenderer 
+          media={item.visualMedia}
+          className="absolute inset-0"
+          sizes="90vw" priority
+        />
       </div>
 
       {item.impact && (

@@ -96,14 +96,14 @@ export interface CaseStudyItem extends BaseWorkItem {
   year: string;
   /** Empty/omitted -> detail page renders a "CASE COMING SOON" block instead of a link. */
   liveSiteUrl?: string;
-  pullQuote?: string;
+  hero_statement?: string;
   client: string;
   context: string;
   objective: string;
   services: string[];
-  credits?: string;
+  showcaseMedia: MediaItem;
   sections: CaseStudySection[];
-  resultMedia: MediaItem;
+  visualMedia: MediaItem;
   impact?: string;
   testimonial?: { quote: string; author: string };
 }

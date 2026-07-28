@@ -10,7 +10,7 @@ import type { CaseStudySection } from "@/content/works-types";
  */
 export function CaseStudySectionBlock({ section }: { section: CaseStudySection }) {
   return (
-    <section className="max-w-[900px] mx-auto px-6 py-16 border-t border-border">
+    <section className="section-px py-16 border-t border-border">
       <h2 className="font-sans text-2xl font-semibold tracking-tight text-text mb-4">
         {section.title}
       </h2>
@@ -25,7 +25,7 @@ export function CaseStudySectionBlock({ section }: { section: CaseStudySection }
             <p className="font-serif text-base text-muted leading-relaxed mb-4">
               {block.description}
             </p>
-            <div className="relative aspect-[4/3] rounded-sm overflow-hidden">
+            <div className="relative aspect-4/3 rounded-sm overflow-hidden">
               <MediaRenderer media={block.media} className="absolute inset-0" sizes="(max-width: 768px) 100vw, 50vw" />
             </div>
           </div>
