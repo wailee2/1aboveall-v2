@@ -3,22 +3,29 @@ import { MediaRenderer } from "@/components/ui/MediaRenderer";
 
 export function CaseStudyBrief({ item }: { item: CaseStudyItem }) {
   return (
-    <section className="section-px py-16 border-t border-border">
-      {item.heroStatement && (
-        <blockquote className="font-serif text-2xl leading-snug text-text italic mb-14 max-w-[50ch]">
-          “{item.heroStatement}”
-        </blockquote>
-      )}
+    <section className="section-px section-spacer-case  ">
+      <div className="space-y-[3em] ">
+        {item.heroStatement && (
+          <div className="lg:grid-main-case  ">
+            <blockquote className="col-start-2 col-span-7 font-serif text-4xl lg:text-6xl leading-none  italic ">
+              “{item.heroStatement}”
+            </blockquote>
+          </div>
+        )}
+        
+        <div className=" space-y-[1.8em]">
+          <div className=" gap-[.75em] flex flex-col  lg:grid-main-case">
+            <h2 className="case_h2 col-start-2 col-span-2 ">Context</h2>
+            <p className="text-medium col-start-4 col-span-6">{item.context}</p>
+          </div>
 
-      <div className="mb-8">
-        <h2 className="font-mono text-xs uppercase tracking-wide text-muted mb-2">Context</h2>
-        <p className="font-serif text-lg leading-relaxed text-text/85">{item.context}</p>
+          <div className="gap-[.75em] flex flex-col  lg:grid-main-case">
+            <h2 className="case_h2 col-start-2 col-span-2">Objective</h2>
+            <p className=" text-medium col-start-4 col-span-6">{item.objective}</p>
+          </div>
+        </div>
       </div>
-
-      <div className="mb-8">
-        <h2 className="font-mono text-xs uppercase tracking-wide text-muted mb-2">Objective</h2>
-        <p className="font-serif text-lg leading-relaxed text-text/85">{item.objective}</p>
-      </div>
+      
 
       <div className=" relative aspect-video overflow-hidden">
         <MediaRenderer 

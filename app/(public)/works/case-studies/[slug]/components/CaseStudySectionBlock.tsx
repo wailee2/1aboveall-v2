@@ -11,7 +11,7 @@ import type { CaseStudySection } from "@/content/works-types";
 export function CaseStudySectionBlock({ section }: { section: CaseStudySection }) {
   return (
     <section className="section-px py-16 border-t border-border">
-      <h2 className="font-sans text-2xl font-semibold tracking-tight text-text mb-4">
+      <h2 className="case_h2 font-sans text-2xl font-semibold tracking-tight text-text mb-4">
         {section.title}
       </h2>
       <p className="font-serif text-lg leading-relaxed text-text/85 max-w-[65ch] mb-12">
@@ -31,6 +31,40 @@ export function CaseStudySectionBlock({ section }: { section: CaseStudySection }
           </div>
         ))}
       </div>
+
+      {section.visualMedia && (
+        <div className="relative aspect-video rounded-sm overflow-hidden bg-muted/20">
+          <MediaRenderer 
+            media={section.visualMedia} 
+            className="absolute inset-0 w-full h-full object-cover" 
+            sizes="100vw" 
+          />
+        </div>
+      )}
+
+      {section.mobileExperience && (
+        <div className="mt-16">
+          <p className="font-serif text-lg leading-relaxed text-text/85 max-w-[65ch] mb-10">
+            {section.mobileExperience.description}
+          </p>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            {section.mobileExperience.media.map((mediaItem, index) => (
+              <div 
+                key={index} 
+                className="relative aspect-9/19 rounded-xl overflow-hidden bg-muted/20 border border-border"
+              >
+                <MediaRenderer 
+                  media={mediaItem} 
+                  className="absolute inset-0 w-full h-full object-cover" 
+                  sizes="(max-width: 640px) 100vw, 33vw" 
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+      
     </section>
   );
 }

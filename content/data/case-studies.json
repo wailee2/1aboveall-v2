@@ -60,7 +60,13 @@
               "alt": "Meridian Capital layout grid overlay"
             }
           }
-        ]
+        ],
+        "visualMedia": {
+          "type": "video",
+          "src": "/video/placeholder-video.mp4",
+          "poster": "/img/picture-of-wailee.jpg",
+          "alt": "Full walkthrough of the finished Meridian Capital website"
+        }
       },
       {
         "id": "section-development",
@@ -86,7 +92,27 @@
               "alt": "Meridian Capital site on mobile devices"
             }
           }
-        ]
+        ],
+        "mobileExperience": {
+          "description": "To maintain an experience close to the desktop version, some sections have been completely redesigned to adapt to the vertical orientation of mobile screens. The VHS box, used horizontally for the menu, becomes vertical on mobile. Similarly, the VHS collection, presented as a horizontal shelf, is reorganized into a vertical stack on mobile.",
+          "media": [
+            {
+              "type": "image",
+              "src": "/img/placeholder-image-2.jpg",
+              "alt": "Home screen"
+            },
+            {
+              "type": "image",
+              "src": "/img/placeholder-image-2.jpg",
+              "alt": "Details screen"
+            },
+            {
+              "type": "image",
+              "src": "/img/placeholder-image-2.jpg",
+              "alt": "Profile screen"
+            }
+          ]
+        }
       }
     ],
     

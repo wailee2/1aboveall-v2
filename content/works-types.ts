@@ -80,17 +80,21 @@ export interface FeatureBlock {
   media: MediaItem;
 }
 
+export interface MobileExperienceBlock {
+  description: string;
+  media: MediaItem[];
+}
+
 export interface CaseStudySection {
   /** e.g. "01. Visual Identity & Web Design" */
   title: string;
   overview: string;
   blocks: FeatureBlock[];
+  mobileExperience?: MobileExperienceBlock;
+  visualMedia?: MediaItem;
 }
 
-export interface MobileExperienceBlock {
-  description: string;
-  media: MediaItem[];
-}
+
 
 export interface CaseStudyItem extends BaseWorkItem {
   category: "case-studies";
@@ -109,10 +113,6 @@ export interface CaseStudyItem extends BaseWorkItem {
 
   showcaseMedia: MediaItem;
   sections: CaseStudySection[];
-
-  mobileExperience?: MobileExperienceBlock;
-
-  visualMedia: MediaItem;
 
   impact?: string;
   testimonial?: { quote: string; author: string };

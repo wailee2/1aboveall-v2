@@ -4,7 +4,7 @@ import { Breadcrumbs } from "../../../components/Breadcrumbs";
 
 export function CaseStudyHero({ item }: { item: CaseStudyItem }) {
   return (
-    <div className=" pb-12 pt-[7em] ">
+    <div className=" section-hero-py-case ">
       <div className="section-px">
         <Breadcrumbs
           items={[
@@ -36,17 +36,17 @@ export function CaseStudyHero({ item }: { item: CaseStudyItem }) {
         )}
       </div>
 
-      <div className="flex flex-col-reverse gap-[2em] md:grid-main-case mb-[2em] relative ">
+      <div className="flex flex-col-reverse gap-[2em] md:grid-main-case  relative ">
         <dl className="col-start-2 col-span-2 grid grid-cols-2 gap-[1.25em] md:space-y-[3em] md:block h-fit md:absolute bottom-1/3 text-xsmall uppercase leading-none px-4.5 md:px-0  ">
           <div>
-            <dt className="case_h2">Client</dt>
-            <dd className="uppercase ">{item.client}</dd>
+            <dt className="case_h2 text-small! ">Client</dt>
+            <dd className="uppercase mt-[.5em]">{item.client}</dd>
           </div>
 
           <div>
-            <dt className="case_h2">Services</dt>
+            <dt className="case_h2 text-small!">Services</dt>
             <dd>
-              <ul className="uppercase space-y-[0.45em] wrap-break-word">
+              <ul className="uppercase space-y-[0.45em] mt-[.5em] wrap-break-word">
                 {item.services.map((service) => (
                   <li key={service}>{service}</li>
                 ))}
