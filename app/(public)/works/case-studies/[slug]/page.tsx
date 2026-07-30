@@ -66,13 +66,15 @@ export default async function CaseStudyDetailPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <CaseStudyHero item={item} />
-      <CaseStudyBrief item={item} />
-      {item.sections.map((section) => (
-        <CaseStudySectionBlock key={section.title} section={section} />
-      ))}
-      <CaseStudyResult item={item} />
-      <CaseStudyFooter prev={prev as CaseStudyItem | undefined} next={next as CaseStudyItem | undefined} />
+      <div className="page-py page-spacer">
+        <CaseStudyHero item={item} />
+        <CaseStudyBrief item={item} />
+        {item.sections.map((section) => (
+          <CaseStudySectionBlock key={section.title} section={section} />
+        ))}
+        <CaseStudyResult item={item} />
+        <CaseStudyFooter prev={prev as CaseStudyItem | undefined} next={next as CaseStudyItem | undefined} />
+      </div>
     </article>
   );
 }

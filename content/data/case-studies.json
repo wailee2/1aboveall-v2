@@ -18,7 +18,7 @@
     "services": [
       "Web Design",
       "Webflow",
-      "Brandinggggggggggggggg",
+      "Branding",
       "Graphic Design",
       "UI / UX"
     ],
@@ -39,7 +39,7 @@
     "sections": [
       {
         "id": "section-design",
-        "title": "Visual Identity & Web Design",
+        "title": "Visual Identity & strategy",
         "overview": "The direction leaned into restraint \u2014 a lot of finance sites over-explain themselves with charts and jargon. Meridian's audience already knows what they want; the site's job was to feel trustworthy at a glance.",
         "blocks": [
           {

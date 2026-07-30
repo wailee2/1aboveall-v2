@@ -4,7 +4,7 @@ import { Breadcrumbs } from "../../../components/Breadcrumbs";
 
 export function CaseStudyHero({ item }: { item: CaseStudyItem }) {
   return (
-    <div className=" section-hero-py-case ">
+    <section className=" ">
       <div className="section-px">
         <Breadcrumbs
           items={[
@@ -36,17 +36,17 @@ export function CaseStudyHero({ item }: { item: CaseStudyItem }) {
         )}
       </div>
 
-      <div className="flex flex-col-reverse gap-[2em] md:grid-main-case  relative ">
-        <dl className="col-start-2 col-span-2 grid grid-cols-2 gap-[1.25em] md:space-y-[3em] md:block h-fit md:absolute bottom-1/3 text-xsmall uppercase leading-none px-4.5 md:px-0  ">
-          <div>
-            <dt className="case_h2 text-small! ">Client</dt>
-            <dd className="uppercase mt-[.5em]">{item.client}</dd>
+      <div className=" flex flex-col-reverse gap-[2em] md:grid-main-case  relative uppercase ">
+        <dl className="col-start-2 col-span-2 grid grid-cols-2 gap-[1.25em] md:space-y-[3em] md:block h-fit md:absolute bottom-1/3 uppercase leading-none px-4.5 md:px-0  ">
+          <div className=" info-case">
+            <dt className="case_h2  ">Client</dt>
+            <dd className=" ">{item.client}</dd>
           </div>
 
-          <div>
-            <dt className="case_h2 text-small!">Services</dt>
+          <div className=" info-case">
+            <dt className="case_h2 ">Services</dt>
             <dd>
-              <ul className="uppercase space-y-[0.45em] mt-[.5em] wrap-break-word">
+              <ul className=" space-y-[0.35em] leading-none wrap-break-word">
                 {item.services.map((service) => (
                   <li key={service}>{service}</li>
                 ))}
@@ -54,7 +54,8 @@ export function CaseStudyHero({ item }: { item: CaseStudyItem }) {
             </dd>
           </div>
 
-          <div className="">
+          <div className=" info-case">
+            <span className="case_h2 ">year</span>
             <span className="">{item.year}</span>
           </div>
         </dl>
@@ -69,6 +70,6 @@ export function CaseStudyHero({ item }: { item: CaseStudyItem }) {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

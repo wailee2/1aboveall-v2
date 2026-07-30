@@ -3,7 +3,7 @@ import type { CaseStudyItem } from "@/content/works-types";
 
 export function CaseStudyResult({ item }: { item: CaseStudyItem }) {
   return (
-    <section className="section-px py-16 border-t border-border">
+    <section className="section-px">
       <h2 className="font-sans text-2xl font-semibold tracking-tight text-text mb-8">
         The Result
       </h2>
