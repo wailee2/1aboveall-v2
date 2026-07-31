@@ -11,7 +11,7 @@ import type { CaseStudySection } from "@/content/works-types";
 export function CaseStudySectionBlock({ section }: { section: CaseStudySection }) {
   return (
     <section className="section-px ">
-      <div className="mb-[3em] lg:grid-main-case info-case  ">
+      <div className="mb-[2.5em] lg:grid-main-case info-case  ">
         <h2 className="case_h2 col-start-1 col-span-2">
           {section.title}
         </h2>
@@ -20,7 +20,7 @@ export function CaseStudySectionBlock({ section }: { section: CaseStudySection }
         </p>
       </div>
       
-      <div className="flex flex-col gap-[5em]  ">
+      <div className="flex flex-col gap-[3.7em]  ">
         {section.blocks.map((block, index) => {
           const isEvenBlock = index % 2 !== 0;
 
@@ -29,20 +29,6 @@ export function CaseStudySectionBlock({ section }: { section: CaseStudySection }
               key={block.subheading}
               className="grid grid-cols-12 gap-x-[1.25em] gap-y-[1.35em] items-center "
             >
-              <div 
-                className={`relative aspect-square  overflow-hidden col-span-12  ${
-                  isEvenBlock 
-                    ? "md:col-start-8 md:col-span-5 md:order-2" 
-                    : "md:col-start-1 md:col-span-5 md:order-1"
-                }`}
-              >
-                <MediaRenderer 
-                  media={block.media} 
-                  className="absolute inset-0 size-full object-cover" 
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                />
-              </div>
-
               <div 
                 className={`col-span-12 info-case ${
                   isEvenBlock 
@@ -59,7 +45,19 @@ export function CaseStudySectionBlock({ section }: { section: CaseStudySection }
                 </p>
               </div>
 
-              
+              <div 
+                className={`relative aspect-square  overflow-hidden col-span-12  ${
+                  isEvenBlock 
+                    ? "md:col-start-8 md:col-span-5 md:order-2" 
+                    : "md:col-start-1 md:col-span-5 md:order-1"
+                }`}
+              >
+                <MediaRenderer 
+                  media={block.media} 
+                  className="absolute inset-0 size-full object-cover" 
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              </div>
             </div>
           );
         })}
