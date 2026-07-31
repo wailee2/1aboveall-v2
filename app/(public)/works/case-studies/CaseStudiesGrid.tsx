@@ -16,33 +16,39 @@ export function CaseStudiesGrid({ items }: { items: CaseStudyItem[] }) {
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-14">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-[1.25em] gap-y-[1.35em] md:gap-y-[2em] ">
       {items.map((item) => (
-        <AppLink key={item.id} href={`/works/case-studies/${item.slug}`} className="group block">
-          <div className="relative aspect-16/10 rounded-sm overflow-hidden mb-4">
+        <AppLink 
+          key={item.id} 
+          href={`/works/case-studies/${item.slug}`} 
+          className="group block space-y-[1em] work-link  "
+        >
+          <div className="relative aspect-16/10 overflow-hidden ">
             <MediaRenderer
               media={item.heroMedia}
               className="absolute inset-0"
               sizes="(max-width: 768px) 100vw, 50vw"
             />
+            <div className="absolute inset-x-0 bottom-0 mix-blend-difference ">
+              <ul className="flex flex-wrap gap-x-[0.8em] gap-y-[0.2em] list-none  p-[1em] md:p-[1.2em] text-white!">
+                {item.services.slice(0, 3).map((service) => (
+                  <li
+                    key={service}
+                    className=" leading-none text-xsmall uppercase tracking-tight flex-between truncate"
+                  >
+                    <span className="mr-[0.3em] bg-white rounded-full size-[0.6em]"/>
+                    {service}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
-          <div className="flex items-baseline justify-between gap-4 mb-2">
-            <h2 className="font-sans text-lg font-medium text-text group-hover:text-accent transition-colors">
+          <div className="flex items-start justify-between gap-4">
+            <h2 className="">
               {item.title}
             </h2>
-            <span className="font-mono text-xs text-muted shrink-0">{item.year}</span>
+            <span className="hidden font-mono text-xsmall text-muted shrink-0">{item.year}</span>
           </div>
-          <p className="font-serif text-sm text-muted mb-3">{item.tagline}</p>
-          <ul className="flex flex-wrap gap-2 list-none p-0">
-            {item.services.map((service) => (
-              <li
-                key={service}
-                className="font-mono text-[10px] uppercase tracking-wide bg-accent-tint text-accent px-2 py-1 rounded-sm"
-              >
-                {service}
-              </li>
-            ))}
-          </ul>
         </AppLink>
       ))}
     </div>

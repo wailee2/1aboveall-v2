@@ -37,7 +37,7 @@ export function CaseStudyHero({ item }: { item: CaseStudyItem }) {
       </div>
 
       <div className=" flex flex-col-reverse gap-[2em] md:grid-main-case relative uppercase mix-blend-difference ">
-        <dl className="col-start-1 col-span-2 grid grid-cols-2 gap-[1.25em] md:space-y-[3em] md:block h-fit md:absolute bottom-0 lg:bottom-1/3 uppercase leading-none z-10  ">
+        <dl className="col-start-1 col-span-2 grid grid-cols-2 gap-[1.25em] md:space-y-[3em] md:block h-fit md:absolute bottom-0 lg:bottom-1/6 uppercase leading-none z-10  ">
           <div className=" info-case">
             <dt className="case_h2  ">Client</dt>
             <dd className="text-nowrap ">{item.client}</dd>

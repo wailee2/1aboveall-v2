@@ -16,7 +16,7 @@ export function CaseStudyFooter({
   next?: CaseStudyItem;
 }) {
   return (
-    <section className=" section-px space-y-[2em] ">
+    <section className=" section-px space-y-[2em]  ">
       <div className="space-y-[0.35em] sm:flex-between ">
         <h2 className="text-2xlarge ">EXPLORE MORE</h2>
 
@@ -32,7 +32,7 @@ export function CaseStudyFooter({
         {prev && (
           <AppLink 
             href={`/works/case-studies/${prev.slug}`} 
-            className="group block space-y-[0.3em]"
+            className="group block space-y-[1em]"
           >
             <div className="relative aspect-16/10 overflow-hidden">
               <Image
@@ -43,16 +43,16 @@ export function CaseStudyFooter({
                 className="object-cover group-hover:opacity-90 transition-opacity"
               />
             </div>
-            <div className="">
+            <h2 className="">
               {prev.title}
-            </div>
+            </h2>
           </AppLink>
         )}
 
         {next && (
           <AppLink 
             href={`/works/case-studies/${next.slug}`} 
-            className="group block space-y-[0.3em] "
+            className="group block space-y-[1em] "
           >
             <div className="relative aspect-16/10  overflow-hidden ">
               <Image
@@ -63,9 +63,9 @@ export function CaseStudyFooter({
                 className="object-cover group-hover:opacity-90 transition-opacity"
               />
             </div>
-            <div className="">
+            <h2 className="">
               {next.title}
-            </div>
+            </h2>
           </AppLink>
         )}
       </div>
