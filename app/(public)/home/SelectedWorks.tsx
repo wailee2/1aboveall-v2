@@ -43,7 +43,7 @@ const itemClasses = [
   },
   {
     divClass: "col-start-1 col-span-3 ml-auto w-[79%]",
-    mediaClass: "aspect-[16/10]", // Item 6 (Editorial widescreen)
+    mediaClass: "aspect-[16/10]",
   },
 ];
 

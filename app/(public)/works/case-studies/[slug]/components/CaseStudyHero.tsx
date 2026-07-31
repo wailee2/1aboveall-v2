@@ -4,7 +4,7 @@ import { Breadcrumbs } from "../../../components/Breadcrumbs";
 
 export function CaseStudyHero({ item }: { item: CaseStudyItem }) {
   return (
-    <section className=" ">
+    <section className=" pb-[2em]">
       <div className="section-px">
         <Breadcrumbs
           items={[
@@ -31,7 +31,7 @@ export function CaseStudyHero({ item }: { item: CaseStudyItem }) {
           </a>
         ) : (
           <div className="clickable-link pointer-events-none inline-block text-xsmall text-black! bg-disabled! ">
-            Case coming soon
+            Link coming soon
           </div>
         )}
       </div>

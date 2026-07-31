@@ -16,20 +16,25 @@ export function CaseStudyFooter({
   next?: CaseStudyItem;
 }) {
   return (
-    <footer className=" section-px">
-      <h2 className="text-xlarge ">EXPLORE MORE</h2>
+    <section className=" section-px space-y-[2em] ">
+      <div className="space-y-[0.35em] sm:flex-between ">
+        <h2 className="text-2xlarge ">EXPLORE MORE</h2>
 
-      <AppLink
-        href="/works/case-studies"
-        className="font-mono text-xs uppercase tracking-wide text-muted hover:text-accent transition-colors block mb-12"
-      >
-        ← Back to work
-      </AppLink>
+        <AppLink
+          href="/works"
+          className="clickable-link inline-block text-xsmall"
+        >
+          see all works
+        </AppLink>
+      </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-[1.25em]">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-[1.25em] gap-y-[1.35em]">
         {prev && (
-          <AppLink href={`/works/case-studies/${prev.slug}`} className="group block">
-            <div className="relative aspect-16/10 rounded-sm overflow-hidden mb-3">
+          <AppLink 
+            href={`/works/case-studies/${prev.slug}`} 
+            className="group block space-y-[0.3em]"
+          >
+            <div className="relative aspect-16/10 overflow-hidden">
               <Image
                 src={prev.heroImage}
                 alt={prev.title}
@@ -38,15 +43,18 @@ export function CaseStudyFooter({
                 className="object-cover group-hover:opacity-90 transition-opacity"
               />
             </div>
-            <div className="font-sans text-base font-medium text-text group-hover:text-accent transition-colors">
+            <div className="">
               {prev.title}
             </div>
           </AppLink>
         )}
 
         {next && (
-          <AppLink href={`/works/case-studies/${next.slug}`} className="group block sm:text-right">
-            <div className="relative aspect-16/10 rounded-xl overflow-hidden mb-3">
+          <AppLink 
+            href={`/works/case-studies/${next.slug}`} 
+            className="group block space-y-[0.3em] "
+          >
+            <div className="relative aspect-16/10  overflow-hidden ">
               <Image
                 src={next.heroImage}
                 alt={next.title}
@@ -55,12 +63,12 @@ export function CaseStudyFooter({
                 className="object-cover group-hover:opacity-90 transition-opacity"
               />
             </div>
-            <div className="font-sans text-base font-medium text-text group-hover:text-accent transition-colors">
+            <div className="">
               {next.title}
             </div>
           </AppLink>
         )}
       </div>
-    </footer>
+    </section>
   );
 }

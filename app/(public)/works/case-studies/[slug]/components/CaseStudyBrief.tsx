@@ -3,11 +3,11 @@ import { MediaRenderer } from "@/components/ui/MediaRenderer";
 
 export function CaseStudyBrief({ item }: { item: CaseStudyItem }) {
   return (
-    <section className="section-px page-spacer ">
-      <div className="space-y-[3em] ">
+    <section className="section-px page-spacer  ">
+      <div className="space-y-[2.7em] ">
         {item.heroStatement && (
           <div className="lg:grid-main-case  ">
-            <blockquote className="col-start-1 col-span-7 text-xlarge/[117%] tracking-[-1px]  uppercase font-medium   ">
+            <blockquote className="col-start-1 col-span-7 text-2xlarge/[117%] tracking-[-1px]  uppercase font-medium   ">
               {item.heroStatement}
             </blockquote>
           </div>

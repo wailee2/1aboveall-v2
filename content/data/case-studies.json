@@ -183,7 +183,7 @@
     
     "sections": [
       {
-        "title": "01. Visual Identity & Web Design",
+        "title": " Visual Identity & Web Design",
         "overview": "Every design decision took a back seat to the photography \u2014 the interiors needed to be the loudest thing on every page.",
         "blocks": [
           {
@@ -207,7 +207,7 @@
         ]
       },
       {
-        "title": "02. Website Development",
+        "title": "Website Development",
         "overview": "A lightweight custom build rather than a page builder, so image loading could be tuned carefully \u2014 this site lives or dies on photo quality and load speed both.",
         "blocks": [
           {
@@ -272,7 +272,7 @@
     
     "sections": [
       {
-        "title": "01. Visual Identity & Web Design",
+        "title": " Visual Identity & Web Design",
         "overview": "Not yet finalized \u2014 kept as a draft while brand direction is still under review with the client.",
         "blocks": [
           {
@@ -296,7 +296,7 @@
         ]
       },
       {
-        "title": "02. Website Development",
+        "title": "Website Development",
         "overview": "Development has not started \u2014 this section is a placeholder until the brief is finalized.",
         "blocks": [
           {
