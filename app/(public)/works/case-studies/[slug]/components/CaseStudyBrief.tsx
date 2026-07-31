@@ -7,8 +7,8 @@ export function CaseStudyBrief({ item }: { item: CaseStudyItem }) {
       <div className="space-y-[3em] ">
         {item.heroStatement && (
           <div className="lg:grid-main-case  ">
-            <blockquote className="col-start-1 col-span-7 text-4xl lg:text-5xl/[-5%] uppercase font-medium   ">
-              “{item.heroStatement}”
+            <blockquote className="col-start-1 col-span-7 text-xlarge/[117%] tracking-[-1px]  uppercase font-medium   ">
+              {item.heroStatement}
             </blockquote>
           </div>
         )}

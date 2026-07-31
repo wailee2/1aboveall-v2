@@ -16,7 +16,7 @@ export function CaseStudyHero({ item }: { item: CaseStudyItem }) {
       </div>
 
       <div className="section-px mb-[0.5em] flex-between items-baseline flex-wrap space-y-[0.2em] ">
-        <h1 className="  text-[45px] sm:text-[64px] md:text-[96px] lg:text-[clamp(73px,6.4vw+11px,183px)] case_heading">
+        <h1 className=" tracking-[-0.05px]! text-[45px] sm:text-[64px] md:text-[96px] lg:text-[clamp(73px,6.4vw+11px,183px)] case_heading">
           {item.title}
         </h1>
         
@@ -46,7 +46,7 @@ export function CaseStudyHero({ item }: { item: CaseStudyItem }) {
           <div className=" info-case">
             <dt className="case_h2 ">Services</dt>
             <dd>
-              <ul className=" space-y-[0.35em] leading-none wrap-break-word">
+              <ul className=" space-y-[0.3em] wrap-break-word">
                 {item.services.map((service) => (
                   <li key={service}>{service}</li>
                 ))}

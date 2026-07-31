@@ -72,7 +72,8 @@ export default async function CaseStudyDetailPage({
         {item.sections.map((section) => (
           <CaseStudySectionBlock key={section.title} section={section} />
         ))}
-        <CaseStudyResult item={item} />
+        {/* 
+        <CaseStudyResult item={item} />*/}
         <CaseStudyFooter prev={prev as CaseStudyItem | undefined} next={next as CaseStudyItem | undefined} />
       </div>
     </article>

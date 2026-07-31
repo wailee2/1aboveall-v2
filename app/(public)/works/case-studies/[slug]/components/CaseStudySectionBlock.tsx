@@ -11,8 +11,8 @@ import type { CaseStudySection } from "@/content/works-types";
 export function CaseStudySectionBlock({ section }: { section: CaseStudySection }) {
   return (
     <section className="section-px ">
-      <div className="section-spacer bg-red-700">
-        <div className="lg:grid-main-case info-case bg-yellow-600 ">
+      <div className="flex flex-col gap-[9vw] md:gap-[4.5vw]  ">
+        <div className="lg:grid-main-case info-case  ">
           <h2 className="case_h2 col-start-1 col-span-2">
             {section.title}
           </h2>
@@ -20,6 +20,7 @@ export function CaseStudySectionBlock({ section }: { section: CaseStudySection }
             {section.overview}
           </p>
         </div>
+      
 
         {section.blocks.map((block, index) => {
           const isEvenBlock = index % 2 !== 0;
@@ -27,10 +28,10 @@ export function CaseStudySectionBlock({ section }: { section: CaseStudySection }
           return (
             <div 
               key={block.subheading}
-              className=" grid grid-cols-1 md:grid-cols-12 gap-[1.25em]   items-center space-y-[1.25em]"
+              className="grid grid-cols-12 gap-x-[1.25em] gap-y-[1.35em] items-center "
             >
               <div 
-                className={`relative aspect-square overflow-hidden col-span-12 ${
+                className={`relative aspect-square overflow-hidden col-span-12  ${
                   isEvenBlock 
                     ? "md:col-start-8 md:col-span-5 md:order-2" 
                     : "md:col-start-1 md:col-span-5 md:order-1"
@@ -50,7 +51,7 @@ export function CaseStudySectionBlock({ section }: { section: CaseStudySection }
                     : "md:col-start-8 md:col-span-4 md:order-2"
                 }`}
               >
-                <h3 className="case_h2">{block.subheading}</h3>
+                <h3 className="case_h3">{block.subheading}</h3>
                 <p className="">
                   {block.description}
                 </p>
@@ -58,45 +59,45 @@ export function CaseStudySectionBlock({ section }: { section: CaseStudySection }
             </div>
           );
         })}
-
-        {section.visualMedia && (
-          <div className="relative aspect-video rounded-sm overflow-hidden bg-muted/20">
-            <MediaRenderer 
-              media={section.visualMedia} 
-              className="absolute inset-0 w-full h-full object-cover" 
-              sizes="90vw" 
-            />
-          </div>
-        )}
-
-        {section.mobileExperience && (
-          <div className="section-spacer">
-            <div className="lg:grid-main-case ">
-              <h2 className="case_h2 col-start-1 col-span-2">
-                mobile experience
-              </h2>
-              <p className="col-start-3 col-span-6">
-                {section.mobileExperience.description}
-              </p>
-            </div>
-            
-            <div className="grid-main-case">
-              {section.mobileExperience.media.map((mediaItem, index) => (
-                <div 
-                  key={index} 
-                  className="relative aspect-9/16 overflow-hidden col-span-4"
-                >
-                  <MediaRenderer 
-                    media={mediaItem} 
-                    className="absolute inset-0 size-full object-cover" 
-                    sizes="(max-width: 640px) 100vw, 33vw" 
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
       </div>
+
+      {section.visualMedia && (
+        <div className="relative aspect-video overflow-hidden mt-[15vw] sm:mt-[9vw] lg:mt-[8.7vw]">
+          <MediaRenderer 
+            media={section.visualMedia} 
+            className="absolute inset-0 w-full h-full object-cover" 
+            sizes="90vw" 
+          />
+        </div>
+      )}
+
+      {section.mobileExperience && (
+        <div className="flex flex-col gap-[9vw] md:gap-[4.5vw] mt-[15vw] sm:mt-[9vw] lg:mt-[8.7vw] ">
+          <div className="lg:grid-main-case info-case ">
+            <h2 className="case_h2 col-start-1 col-span-2">
+              mobile experience
+            </h2>
+            <p className="col-start-3 col-span-6">
+              {section.mobileExperience.description}
+            </p>
+          </div>
+          
+          <div className="grid-main-case">
+            {section.mobileExperience.media.map((mediaItem, index) => (
+              <div 
+                key={index} 
+                className="relative aspect-9/16 overflow-hidden col-span-4"
+              >
+                <MediaRenderer 
+                  media={mediaItem} 
+                  className="absolute inset-0 size-full object-cover" 
+                  sizes="(max-width: 640px) 100vw, 33vw" 
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </section>
   );
 }

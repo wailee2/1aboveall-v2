@@ -4,18 +4,18 @@ import type { CaseStudyItem } from "@/content/works-types";
 export function CaseStudyResult({ item }: { item: CaseStudyItem }) {
   return (
     <section className="section-px">
-      <h2 className="font-sans text-2xl font-semibold tracking-tight text-text mb-8">
+      <h2 className=" mb-8">
         The Result
       </h2>
       
       {item.impact && (
-        <p className="font-serif text-lg leading-relaxed text-text/85 max-w-[65ch] mb-8">
+        <p className="">
           {item.impact}
         </p>
       )}
 
       {item.testimonial && (
-        <blockquote className="font-serif text-xl italic text-text max-w-[55ch]">
+        <blockquote className="">
           “{item.testimonial.quote}”
           <footer className="font-mono text-xs not-italic text-muted mt-3">
             — {item.testimonial.author}

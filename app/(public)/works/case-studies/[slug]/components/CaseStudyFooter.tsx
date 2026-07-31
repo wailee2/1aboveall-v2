@@ -16,7 +16,9 @@ export function CaseStudyFooter({
   next?: CaseStudyItem;
 }) {
   return (
-    <footer className=" py-16 border-t border-border">
+    <footer className=" section-px">
+      <h2 className="text-xlarge ">EXPLORE MORE</h2>
+
       <AppLink
         href="/works/case-studies"
         className="font-mono text-xs uppercase tracking-wide text-muted hover:text-accent transition-colors block mb-12"
@@ -24,12 +26,9 @@ export function CaseStudyFooter({
         ← Back to work
       </AppLink>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-[1.25em]">
         {prev && (
           <AppLink href={`/works/case-studies/${prev.slug}`} className="group block">
-            <div className="font-mono text-[10px] uppercase tracking-wide text-muted mb-3">
-              Previous
-            </div>
             <div className="relative aspect-16/10 rounded-sm overflow-hidden mb-3">
               <Image
                 src={prev.heroImage}
@@ -47,10 +46,7 @@ export function CaseStudyFooter({
 
         {next && (
           <AppLink href={`/works/case-studies/${next.slug}`} className="group block sm:text-right">
-            <div className="font-mono text-[10px] uppercase tracking-wide text-muted mb-3">
-              Next
-            </div>
-            <div className="relative aspect-16/10 rounded-sm overflow-hidden mb-3">
+            <div className="relative aspect-16/10 rounded-xl overflow-hidden mb-3">
               <Image
                 src={next.heroImage}
                 alt={next.title}
