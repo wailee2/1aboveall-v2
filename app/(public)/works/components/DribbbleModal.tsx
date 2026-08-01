@@ -106,135 +106,130 @@ export function DribbbleModal<T extends DesignItem | CanvasItem>({
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className=" bg-bg section-px py-[4em] lg:grid grid-cols-12 gap-[1.25em] rounded-t-sm mt-[5em] "
+        className=" bg-bg section-px lg:px-0 mt-[5em] pt-[1.5em] pb-[4em]  rounded-t-md  "
       >
         <button
           type="button"
           onClick={onClose}
           aria-label="Close"
-          className="secondary-clickable-button  fixed top-[6.5em] right-[1.7em] z-10 size-[2.2em] text-sm flex-center "
+          className="secondary-clickable-button  fixed top-[3.5em] right-[1.7em] z-10 size-[2.2em] text-sm flex-center "
         >
           ✕
         </button>
 
-        <div className="space-y-[0.25em] mb-[1em] md:col-start-2 md:col-span-10">
-          <h2 className=" big-words">{item.title}</h2>
-          <time
-            dateTime={item.publishedDate}
-            className="text-xsmall uppercase  block"
-          >
-            {publishedLabel}
-          </time>
-        </div>
-
-        <div className=" md:col-start-2 md:col-span-10 relative w-full shrink-0 space-y-[5em] ">        
-          <motion.div
-            layoutId={`work-media-${originSlug}`}
-            className="relative w-full aspect-4/3"
-            transition={FRAME_TRANSITION}
-          >
-            <AnimatePresence mode="wait" initial={false}>
-              <motion.div
-                key={item.slug}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.15 }}
-                className="size-full "
+        <div className="lg:grid grid-cols-12 gap-[1.25em]">
+          <div className=" mb-[2em] md:col-start-2 md:col-span-10  space-y-[1em] sm:flex-between">
+            <div className="space-y-[0.25em]">
+              <h2 className=" big-words">{item.title}</h2>
+              <time
+                dateTime={item.publishedDate}
+                className="text-xsmall uppercase  block"
               >
-                <LightboxTrigger 
-                  media={item.heroMedia} 
-                  className="size-full " 
-                  sizes="90vw" priority
-                />
-              </motion.div>
-            </AnimatePresence>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.25 }}
-            className=""
-          >
-            <div className="flex items-start justify-between gap-4 mb-2">
-              <button
-                type="button"
-                onClick={handleShare}
-                title="copy"
-                aria-label="Copy link to this item"
-                className="shrink-0 font-mono text-[11px] uppercase tracking-wide border border-white/20 rounded-sm px-3 py-1.5 transition-colors flex items-center gap-1.5"
-              >
-                <ShareIcon /> Share
-              </button>
+                {publishedLabel}
+              </time>
             </div>
 
-            <time dateTime={item.publishedDate} className="font-mono text-xsmall uppercase tracking-wide text-muted block mb-3">
-              {publishedLabel}
-            </time>
-
-            <div className="col-start-2 col-span-6">
-              <p className="">{item.shortDescription}n</p>
-            </div>
-
-            {item.otherMedia && item.otherMedia.length > 0 && (
-              <div className="col-start-2 col-span-10 flex flex-col gap-y-[5em] ">
-                {item.otherMedia.map((media, i) => (
-                  <LightboxTrigger 
-                    key={i}
-                    media={media} 
-                    mode="intrinsic"
-                    className="size-full" 
-                    sizes="90vw"
-                  />
-                ))}
-              </div>
-            )}
-          </motion.div>
-
-          <div className="flex-center mx-auto mt-[3em] mb-[2em] ">
             <button
               type="button"
-              onClick={onClose}
-              aria-label="Close"
-              className="secondary-clickable-button px-[1.4em] py-[0.7em] text-xsmall font-mono"
+              onClick={handleShare}
+              title="copy"
+              aria-label="Copy link to this item"
+              className="shrink-0 flex-center clickable-link gap-[0.25em] text-xsmall"
             >
-              Esc
+              <ShareIcon /> Share
             </button>
           </div>
 
-          <div className="grid grid-cols-12 gap-[1.25em] lg:gap-[2em]">
-            <div className=' col-span-6 lg:col-start-3 lg:col-span-4 flex flex-col gap-1 '>
-              <NavButton 
-                disabled={!prev} 
-                onClick={() => prev && onNavigate(prev)} label="Previous item"
+          <div className=" md:col-start-2 md:col-span-10 relative w-full shrink-0 space-y-[5em] ">        
+            <motion.div
+              layoutId={`work-media-${originSlug}`}
+              className="relative w-full aspect-4/3"
+              transition={FRAME_TRANSITION}
+            >
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.div
+                  key={item.slug}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.15 }}
+                  className="size-full "
+                >
+                  <LightboxTrigger 
+                    media={item.heroMedia} 
+                    className="size-full " 
+                    sizes="90vw" priority
+                  />
+                </motion.div>
+              </AnimatePresence>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3, duration: 0.25 }}
+              className=""
+            >
+              {item.otherMedia && item.otherMedia.length > 0 && (
+                <div className="col-start-2 col-span-10 flex flex-col gap-y-[5em] ">
+                  {item.otherMedia.map((media, i) => (
+                    <LightboxTrigger 
+                      key={i}
+                      media={media} 
+                      mode="intrinsic"
+                      className="size-full" 
+                      sizes="90vw"
+                    />
+                  ))}
+                </div>
+              )}
+            </motion.div>
+
+            <div className="flex-center mx-auto mt-[3em] mb-[2em] ">
+              <button
+                type="button"
+                onClick={onClose}
+                aria-label="Close"
+                className="secondary-clickable-button px-[1.4em] py-[0.7em] text-xsmall font-mono"
               >
-                ← Next Work
-              </NavButton>
-
-              <PreviewThumb 
-                item={prev} 
-                label="Previous" 
-                onSelect={() => prev && onNavigate(prev)} 
-              />
+                Esc
+              </button>
             </div>
+          </div>  
+        </div>
 
-            <div className='col-span-6 lg:col-span-4 flex flex-col gap-1 '>
-              <NavButton 
-                disabled={!next} 
-                onClick={() => next && onNavigate(next)} label="Next item"
-              >
-                → Previous Work
-              </NavButton>
+        <div className="lg:section-px md:grid grid-cols-12 gap-x-[1.25em] gap-y-[1.35em]">
+          <div className=' col-span-6  flex flex-col gap-1 '>
+            <NavButton 
+              disabled={!prev} 
+              onClick={() => prev && onNavigate(prev)} 
+              label="Previous item"
+            >
+              ← Previous Work
+            </NavButton>
 
-              <PreviewThumb 
-                item={next} 
-                label="Next" 
-                onSelect={() => next && onNavigate(next)}
-              />
-            </div>
+            <PreviewThumb 
+              item={prev} 
+              label="Previous" 
+              onSelect={() => prev && onNavigate(prev)} 
+            />
           </div>
-        </div>      
+
+          <div className='col-span-6  flex flex-col gap-1 '>
+            <NavButton 
+              disabled={!next} 
+              onClick={() => next && onNavigate(next)} label="Next item"
+            >
+              Next Work → 
+            </NavButton>
+
+            <PreviewThumb 
+              item={next} 
+              label="Next" 
+              onSelect={() => next && onNavigate(next)}
+            />
+          </div>
+        </div>
       </div>
     </motion.div>
   );
@@ -268,7 +263,7 @@ function NavButton({
       onClick={onClick}
       disabled={disabled}
       aria-label={label}
-      className="secondary-clickable-button w-fit px-[1.4em] py-[0.7em] text-xsmall disabled:hidden disabled:cursor-not-allowed flex-center truncate font-mono"
+      className="hidden secondary-clickable-button w-fit px-[1.4em] py-[0.7em] text-xsmall disabled:hidden disabled:cursor-not-allowed flex-center truncate font-mono"
     >
       {children}
     </button>
@@ -293,12 +288,12 @@ function PreviewThumb<T extends DesignItem | CanvasItem>({
       type="button"
       onClick={onSelect}
       aria-label={`${label}: ${item.title}`}
-      className="relative aspect-square overflow-hidden"
+      className="relative aspect-16/10 overflow-hidden"
     >
       <Image 
         src={thumb.src}
         alt={thumb.alt}
-        fill sizes="(max-width: 640px) 50vw, 20vw"
+        fill sizes="(max-width: 640px) 100vw, 50vw"
         className="object-cover size-full "
       />
     </button>
