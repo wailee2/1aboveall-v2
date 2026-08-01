@@ -20,7 +20,7 @@
  *                                            (e.g. "absolute inset-0",
  *                                            sized by an aspect-ratio
  *                                            ancestor the caller owns)
- *     <div className="relative w-full h-full ...">  <- ALWAYS relative,
+ *     <div className="relative size-full ...">  <- ALWAYS relative,
  *                                            fills 100% of whatever
  *                                            real size the outer div
  *                                            ends up with — this is
@@ -99,7 +99,7 @@ export function MediaRenderer({
     );
   }
 
-  const innerClass = `relative w-full h-full overflow-hidden bg-surface-tint ${
+  const innerClass = `relative size-full overflow-hidden bg-surface-tint ${
     !loaded ? "skeleton-shimmer" : ""
   }`;
 
@@ -116,7 +116,7 @@ export function MediaRenderer({
             playsInline
             onLoadedData={() => setLoaded(true)}
             aria-label={media.alt}
-            className="w-full h-full object-cover"
+            className="size-full object-cover"
             style={opacityStyle}
           />
         ) : (

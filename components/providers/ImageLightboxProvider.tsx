@@ -15,7 +15,7 @@
 
 import { createContext, useCallback, useContext, useState } from "react";
 import { AnimatePresence } from "framer-motion";
-import { ImageLightbox } from "./ImageLightbox";
+import { ImageLightbox } from "@/components/ui/ImageLightbox";
 
 interface LightboxState {
   src: string;

@@ -67,7 +67,7 @@ export function CaseStudySectionBlock({ section }: { section: CaseStudySection }
         <div className="relative aspect-video overflow-hidden mt-[5em]">
           <MediaRenderer 
             media={section.visualMedia} 
-            className="absolute inset-0 w-full h-full object-cover" 
+            className="absolute inset-0 size-full object-cover" 
             sizes="90vw" 
           />
         </div>

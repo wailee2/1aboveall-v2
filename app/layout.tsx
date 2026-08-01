@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider, themeInitScript } from "@/contexts/ThemeContext";
 import { ToastProvider } from "@/components/toast/ToastProvider";
-import { ImageLightboxProvider } from "@/components/ui/ImageLightboxProvider";
+import { ImageLightboxProvider } from "@/components/providers/ImageLightboxProvider";
 import { AppQueryProvider } from "@/lib/query-client";
 import { NavigationProvider } from "@/components/navigation/NavigationProvider";
 import {

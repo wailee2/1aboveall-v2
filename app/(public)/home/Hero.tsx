@@ -15,7 +15,7 @@ export function Hero() {
         ease="power3.out"
         durationMs={200}
       >
-        <div className="relative w-full h-full overflow-hidden">
+        <div className="relative size-full overflow-hidden">
           <div className="absolute inset-0">
             <div className="absolute inset-0 bg-(--text) z-5 bg-(--primary-color)s " />jd
           </div>

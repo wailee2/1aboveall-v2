@@ -60,7 +60,7 @@ export function DesignCanvasDetail({
             <LightboxTrigger 
               media={item.heroMedia} 
               mode="intrinsic"
-              className="w-full h-full overflow-hidden" 
+              className="size-full " 
               sizes="90vw" priority
             />
           </div>
@@ -72,15 +72,13 @@ export function DesignCanvasDetail({
           {item.otherMedia && item.otherMedia.length > 0 && (
             <div className="col-start-2 col-span-10 flex flex-col gap-y-[5em] ">
               {item.otherMedia.map((media, i) => (
-                <div  className="">
-                  <LightboxTrigger 
-                    key={i}
-                    media={media} 
-                    mode="intrinsic"
-                    className="w-full h-full overflow-hidden" 
-                    sizes="(max-width: 640px) 100vw, 50vw"
-                  />
-                </div>
+                <LightboxTrigger 
+                  key={i}
+                  media={media} 
+                  mode="intrinsic"
+                  className="size-full" 
+                  sizes="90vw"
+                />
               ))}
             </div>
           )}

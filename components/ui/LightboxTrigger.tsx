@@ -15,7 +15,7 @@
  */
 
 import { MediaRenderer } from "./MediaRenderer";
-import { useImageLightbox } from "./ImageLightboxProvider";
+import { useImageLightbox } from "@/components/providers/ImageLightboxProvider";
 import type { MediaItem } from "@/content/works-types";
 
 export function LightboxTrigger({
@@ -47,7 +47,7 @@ export function LightboxTrigger({
       <MediaRenderer 
         media={media} 
         mode={mode} 
-        className={mode === "intrinsic" ? "w-full" : "w-full h-full"}
+        className={mode === "intrinsic" ? "w-full" : "size-full"}
         sizes={sizes} 
         priority={priority}
       />

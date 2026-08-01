@@ -134,14 +134,13 @@ export function DribbbleModal<T extends DesignItem | CanvasItem>({
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.15 }}
-                className="absolute inset-0"
+                className="size-full "
               >
                 <LightboxTrigger 
                   media={item.heroMedia} 
-                  className="absolute inset-0" 
-                  sizes="90vw" 
-                  priority
-                  />
+                  className="size-full " 
+                  sizes="90vw" priority
+                />
               </motion.div>
             </AnimatePresence>
           </motion.div>
@@ -169,16 +168,20 @@ export function DribbbleModal<T extends DesignItem | CanvasItem>({
               {publishedLabel}
             </time>
 
-            <p className="font-serif text-sm  leading-relaxed max-w-[60ch] mb-5">
-              {item.shortDescription}
-            </p>
+            <div className="col-start-2 col-span-6">
+              <p className="">{item.shortDescription}</p>
+            </div>
 
             {item.otherMedia && item.otherMedia.length > 0 && (
-              <div className="grid grid-cols-3 gap-2">
+              <div className="col-start-2 col-span-10 flex flex-col gap-y-[5em] ">
                 {item.otherMedia.map((media, i) => (
-                  <div key={i} className="relative aspect-square rounded-sm overflow-hidden">
-                    <LightboxTrigger media={media} className="absolute inset-0" sizes="200px" />
-                  </div>
+                  <LightboxTrigger 
+                    key={i}
+                    media={media} 
+                    mode="intrinsic"
+                    className="size-full" 
+                    sizes="90vw"
+                  />
                 ))}
               </div>
             )}

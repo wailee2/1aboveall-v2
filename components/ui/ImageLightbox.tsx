@@ -53,7 +53,7 @@ export function ImageLightbox({
           type="button"
           onClick={onClose}
           aria-label="Close"
-          className="secondary-clickable-button size-[2em] flex-center text-text! hover:text-bg! hover:bg-text! "
+          className="imagelightbox-button "
         >
           <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" strokeWidth={2} fill="none">
             <path d="M6 6l12 12M18 6L6 18" strokeLinecap="round" />
@@ -67,7 +67,7 @@ export function ImageLightbox({
             setZoomed((z) => !z);
           }}
           aria-label={zoomed ? "Zoom out" : "Zoom in"}
-          className="secondary-clickable-button size-[2em] flex-center text-text! hover:text-bg! hover:bg-text!"
+          className="imagelightbox-button"
         >
           <MagnifyIcon zoomed={zoomed} />
         </button>
