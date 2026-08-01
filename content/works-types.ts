@@ -30,14 +30,6 @@ export type WorksCategory = "designs" | "case-studies" | "canvas";
  * from content/media-utils.ts instead.
  */
 
-/**export interface MediaItem {
-  type: "image" | "video";
-  src: string;
-  alt: string;
-    Poster frame for videos — required in practice, optional in the type. 
-  poster?: string;
-}*/
-
 export type MediaItem =
   | { type: "image"; 
       src: string; 

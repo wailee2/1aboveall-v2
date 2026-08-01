@@ -87,7 +87,7 @@ export function ImageLightbox({
         animate={{ opacity: 1, scale: zoomed ? 2 : 1 }}
         exit={{ opacity: 0, scale: 0.92 }}
         transition={{ type: "spring", stiffness: 320, damping: 32 }}
-        className="max-w-[92vw] max-h-[85vh] w-auto h-auto object-contain select-none"
+        className="max-w-[92vw] max-h-[99vh] w-auto h-auto object-contain select-none"
         style={{ cursor: zoomed ? "grab" : "zoom-in" }}
         whileTap={zoomed ? { cursor: "grabbing" } : undefined}
       />

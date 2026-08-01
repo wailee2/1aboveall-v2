@@ -102,7 +102,7 @@ export function DribbbleModal<T extends DesignItem | CanvasItem>({
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
-      className="fixed inset-0 w-full z-120  overflow-y-auto scrollbar-nonex bg-black/80 "
+      className="fixed inset-0 w-full z-999! overflow-y-auto scrollbar-none bg-black/80 "
     >
       <div
         onClick={(e) => e.stopPropagation()}

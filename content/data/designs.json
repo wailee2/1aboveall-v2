@@ -15,7 +15,7 @@
     },
     "heroMedia": {
       "type": "image",
-      "src": "/img/picture-of-wailee.jpg",
+      "src": "/img/placeholder-image.jpg",
       "alt": "Fintra analytics dashboard interface",
       "width": 422,
       "height": 750
@@ -24,14 +24,14 @@
     "otherMedia": [
       {
         "type": "image",
-        "src": "/img/picture-of-wailee.jpg",
+        "src": "/img/demo.png",
         "alt": "Fintra dashboard transaction table detail",
         "width": 422,
         "height": 750
       },
       {
         "type": "image",
-        "src": "/img/picture-of-wailee.jpg",
+        "src": "/img/placeholder-image-2.jpg",
         "alt": "Fintra dashboard mobile view",
         "width": 422,
         "height": 750
@@ -57,7 +57,7 @@
     "otherMedia": [
       {
         "type": "image",
-        "src": "/img/picture-of-wailee.jpg",
+        "src": "/img/placeholder-image-2.jpg",
         "alt": "Orin banking app transfer flow",
         "width": 422,
         "height": 750
@@ -74,7 +74,7 @@
     "selected": false,
     "heroMedia": {
       "type": "image",
-      "src": "/img/picture-of-wailee.jpg",
+      "src": "/img/placeholder-image-2.jpg",
       "alt": "Loop podcast player interface concept",
       "width": 422,
       "height": 750

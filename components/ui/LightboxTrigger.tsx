@@ -20,11 +20,13 @@ import type { MediaItem } from "@/content/works-types";
 
 export function LightboxTrigger({
   media,
+  mode = "fill",
   className,
   sizes,
   priority,
 }: {
   media: MediaItem;
+  mode?: "fill" | "intrinsic";
   className?: string;
   sizes?: string;
   priority?: boolean;
@@ -32,7 +34,7 @@ export function LightboxTrigger({
   const { open } = useImageLightbox();
 
   if (media.type !== "image") {
-    return <MediaRenderer media={media} className={className} sizes={sizes} priority={priority} />;
+    return <MediaRenderer media={media} mode={mode} className={className} sizes={sizes} priority={priority} />;
   }
 
   return (
@@ -42,7 +44,13 @@ export function LightboxTrigger({
       aria-label={`View larger: ${media.alt}`}
       className={`cursor-pointer ${className ?? ""}`}
     >
-      <MediaRenderer media={media} className="w-full h-full" sizes={sizes} priority={priority} />
+      <MediaRenderer 
+        media={media} 
+        mode={mode} 
+        className={mode === "intrinsic" ? "w-full" : "w-full h-full"}
+        sizes={sizes} 
+        priority={priority}
+      />
     </button>
   );
 }

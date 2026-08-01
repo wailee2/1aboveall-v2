@@ -42,35 +42,44 @@ export function DesignCanvasDetail({
           ]}
         />
 
-        <div className=" space-y-[0.25em] mb-[2.5em]">
-          <h1 className="big-words  ">{item.title}</h1>
+        <div className="lg:grid grid-cols-12 gap-x-[1.25em]">
+          <div className="col-start-2 col-span-full space-y-[0.25em] mb-[2.5em]">
+            <h1 className="big-words  ">{item.title}</h1>
 
-          <time
-            dateTime={item.publishedDate}
-            className="text-xsmall uppercase  block"
-          >
-            {publishedLabel}
-          </time>
+            <time
+              dateTime={item.publishedDate}
+              className="text-xsmall uppercase  block"
+            >
+              {publishedLabel}
+            </time>
+          </div>
         </div>
 
-        <div className="flex flex-col gap-[5em]">
-          <div className=" relative aspect-4/3 overflow-hidden ">
+        <div className="lg:grid grid-cols-12 gap-x-[1.25em] space-y-[5em]  ">
+          <div className="col-start-2 col-span-10 ">
             <LightboxTrigger 
               media={item.heroMedia} 
-              className="absolute inset-0" 
-              sizes="80vw" priority
+              mode="intrinsic"
+              className="w-full h-full overflow-hidden" 
+              sizes="90vw" priority
             />
           </div>
 
-          <p className="">
-            {item.shortDescription}
-          </p>
+          <div className="col-start-2 col-span-6">
+            <p className="">{item.shortDescription}</p>
+          </div>
 
           {item.otherMedia && item.otherMedia.length > 0 && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="col-start-2 col-span-10 flex flex-col gap-y-[5em] ">
               {item.otherMedia.map((media, i) => (
-                <div key={i} className="relative aspect-4/3 rounded-sm overflow-hidden">
-                  <LightboxTrigger media={media} className="absolute inset-0" sizes="(max-width: 640px) 100vw, 50vw" />
+                <div  className="">
+                  <LightboxTrigger 
+                    key={i}
+                    media={media} 
+                    mode="intrinsic"
+                    className="w-full h-full overflow-hidden" 
+                    sizes="(max-width: 640px) 100vw, 50vw"
+                  />
                 </div>
               ))}
             </div>
