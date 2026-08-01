@@ -112,7 +112,7 @@ export function DribbbleModal<T extends DesignItem | CanvasItem>({
           type="button"
           onClick={onClose}
           aria-label="Close"
-          className="secondary-clickable-button  fixed top-[3.5em] right-[1.7em] z-10 size-[2.2em] text-sm flex-center "
+          className="secondary-clickable-button text-text! hover:bg-bg/10! fixed top-[3.5em] right-[1.7em] z-10 size-[2.2em] text-sm flex-center "
         >
           ✕
         </button>
@@ -132,7 +132,7 @@ export function DribbbleModal<T extends DesignItem | CanvasItem>({
             <button
               type="button"
               onClick={handleShare}
-              title="copy"
+              title="copy link"
               aria-label="Copy link to this item"
               className="shrink-0 flex-center clickable-link gap-[0.25em] text-xsmall"
             >
@@ -163,6 +163,10 @@ export function DribbbleModal<T extends DesignItem | CanvasItem>({
                 </motion.div>
               </AnimatePresence>
             </motion.div>
+
+            <div className="">
+              <p className="md:max-w-[60%]">{item.shortDescription}</p>
+            </div>
 
             <motion.div
               initial={{ opacity: 0 }}
