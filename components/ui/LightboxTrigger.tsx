@@ -13,7 +13,7 @@
  * inline; there's no natural-size "lightbox" concept for it here.
  * Video media renders via MediaRenderer with no click behavior added.
  */
-
+import { motion } from "framer-motion";
 import { MediaRenderer } from "./MediaRenderer";
 import { useImageLightbox } from "@/components/providers/ImageLightboxProvider";
 import type { MediaItem } from "@/content/works-types";
@@ -38,19 +38,20 @@ export function LightboxTrigger({
   }
 
   return (
-    <button
+    <motion.button
       type="button"
-      onClick={() => open(media.src, media.alt)}
+      layoutId={`lightbox-${media.src}`}
+      onClick={() => open(media.src, media.alt, media.width, media.height)}
       aria-label={`View larger: ${media.alt}`}
       className={`cursor-pointer ${className ?? ""}`}
     >
-      <MediaRenderer 
-        media={media} 
-        mode={mode} 
-        className={mode === "intrinsic" ? "w-full" : "size-full"}
-        sizes={sizes} 
+      <MediaRenderer
+        media={media}
+        mode={mode}
+        className={mode === "intrinsic" ? "w-full" : "w-full h-full"}
+        sizes={sizes}
         priority={priority}
       />
-    </button>
+    </motion.button>
   );
 }

@@ -20,10 +20,12 @@ import { ImageLightbox } from "@/components/ui/ImageLightbox";
 interface LightboxState {
   src: string;
   alt: string;
+  width: number;
+  height: number;
 }
 
 interface LightboxContextValue {
-  open: (src: string, alt: string) => void;
+  open: (src: string, alt: string, width: number, height: number) => void;
 }
 
 const LightboxContext = createContext<LightboxContextValue | null>(null);
@@ -31,7 +33,11 @@ const LightboxContext = createContext<LightboxContextValue | null>(null);
 export function ImageLightboxProvider({ children }: { children: React.ReactNode }) {
   const [state, setState] = useState<LightboxState | null>(null);
 
-  const open = useCallback((src: string, alt: string) => setState({ src, alt }), []);
+  const open = useCallback(
+    (src: string, alt: string, width: number, height: number) => 
+      setState({ src, alt, width, height }), 
+    []
+  );
   const close = useCallback(() => setState(null), []);
 
   return (
