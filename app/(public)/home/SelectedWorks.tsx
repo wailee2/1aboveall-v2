@@ -1,6 +1,7 @@
 import { AppLink } from "@/components/navigation/AppLink";
 import { MediaRenderer } from "@/components/ui/MediaRenderer";
 import { getSelectedPublished } from "@/content/works-api";
+import { getMediaThumbnail } from "@/content/media-utils";
 import type { WorkItem, CaseStudyItem } from "@/content/works-types";
 import ScaleOnScroll from "@/components/ui/ScaleOnScroll";
 
@@ -23,7 +24,7 @@ import ScaleOnScroll from "@/components/ui/ScaleOnScroll";
 const itemClasses = [
   {
     divClass: "col-start-1 col-span-3 w-full",
-    mediaClass: "aspect-[3/4]",
+    mediaClass: "aspect-[3/4]", /**right now i am not making use of mediaClass  */
   },
   {
     divClass: "col-start-4 col-span-3 ml-auto w-[80%]",
@@ -95,21 +96,25 @@ interface SelectedWorkCardProps {
 function SelectedWorkCard({ item, mediaClass }: SelectedWorkCardProps) {
   const isCaseStudy = item.category === "case-studies";
   const caseStudy = isCaseStudy ? (item as CaseStudyItem) : null;
+  const thumb = getMediaThumbnail(item.heroMedia);
 
   return (
     <AppLink 
       href={`/works/${item.category}/${item.slug}`} 
       className="group block"
     >
-      <div className={`relative ${mediaClass} overflow-hidden mb-[0.7em]`}>
+      <div className={`relative  overflow-hidden mb-[0.7em]`}>
         <MediaRenderer
           media={{
             type: "image",
-            src: item.heroImage,
-            alt: item.title,
+            src: thumb.src,
+            alt: thumb.alt,
+            width: thumb.width,
+            height: thumb.height
           }}
-          className="absolute inset-0 size-full object-cover object-center transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover:scale-110 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:blur-[2px]"
+          className="absolute inset-0 size-full aobject-cover object-center transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover:scale-110 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:blur-[2px]"
           sizes="(max-width: 1024px) 100vw, 50vw"
+          mode="intrinsic"
         />
 
         {isCaseStudy && caseStudy ? (

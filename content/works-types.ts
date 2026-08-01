@@ -11,13 +11,48 @@
 export type ProjectStatus = "published" | "draft" | "archived";
 export type WorksCategory = "designs" | "case-studies" | "canvas";
 
-export interface MediaItem {
+/**
+ * Discriminated union, not one loose object — this is what makes
+ * `poster` REQUIRED when type is "video" but absent when type is
+ * "image", enforced by the compiler rather than hoped for at
+ * runtime. width/height are required on both variants: MediaRenderer's
+ * "intrinsic" mode (see components/ui/MediaRenderer.tsx) needs real
+ * pixel dimensions to render at natural aspect ratio without layout
+ * shift, and these are meant to be generated automatically — see
+ * scripts/generate-image-dimensions.mjs — never hand-typed.
+ *
+ * There is deliberately no separate "heroImage" field anywhere in
+ * this file. A video's poster already IS its image representation —
+ * storing a second, redundant image path for the same purpose is
+ * duplicated data that can drift out of sync. Anywhere an image-only
+ * representation of a MediaItem is needed (Recents, Selected Works,
+ * OG tags, preview thumbnails), derive it with getMediaThumbnail()
+ * from content/media-utils.ts instead.
+ */
+
+/**export interface MediaItem {
   type: "image" | "video";
   src: string;
   alt: string;
-  /** Poster frame for videos — required in practice, optional in the type. */
+    Poster frame for videos — required in practice, optional in the type. 
   poster?: string;
-}
+}*/
+
+export type MediaItem =
+  | { type: "image"; 
+      src: string; 
+      alt: string; 
+      width: number; 
+      height: number 
+    }
+  | { type: "video"; 
+      src: string; 
+      poster: string; 
+      alt: string; 
+      width: number; 
+      height: number
+    };
+
 
 interface BaseWorkItem {
   id: string;
@@ -26,13 +61,6 @@ interface BaseWorkItem {
   title: string;
   /** ISO 8601 date, e.g. "2026-06-12". Drives Recents ordering. */
   publishedDate: string;
-  /**
-   * Always a plain static image, even if heroMedia is a video —
-   * used anywhere a lightweight thumbnail is needed (Recents grid,
-   * prev/next preview strips) where rendering a full video would be
-   * wasteful or visually noisy.
-   */
-  heroImage: string;
   /**
    * Published alone is NOT enough to appear on the homepage's
    * Selected Works section — that's a separate, deliberate curation
@@ -99,7 +127,6 @@ export interface CaseStudySection {
 export interface CaseStudyItem extends BaseWorkItem {
   category: "case-studies";
   heroMedia: MediaItem;
-  tagline: string;
   /** Deliverable services, e.g. ["Web Design", "Webflow", "Branding"] */
   services: string[];
   year: string;
@@ -107,6 +134,7 @@ export interface CaseStudyItem extends BaseWorkItem {
   liveSiteUrl?: string;
 
   heroStatement?: string;
+  tagline?: string;
   client?: string;
   context: string;
   objective: string;

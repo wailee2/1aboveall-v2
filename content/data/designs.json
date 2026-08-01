@@ -6,32 +6,37 @@
     "status": "published",
     "title": "Fintra Dashboard UI",
     "publishedDate": "2026-06-12",
-    "heroImage": "/img/picture-of-wailee.jpg",
-    "heroMedia": {
-      "type": "image",
-      "src": "/img/picture-of-wailee.jpg",
-      "alt": "Fintra analytics dashboard interface"
-    },
-    "shortDescription": "A clean analytics dashboard concept for a fintech product, built around dense data without feeling cluttered.",
-    "otherMedia": [
-      {
-        "type": "image",
-        "src": "/img/placeholder-image.jpg",
-        "alt": "Fintra dashboard transaction table detail"
-      },
-      {
-        "type": "video",
-        "src": "/video/placeholder-video.mp4",
-        "alt": "Fintra dashboard mobile view"
-      }
-    ],
     "selected": true,
     "selectedLayout": {
       "colStart": 1,
       "colSpan": 4,
       "widthPercent": 90,
       "align": "left"
-    }
+    },
+    "heroMedia": {
+      "type": "image",
+      "src": "/img/picture-of-wailee.jpg",
+      "alt": "Fintra analytics dashboard interface",
+      "width": 422,
+      "height": 750
+    },
+    "shortDescription": "A clean analytics dashboard concept for a fintech product, built around dense data without feeling cluttered.",
+    "otherMedia": [
+      {
+        "type": "image",
+        "src": "/img/picture-of-wailee.jpg",
+        "alt": "Fintra dashboard transaction table detail",
+        "width": 422,
+        "height": 750
+      },
+      {
+        "type": "image",
+        "src": "/img/picture-of-wailee.jpg",
+        "alt": "Fintra dashboard mobile view",
+        "width": 422,
+        "height": 750
+      }
+    ]
   },
   {
     "id": "design-002",
@@ -40,21 +45,24 @@
     "status": "published",
     "title": "Orin Mobile Banking App",
     "publishedDate": "2026-05-20",
-    "heroImage": "/img/picture-of-wailee.jpg",
+    "selected": false,
     "heroMedia": {
       "type": "image",
       "src": "/img/picture-of-wailee.jpg",
-      "alt": "Orin mobile banking app home screen"
+      "alt": "Orin mobile banking app home screen",
+      "width": 422,
+      "height": 750
     },
     "shortDescription": "A warm, approachable interface exploration for a mobile-first digital bank.",
     "otherMedia": [
       {
         "type": "image",
         "src": "/img/picture-of-wailee.jpg",
-        "alt": "Orin banking app transfer flow"
+        "alt": "Orin banking app transfer flow",
+        "width": 422,
+        "height": 750
       }
-    ],
-    "selected": false
+    ]
   },
   {
     "id": "design-003",
@@ -63,14 +71,15 @@
     "status": "draft",
     "title": "Loop Podcast Player Concept",
     "publishedDate": "2026-07-02",
-    "heroImage": "/img/picture-of-wailee.jpg",
+    "selected": false,
     "heroMedia": {
       "type": "image",
       "src": "/img/picture-of-wailee.jpg",
-      "alt": "Loop podcast player interface concept"
+      "alt": "Loop podcast player interface concept",
+      "width": 422,
+      "height": 750
     },
     "shortDescription": "An unreleased player concept exploring waveform scrubbing and episode queuing.",
-    "otherMedia": [],
-    "selected": false
+    "otherMedia": []
   }
 ]

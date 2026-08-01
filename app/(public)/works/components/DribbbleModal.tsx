@@ -28,6 +28,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { LightboxTrigger } from "@/components/ui/LightboxTrigger";
 import { useToast } from "@/components/toast/ToastProvider";
+import { getMediaThumbnail } from "@/content/media-utils";
 import type { DesignItem, CanvasItem } from "@/content/works-types";
 
 const FRAME_TRANSITION = { duration: 0.4, ease: [0.22, 1, 0.36, 1] as const };
@@ -266,16 +267,18 @@ function NavButton({
   );
 }
 
-function PreviewThumb({
+function PreviewThumb<T extends DesignItem | CanvasItem>({
   item,
   label,
   onSelect,
 }: {
-  item?: PreviewItem;
+  item?: T;
   label: string;
   onSelect: () => void;
 }) {
   if (!item) return <div className="w-16 h-12 hidden sm:block" aria-hidden="true" />;
+
+  const thumb = getMediaThumbnail(item.heroMedia);
 
   return (
     <button
@@ -285,8 +288,8 @@ function PreviewThumb({
       className="relative aspect-square overflow-hidden"
     >
       <Image 
-        src={item.heroImage} 
-        alt={item.title} 
+        src={thumb.src}
+        alt={thumb.alt}
         fill sizes="(max-width: 640px) 50vw, 20vw"
         className="object-cover size-full "
       />

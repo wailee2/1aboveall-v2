@@ -1,5 +1,6 @@
 import { AppLink } from "@/components/navigation/AppLink";
 import Image from "next/image";
+import { getMediaThumbnail } from "@/content/media-utils";
 import type { CaseStudyItem } from "@/content/works-types";
 
 /**
@@ -36,8 +37,8 @@ export function CaseStudyFooter({
           >
             <div className="relative aspect-16/10 overflow-hidden">
               <Image
-                src={prev.heroImage}
-                alt={prev.title}
+                src={getMediaThumbnail(prev.heroMedia).src}
+                alt={getMediaThumbnail(prev.heroMedia).alt}
                 fill
                 sizes="(max-width: 640px) 100vw, 50vw"
                 className="object-cover group-hover:opacity-90 transition-opacity"
@@ -56,8 +57,8 @@ export function CaseStudyFooter({
           >
             <div className="relative aspect-16/10  overflow-hidden ">
               <Image
-                src={next.heroImage}
-                alt={next.title}
+                src={getMediaThumbnail(next.heroMedia).src}
+                alt={getMediaThumbnail(next.heroMedia).alt}
                 fill
                 sizes="(max-width: 640px) 100vw, 50vw"
                 className="object-cover group-hover:opacity-90 transition-opacity"

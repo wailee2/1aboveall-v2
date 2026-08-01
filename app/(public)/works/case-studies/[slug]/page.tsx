@@ -11,6 +11,7 @@ import { CaseStudySectionBlock } from "./components/CaseStudySectionBlock";
 import { CaseStudyResult } from "./components/CaseStudyResult";
 import { CaseStudyFooter } from "./components/CaseStudyFooter";
 import type { CaseStudyItem } from "@/content/works-types";
+import { getMediaThumbnail } from "@/content/media-utils";
 
 export function generateStaticParams() {
   return getPublishedByCategory("case-studies").map((item) => ({ slug: item.slug }));
@@ -31,7 +32,7 @@ export async function generateMetadata({
     openGraph: {
       title: item.title,
       description: item.tagline,
-      images: [item.heroImage],
+      images: [getMediaThumbnail(item.heroMedia).src],
       type: "article",
     },
   };
@@ -53,7 +54,7 @@ export default async function CaseStudyDetailPage({
     "@type": "CreativeWork",
     name: item.title,
     description: item.tagline,
-    image: item.heroImage,
+    images: [getMediaThumbnail(item.heroMedia).src],
     datePublished: item.publishedDate,
     creator: { "@type": "Person", name: "Wailee" },
   };

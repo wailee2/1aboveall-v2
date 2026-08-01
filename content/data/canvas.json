@@ -6,27 +6,24 @@
     "status": "published",
     "title": "Night Market",
     "publishedDate": "2026-06-25",
-    "heroImage": "/img/picture-of-wailee.jpg",
+    "selected": true,
     "heroMedia": {
       "type": "image",
-      "src": "/img/placeholder-image.jpg",
-      "alt": "Digital illustration of a crowded night market"
+      "src": "/img/picture-of-wailee.jpg",
+      "alt": "Digital illustration of a crowded night market",
+      "width": 422,
+      "height": 750
     },
     "shortDescription": "A digital painting study exploring warm artificial light against a dark sky.",
     "otherMedia": [
       {
-        "type": "video",
-        "src": "/video/placeholder-video",
-        "alt": "Night Market illustration detail crop"
+        "type": "image",
+        "src": "/img/picture-of-wailee.jpg",
+        "alt": "Night Market illustration detail crop",
+        "width": 422,
+        "height": 750
       }
-    ],
-    "selected": true,
-    "selectedLayout": {
-      "colStart": 5,
-      "colSpan": 3,
-      "widthPercent": 88,
-      "align": "left"
-    }
+    ]
   },
   {
     "id": "canvas-002",
@@ -35,16 +32,17 @@
     "status": "published",
     "title": "Glass Forms",
     "publishedDate": "2026-06-01",
-    "heroImage": "/img/picture-of-wailee.jpg",
+    "selected": false,
     "heroMedia": {
       "type": "video",
-      "src": "/images/works/canvas/glass-forms/loop.mp4",
+      "src": "/img/picture-of-wailee.jpg",
       "poster": "/img/picture-of-wailee.jpg",
-      "alt": "Looping animation of abstract glass-like forms"
+      "alt": "Looping animation of abstract glass-like forms",
+      "width": 422,
+      "height": 750
     },
     "shortDescription": "A short looping render exploring refraction and soft color transitions.",
-    "otherMedia": [],
-    "selected": false
+    "otherMedia": []
   },
   {
     "id": "canvas-003",
@@ -53,20 +51,23 @@
     "status": "archived",
     "title": "Paper Birds Series",
     "publishedDate": "2026-03-14",
-    "heroImage": "/img/picture-of-wailee.jpg",
+    "selected": false,
     "heroMedia": {
       "type": "image",
       "src": "/img/picture-of-wailee.jpg",
-      "alt": "Illustration series of folded paper birds"
+      "alt": "Illustration series of folded paper birds",
+      "width": 422,
+      "height": 750
     },
-    "shortDescription": "An older series revisiting origami forms in flat vector style \u2014 kept for archive.",
+    "shortDescription": "An older series revisiting origami forms in flat vector style — kept for archive.",
     "otherMedia": [
       {
         "type": "image",
         "src": "/img/picture-of-wailee.jpg",
-        "alt": "Paper Birds series alternate colorway"
+        "alt": "Paper Birds series alternate colorway",
+        "width": 422,
+        "height": 750
       }
-    ],
-    "selected": false
+    ]
   }
 ]

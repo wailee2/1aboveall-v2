@@ -6,14 +6,14 @@
     "client": "Meridian Capital",
     "category": "case-studies",
     "status": "published",
-    "selected": true,
-    
     "publishedDate": "2026-06-26",
-    "heroImage": "/img/placeholder-image-2.jpg",
+    "selected": true,
     "heroMedia": {
       "type": "image",
       "src": "/img/placeholder-image-2.jpg",
-      "alt": "Meridian Capital website homepage mockup"
+      "alt": "Meridian Capital website homepage mockup",
+      "width": 1920,
+      "height": 1080
     },
     "services": [
       "Web Design",
@@ -24,40 +24,43 @@
     ],
     "year": "2026",
     "liveSiteUrl": "https://example.com/meridian-capital",
-    
     "heroStatement": "Develop a dynamic website, true to the bold identity we've built over a decade.",
-    "context": "Meridian had grown from a two-person advisory into a firm managing significant client portfolios, but their web presence hadn't kept pace \u2014 it still read like a placeholder site from their earliest days. After years of operating with a minimal holding page that drove curiosity, the agency is maturing. They are refocusing on top-tier digital and analog aesthetics and require a platform that scales with their ambition.",
-    "objective": "Design and build a site that projected the confidence and precision clients expect from a financial firm, without leaning on tired corporate-finance visual clich\u00e9s. Transform their digital presence into an immersive 24/7 showcase that validates their credibility and attracts high-profile clients.",
-    
+    "context": "Meridian had grown from a two-person advisory into a firm managing significant client portfolios, but their web presence hadn't kept pace — it still read like a placeholder site from their earliest days. After years of operating with a minimal holding page that drove curiosity, the agency is maturing. They are refocusing on top-tier digital and analog aesthetics and require a platform that scales with their ambition.",
+    "objective": "Design and build a site that projected the confidence and precision clients expect from a financial firm, without leaning on tired corporate-finance visual clichés. Transform their digital presence into an immersive 24/7 showcase that validates their credibility and attracts high-profile clients.",
     "showcaseMedia": {
       "type": "video",
       "src": "/video/placeholder-video.mp4",
       "poster": "/img/picture-of-wailee.jpg",
-      "alt": "Full walkthrough of the finished Meridian Capital website"
+      "alt": "Full walkthrough of the finished Meridian Capital website",
+      "width": 1600,
+      "height": 1200
     },
-
     "sections": [
       {
         "id": "section-design",
         "title": "Visual Identity & strategy",
-        "overview": "The direction leaned into restraint \u2014 a lot of finance sites over-explain themselves with charts and jargon. Meridian's audience already knows what they want; the site's job was to feel trustworthy at a glance.",
+        "overview": "The direction leaned into restraint — a lot of finance sites over-explain themselves with charts and jargon. Meridian's audience already knows what they want; the site's job was to feel trustworthy at a glance.",
         "blocks": [
           {
             "subheading": "The Typography",
-            "description": "A single serif carries every headline, paired with a plain, almost austere sans for body copy \u2014 the contrast does the work of signaling both heritage and precision.",
+            "description": "A single serif carries every headline, paired with a plain, almost austere sans for body copy — the contrast does the work of signaling both heritage and precision.",
             "media": {
               "type": "image",
               "src": "/img/placeholder-image.jpg",
-              "alt": "Meridian Capital typography specimen"
+              "alt": "Meridian Capital typography specimen",
+              "width": 736,
+              "height": 736
             }
           },
           {
             "subheading": "Grid & Layout",
-            "description": "A strict 12-column grid keeps every section aligned, even where content length varies wildly between pages \u2014 nothing on the site ever feels improvised.",
+            "description": "A strict 12-column grid keeps every section aligned, even where content length varies wildly between pages — nothing on the site ever feels improvised.",
             "media": {
               "type": "image",
               "src": "/img/picture-of-wailee.jpg",
-              "alt": "Meridian Capital layout grid overlay"
+              "alt": "Meridian Capital layout grid overlay",
+              "width": 422,
+              "height": 750
             }
           }
         ],
@@ -65,7 +68,9 @@
           "type": "video",
           "src": "/video/placeholder-video.mp4",
           "poster": "/img/picture-of-wailee.jpg",
-          "alt": "Full walkthrough of the finished Meridian Capital website"
+          "alt": "Full walkthrough of the finished Meridian Capital website",
+          "width": 1600,
+          "height": 1200
         }
       },
       {
@@ -75,21 +80,25 @@
         "blocks": [
           {
             "subheading": "Micro-Animations",
-            "description": "Subtle GSAP-driven reveals on scroll \u2014 numbers counting up, cards easing into place \u2014 reinforce precision without ever feeling gimmicky.",
+            "description": "Subtle GSAP-driven reveals on scroll — numbers counting up, cards easing into place — reinforce precision without ever feeling gimmicky.",
             "media": {
               "type": "video",
               "src": "/images/works/case-studies/meridian-capital/animation-loop.mp4",
               "poster": "/img/picture-of-wailee.jpg",
-              "alt": "Looping demo of Meridian Capital scroll animations"
+              "alt": "Looping demo of Meridian Capital scroll animations",
+              "width": 422,
+              "height": 750
             }
           },
           {
             "subheading": "Responsive Design",
-            "description": "The dense desktop layout collapses to a single, calm column on mobile \u2014 nothing is cropped or shrunk past legibility.",
+            "description": "The dense desktop layout collapses to a single, calm column on mobile — nothing is cropped or shrunk past legibility.",
             "media": {
               "type": "image",
               "src": "/img/picture-of-wailee.jpg",
-              "alt": "Meridian Capital site on mobile devices"
+              "alt": "Meridian Capital site on mobile devices",
+              "width": 422,
+              "height": 750
             }
           }
         ],
@@ -99,51 +108,62 @@
             {
               "type": "image",
               "src": "/img/placeholder-image-2.jpg",
-              "alt": "Home screen"
+              "alt": "Home screen",
+              "width": 1600,
+              "height": 1200
             },
             {
               "type": "image",
               "src": "/img/placeholder-image-2.jpg",
-              "alt": "Details screen"
+              "alt": "Details screen",
+              "width": 1600,
+              "height": 1200
             },
             {
               "type": "image",
               "src": "/img/placeholder-image-2.jpg",
-              "alt": "Profile screen"
+              "alt": "Profile screen",
+              "width": 1600,
+              "height": 1200
             }
           ]
         }
       }
     ],
-    
     "mobileExperience": {
       "description": "To maintain an experience close to the desktop version, some sections have been completely redesigned to adapt to the vertical orientation of mobile screens. The VHS box, used horizontally for the menu, becomes vertical on mobile. Similarly, the VHS collection, presented as a horizontal shelf, is reorganized into a vertical stack on mobile.",
       "media": [
         {
           "type": "image",
           "src": "/img/placeholder-image-2.jpg",
-          "alt": "Home screen"
+          "alt": "Home screen",
+          "width": 1600,
+          "height": 1200
         },
         {
           "type": "image",
           "src": "/img/placeholder-image-2.jpg",
-          "alt": "Details screen"
+          "alt": "Details screen",
+          "width": 1600,
+          "height": 1200
         },
         {
           "type": "image",
           "src": "/img/placeholder-image-2.jpg",
-          "alt": "Profile screen"
+          "alt": "Profile screen",
+          "width": 1600,
+          "height": 1200
         }
       ]
     },
-
     "visualMedia": {
       "type": "video",
       "src": "/video/placeholder-video.mp4",
       "poster": "/img/picture-of-wailee.jpg",
-      "alt": "Full walkthrough of the finished Meridian Capital website"
+      "alt": "Full walkthrough of the finished Meridian Capital website",
+      "width": 1600,
+      "height": 1200
     },
-
     "impact": "Client-reported inbound consultation requests rose in the months following launch.",
     "testimonial": {
       "quote": "The site finally looks like the firm we actually are.",
@@ -157,13 +177,13 @@
     "status": "published",
     "title": "Hearth Studio",
     "publishedDate": "2026-05-30",
-    "heroImage": "/img/picture-of-wailee.jpg",
     "heroMedia": {
       "type": "image",
       "src": "/img/picture-of-wailee.jpg",
-      "alt": "Hearth Studio website homepage mockup"
+      "alt": "Hearth Studio website homepage mockup",
+      "width": 422,
+      "height": 750
     },
-    "tagline": "Independent interior design studio.",
     "services": [
       "Web Design",
       "Development"
@@ -171,20 +191,20 @@
     "year": "2026",
     "heroStatement": "Make the portfolio feel as considered as the interiors themselves.",
     "client": "Hearth Studio",
-    "context": "A two-person interior design studio with a strong portfolio of residential work, but no site \u2014 client discovery happened entirely through referrals and Instagram.",
+    "context": "A two-person interior design studio with a strong portfolio of residential work, but no site — client discovery happened entirely through referrals and Instagram.",
     "objective": "Build a portfolio site that could stand in for an in-person walkthrough of their work, for prospective clients who'd never met them.",
-    
     "showcaseMedia": {
       "type": "video",
       "src": "/video/placeholder-video.mp4",
       "poster": "/img/picture-of-wailee.jpg",
-      "alt": "Full walkthrough of the finished Meridian Capital website"
+      "alt": "Full walkthrough of the finished Meridian Capital website",
+      "width": 1600,
+      "height": 1200
     },
-    
     "sections": [
       {
         "title": " Visual Identity & Web Design",
-        "overview": "Every design decision took a back seat to the photography \u2014 the interiors needed to be the loudest thing on every page.",
+        "overview": "Every design decision took a back seat to the photography — the interiors needed to be the loudest thing on every page.",
         "blocks": [
           {
             "subheading": "The Typography",
@@ -192,7 +212,9 @@
             "media": {
               "type": "image",
               "src": "/img/picture-of-wailee.jpg",
-              "alt": "Hearth Studio typography specimen"
+              "alt": "Hearth Studio typography specimen",
+              "width": 422,
+              "height": 750
             }
           },
           {
@@ -201,14 +223,16 @@
             "media": {
               "type": "image",
               "src": "/img/picture-of-wailee.jpg",
-              "alt": "Hearth Studio layout example"
+              "alt": "Hearth Studio layout example",
+              "width": 422,
+              "height": 750
             }
           }
         ]
       },
       {
         "title": "Website Development",
-        "overview": "A lightweight custom build rather than a page builder, so image loading could be tuned carefully \u2014 this site lives or dies on photo quality and load speed both.",
+        "overview": "A lightweight custom build rather than a page builder, so image loading could be tuned carefully — this site lives or dies on photo quality and load speed both.",
         "blocks": [
           {
             "subheading": "Micro-Animations",
@@ -216,16 +240,20 @@
             "media": {
               "type": "image",
               "src": "/img/picture-of-wailee.jpg",
-              "alt": "Hearth Studio project index crossfade still"
+              "alt": "Hearth Studio project index crossfade still",
+              "width": 422,
+              "height": 750
             }
           },
           {
             "subheading": "Responsive Design",
-            "description": "On mobile, the full-bleed treatment stays intact \u2014 nothing about the experience feels like a compromise on a smaller screen.",
+            "description": "On mobile, the full-bleed treatment stays intact — nothing about the experience feels like a compromise on a smaller screen.",
             "media": {
               "type": "image",
               "src": "/img/picture-of-wailee.jpg",
-              "alt": "Hearth Studio site on mobile devices"
+              "alt": "Hearth Studio site on mobile devices",
+              "width": 422,
+              "height": 750
             }
           }
         ]
@@ -234,7 +262,9 @@
     "visualMedia": {
       "type": "image",
       "src": "/img/picture-of-wailee.jpg",
-      "alt": "Full-page mockup of the finished Hearth Studio site"
+      "alt": "Full-page mockup of the finished Hearth Studio site",
+      "width": 1600,
+      "height": 1200
     },
     "impact": "Launched alongside the studio's first paid ad campaign, replacing Instagram as their primary portfolio link.",
     "selected": false
@@ -246,13 +276,14 @@
     "status": "published",
     "title": "Arclight Labs",
     "publishedDate": "2026-07-10",
-    "heroImage": "/img/picture-of-wailee.jpg",
     "heroMedia": {
       "type": "image",
       "src": "/img/picture-of-wailee.jpg",
-      "alt": "Arclight Labs product site mockup"
+      "alt": "Arclight Labs product site mockup",
+      "width": 422,
+      "height": 750
     },
-    "tagline": "Developer tooling startup \u2014 pre-launch site.",
+    "tagline": "Developer tooling startup — pre-launch site.",
     "services": [
       "Web Design",
       "Development",
@@ -262,26 +293,28 @@
     "client": "Arclight Labs",
     "context": "An early-stage startup building developer tooling, needing a pre-launch marketing site before their public beta.",
     "objective": "Build a fast, technically credible landing experience that developers would trust before the product itself even existed yet.",
-    
     "showcaseMedia": {
       "type": "video",
       "src": "/video/placeholder-video.mp4",
       "poster": "/img/picture-of-wailee.jpg",
-      "alt": "Full walkthrough of the finished Meridian Capital website"
+      "alt": "Full walkthrough of the finished Meridian Capital website",
+      "width": 1600,
+      "height": 1200
     },
-    
     "sections": [
       {
         "title": " Visual Identity & Web Design",
-        "overview": "Not yet finalized \u2014 kept as a draft while brand direction is still under review with the client.",
+        "overview": "Not yet finalized — kept as a draft while brand direction is still under review with the client.",
         "blocks": [
           {
             "subheading": "The Typography",
-            "description": "A monospace-leaning system reflecting the developer-tool audience \u2014 still being refined.",
+            "description": "A monospace-leaning system reflecting the developer-tool audience — still being refined.",
             "media": {
               "type": "image",
               "src": "/img/picture-of-wailee.jpg",
-              "alt": "Arclight Labs typography exploration"
+              "alt": "Arclight Labs typography exploration",
+              "width": 422,
+              "height": 750
             }
           },
           {
@@ -290,14 +323,16 @@
             "media": {
               "type": "image",
               "src": "/img/picture-of-wailee.jpg",
-              "alt": "Arclight Labs layout exploration"
+              "alt": "Arclight Labs layout exploration",
+              "width": 422,
+              "height": 750
             }
           }
         ]
       },
       {
         "title": "Website Development",
-        "overview": "Development has not started \u2014 this section is a placeholder until the brief is finalized.",
+        "overview": "Development has not started — this section is a placeholder until the brief is finalized.",
         "blocks": [
           {
             "subheading": "Micro-Animations",
@@ -305,7 +340,9 @@
             "media": {
               "type": "image",
               "src": "/img/picture-of-wailee.jpg",
-              "alt": "Arclight Labs placeholder visual"
+              "alt": "Arclight Labs placeholder visual",
+              "width": 422,
+              "height": 750
             }
           },
           {
@@ -314,7 +351,9 @@
             "media": {
               "type": "image",
               "src": "/img/picture-of-wailee.jpg",
-              "alt": "Arclight Labs placeholder visual"
+              "alt": "Arclight Labs placeholder visual",
+              "width": 422,
+              "height": 750
             }
           }
         ]
@@ -323,7 +362,9 @@
     "visualMedia": {
       "type": "image",
       "src": "/img/picture-of-wailee.jpg",
-      "alt": "Arclight Labs placeholder result visual"
+      "alt": "Arclight Labs placeholder result visual",
+      "width": 1600,
+      "height": 1200
     },
     "selected": false
   }

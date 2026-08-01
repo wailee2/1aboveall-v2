@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getItemBySlug, getPublishedByCategory } from "@/content/works-api";
+import { getMediaThumbnail } from "@/content/media-utils";
 import { DesignCanvasDetail } from "../../components/DesignCanvasDetail";
 import type { DesignItem } from "@/content/works-types";
 
@@ -19,7 +20,7 @@ export async function generateMetadata({
   return {
     title: item.title,
     description: item.shortDescription,
-    openGraph: { images: [item.heroImage] },
+    openGraph: { images: [getMediaThumbnail(item.heroMedia).src] },
   };
 }
 

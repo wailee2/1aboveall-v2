@@ -42,16 +42,62 @@ import "./skeleton.css";
 
 export function MediaRenderer({
   media,
+  mode = "fill",
   className = "",
   sizes = "100vw",
   priority = false,
 }: {
   media: MediaItem;
+  mode?: "fill" | "intrinsic";
   className?: string;
   sizes?: string;
   priority?: boolean;
 }) {
   const [loaded, setLoaded] = useState(false);
+  const opacityStyle = { opacity: loaded ? 1 : 0, transition: "opacity 0.3s ease" };
+
+  if (mode === "intrinsic") {
+    const wrapperClass = `relative overflow-hidden bg-surface-tint ${
+      !loaded ? "skeleton-shimmer" : ""
+    } ${className}`;
+
+    if (media.type === "video") {
+      return (
+        <div className={wrapperClass}>
+          <video
+            src={media.src}
+            poster={media.poster}
+            autoPlay
+            loop
+            muted
+            playsInline
+            onLoadedData={() => setLoaded(true)}
+            aria-label={media.alt}
+            width={media.width}
+            height={media.height}
+            className="w-full h-auto block"
+            style={opacityStyle}
+          />
+        </div>
+      );
+    }
+
+    return (
+      <div className={wrapperClass}>
+        <Image
+          src={media.src}
+          alt={media.alt}
+          width={media.width}
+          height={media.height}
+          sizes={sizes}
+          priority={priority}
+          onLoad={() => setLoaded(true)}
+          className="w-full h-auto block"
+          style={opacityStyle}
+        />
+      </div>
+    );
+  }
 
   const innerClass = `relative w-full h-full overflow-hidden bg-surface-tint ${
     !loaded ? "skeleton-shimmer" : ""
@@ -71,7 +117,7 @@ export function MediaRenderer({
             onLoadedData={() => setLoaded(true)}
             aria-label={media.alt}
             className="w-full h-full object-cover"
-            style={{ opacity: loaded ? 1 : 0, transition: "opacity 0.3s ease" }}
+            style={opacityStyle}
           />
         ) : (
           <Image
@@ -82,7 +128,7 @@ export function MediaRenderer({
             priority={priority}
             onLoad={() => setLoaded(true)}
             className="object-cover object-center"
-            style={{ opacity: loaded ? 1 : 0, transition: "opacity 0.3s ease" }}
+            style={opacityStyle}
           />
         )}
       </div>
