@@ -16,9 +16,7 @@ export function CaseStudyHero({ item }: { item: CaseStudyItem }) {
       </div>
 
       <div className="mb-[2em] flex-between items-baseline flex-wrap gap-x-[2em] gap-y-[1em] ">
-        <h1 className=" text-[45px] sm:text-[64px] md:text-[96px] lg:text-[clamp(73px,6.4vw+11px,183px)] case_heading">
-          {item.title}
-        </h1>
+        <h1 className=" case_h1">{item.title}</h1>
         
         {item.liveSiteUrl ? (
           <a

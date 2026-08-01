@@ -45,7 +45,7 @@ export function Breadcrumbs({
   };
 
   return (
-    <nav aria-label="Breadcrumb" className="mb-[1.1em]">
+    <nav aria-label="Breadcrumb" className="mb-[1.5em]">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

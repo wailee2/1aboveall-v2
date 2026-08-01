@@ -16,12 +16,12 @@ export function CaseStudiesGrid({ items }: { items: CaseStudyItem[] }) {
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-[1.25em] gap-y-[1.35em] md:gap-y-[2em] ">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-[1.25em] gap-y-[1.35em] lg:gap-y-[2.25em] ">
       {items.map((item) => (
         <AppLink 
           key={item.id} 
           href={`/works/case-studies/${item.slug}`} 
-          className="group block space-y-[1em] work-link  "
+          className="group block space-y-[1em]  "
         >
           <div className="relative aspect-16/10 overflow-hidden ">
             <MediaRenderer
@@ -30,7 +30,7 @@ export function CaseStudiesGrid({ items }: { items: CaseStudyItem[] }) {
               sizes="(max-width: 768px) 100vw, 50vw"
             />
             <div className="absolute inset-x-0 bottom-0 mix-blend-difference ">
-              <ul className="flex flex-wrap gap-x-[0.8em] gap-y-[0.2em] list-none  p-[1em] md:p-[1.2em] text-white!">
+              <ul className="lg:translate-hide flex flex-wrap gap-x-[0.8em] gap-y-[0.2em] list-none p-[1em] md:p-[1.2em] text-white!">
                 {item.services.slice(0, 3).map((service) => (
                   <li
                     key={service}

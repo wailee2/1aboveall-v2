@@ -40,7 +40,7 @@ export function DesignsGrid({ items }: { items: DesignItem[] }) {
               e.preventDefault();
               openModal(item.slug);
             }}
-            className="block"
+            className="block "
           >
             <div className="works-card">
               <motion.div
@@ -55,7 +55,7 @@ export function DesignsGrid({ items }: { items: DesignItem[] }) {
                 />
               </motion.div>
             </div>
-            <h3 className="text-small! ">{item.title}</h3>
+            <h2 className="works-card-title">{item.title}</h2>
           </a>
         ))}
       </div>

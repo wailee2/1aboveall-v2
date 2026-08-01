@@ -18,7 +18,7 @@ export function CaseStudyFooter({
   return (
     <section className=" section-px space-y-[2em]  ">
       <div className="space-y-[0.35em] sm:flex-between ">
-        <h2 className="text-2xlarge ">EXPLORE MORE</h2>
+        <h2 className="big-words ">EXPLORE MORE</h2>
 
         <AppLink
           href="/works"

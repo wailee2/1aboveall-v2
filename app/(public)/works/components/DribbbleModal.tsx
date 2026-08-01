@@ -111,7 +111,7 @@ export function DribbbleModal<T extends DesignItem | CanvasItem>({
           type="button"
           onClick={onClose}
           aria-label="Close"
-          className="secondary-clickable-button fixed top-[6.5em] right-[1.7em] z-10 size-[2.2em] text-sm flex-center "
+          className="secondary-clickable-button  fixed top-[6.5em] right-[1.7em] z-10 size-[2.2em] text-sm flex-center "
         >
           ✕
         </button>
@@ -119,7 +119,7 @@ export function DribbbleModal<T extends DesignItem | CanvasItem>({
         <div
           className=" md:col-start-2 md:col-span-10 relative w-full py-[4em] shrink-0 "
         >
-          <h2 className="text-large!">{item.title}</h2>
+          <h2 className=" big-words">{item.title}</h2>
 
           <motion.div
             layoutId={`work-media-${originSlug}`}
@@ -135,7 +135,12 @@ export function DribbbleModal<T extends DesignItem | CanvasItem>({
                 transition={{ duration: 0.15 }}
                 className="absolute inset-0"
               >
-                <LightboxTrigger media={item.heroMedia} className="absolute inset-0" sizes="90vw" priority />
+                <LightboxTrigger 
+                  media={item.heroMedia} 
+                  className="absolute inset-0" 
+                  sizes="90vw" 
+                  priority
+                  />
               </motion.div>
             </AnimatePresence>
           </motion.div>

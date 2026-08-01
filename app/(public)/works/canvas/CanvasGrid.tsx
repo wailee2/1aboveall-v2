@@ -28,7 +28,6 @@ export function CanvasGrid({ items }: { items: CanvasItem[] }) {
   return (
     <LayoutGroup id="canvas-grid">
       <div className="work-grids ">
-        <div className="clickable-button">hey</div>
         {items.map((item) => (
           <a
             key={item.id}
@@ -37,7 +36,7 @@ export function CanvasGrid({ items }: { items: CanvasItem[] }) {
               e.preventDefault();
               openModal(item.slug);
             }}
-            className="block"
+            className="block "
           >
             <div className="works-card">
               <motion.div
@@ -52,7 +51,7 @@ export function CanvasGrid({ items }: { items: CanvasItem[] }) {
                 />
               </motion.div>
             </div>
-            <h3 className="text-small! ">{item.title}</h3>
+            <h2 className="works-card-title ">{item.title}</h2>
           </a>
         ))}
       </div>
