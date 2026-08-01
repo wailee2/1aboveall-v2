@@ -47,11 +47,12 @@
     "publishedDate": "2026-05-20",
     "selected": false,
     "heroMedia": {
-      "type": "image",
-      "src": "/img/picture-of-wailee.jpg",
-      "alt": "Orin mobile banking app home screen",
-      "width": 422,
-      "height": 750
+      "type": "video",
+      "src": "/video/placeholder-video.mp4",
+      "poster": "/img/picture-of-wailee.jpg",
+      "alt": "Full walkthrough of the finished Meridian Capital website",
+      "width": 1600,
+      "height": 1200
     },
     "shortDescription": "A warm, approachable interface exploration for a mobile-first digital bank.",
     "otherMedia": [

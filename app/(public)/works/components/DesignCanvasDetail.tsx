@@ -42,46 +42,55 @@ export function DesignCanvasDetail({
           ]}
         />
 
-        <div className="lg:grid grid-cols-12 gap-x-[1.25em]">
-          <div className="col-start-2 col-span-full space-y-[0.25em] mb-[2.5em]">
-            <h1 className="big-words  ">{item.title}</h1>
+        <div className="mb-[2em] ">
+          <h1 className=" case_h1">{item.title}</h1>
+        </div>
 
-            <time
-              dateTime={item.publishedDate}
-              className="text-xsmall uppercase  block"
-            >
-              {publishedLabel}
-            </time>
+        <div className="flex flex-col-reverse gap-[2em] md:grid grid-cols-12 md:gap-[1.25em] relative uppercase mix-blend-difference">
+          <div className="col-start-1 col-span-2 grid grid-cols-2 gap-[1.25em] md:space-y-[3em] md:block h-fit md:absolute bottom-0 lg:bottom-1/2 leading-none z-10  ">
+            <div className=" info-case">
+              <span className="case_h2 ">date</span>
+              <time
+                dateTime={item.publishedDate}
+                className=""
+              >
+                {publishedLabel}
+              </time>
+            </div>
+          </div>
+
+          <div className='col-start-3 col-span-full'>
+            <div className=" relative aspect-video overflow-hidden">
+              <LightboxTrigger 
+                media={item.heroMedia}
+                className="absolute inset-0" 
+                sizes="90vw" priority
+              />
+            </div>
           </div>
         </div>
 
-        <div className="lg:grid grid-cols-12 gap-x-[1.25em] space-y-[5em]  ">
-          <div className="col-start-2 col-span-10 ">
-            <LightboxTrigger 
-              media={item.heroMedia} 
-              mode="intrinsic"
-              className="size-full " 
-              sizes="90vw" priority
-            />
+        <div className="mt-[5em] space-y-[5em]  ">
+          <div className=" gap-[.75em] flex flex-col  lg:grid-main-case">
+            <h2 className="case_h2 col-start-1 col-span-2 ">Description</h2>
+            <p className="col-start-3 col-span-6">{item.shortDescription}</p>
           </div>
 
-          <div className="col-start-2 col-span-6">
-            <p className="">{item.shortDescription}</p>
+          <div className="lg:grid grid-cols-12 gap-x-[1.25em] space-y-[5em]">
+            {item.otherMedia && item.otherMedia.length > 0 && (
+              <div className="col-start-2 col-span-10 flex flex-col gap-y-[5em] ">
+                {item.otherMedia.map((media, i) => (
+                  <LightboxTrigger 
+                    key={i}
+                    media={media} 
+                    mode="intrinsic"
+                    className="size-full" 
+                    sizes="90vw"
+                  />
+                ))}
+              </div>
+            )}
           </div>
-
-          {item.otherMedia && item.otherMedia.length > 0 && (
-            <div className="col-start-2 col-span-10 flex flex-col gap-y-[5em] ">
-              {item.otherMedia.map((media, i) => (
-                <LightboxTrigger 
-                  key={i}
-                  media={media} 
-                  mode="intrinsic"
-                  className="size-full" 
-                  sizes="90vw"
-                />
-              ))}
-            </div>
-          )}
         </div>
       </div>
     </div>

@@ -58,7 +58,7 @@ export function CaseStudyHero({ item }: { item: CaseStudyItem }) {
           </div>
         </dl>
 
-        <div className='col-start-4s lg: col-start-3 col-span-full'>
+        <div className=' col-start-3 col-span-full'>
           <div className=" relative aspect-video overflow-hidden">
             <MediaRenderer 
               media={item.heroMedia}

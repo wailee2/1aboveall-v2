@@ -16,6 +16,7 @@ import { MediaRenderer } from "@/components/ui/MediaRenderer";
 import { DribbbleModal } from "../components/DribbbleModal";
 import { useWorksModal } from "@/hooks/use-works-modal";
 import type { DesignItem } from "@/content/works-types";
+import { getMediaThumbnail } from "@/content/media-utils";
 
 const FRAME_TRANSITION = { duration: 0.4, ease: [0.22, 1, 0.36, 1] as const };
 
@@ -25,6 +26,8 @@ export function DesignsGrid({ items }: { items: DesignItem[] }) {
     items
   );
 
+  
+
   if (items.length === 0) {
     return <p className="font-serif text-base text-muted">New designs coming soon.</p>;
   }
@@ -32,32 +35,42 @@ export function DesignsGrid({ items }: { items: DesignItem[] }) {
   return (
     <LayoutGroup id="designs-grid">
       <div className="work-grids ">
-        {items.map((item) => (
-          <a
-            key={item.id}
-            href={`/works/designs/${item.slug}`}
-            onClick={(e) => {
-              e.preventDefault();
-              openModal(item.slug);
-            }}
-            className="block "
-          >
-            <div className="works-card">
-              <motion.div
-                layoutId={`work-media-${item.slug}`}
-                className="works-card-img"
-                transition={FRAME_TRANSITION}
-              >
-                <MediaRenderer
-                  media={item.heroMedia}
-                  className="absolute inset-0"
-                  sizes="(max-width: 1024px) 50vw, 33vw"
-                />
-              </motion.div>
-            </div>
-            <h2 className="works-card-title">{item.title}</h2>
-          </a>
-        ))}
+        {items.map((item) => {
+          const thumb = getMediaThumbnail(item.heroMedia);
+          
+          return (
+            <a
+              key={item.id}
+              href={`/works/designs/${item.slug}`}
+              onClick={(e) => {
+                e.preventDefault();
+                openModal(item.slug);
+              }}
+              className="block group"
+            >
+              <div className="works-card">
+                <motion.div
+                  layoutId={`work-media-${item.slug}`}
+                  className="works-card-img"
+                  transition={FRAME_TRANSITION}
+                >
+                  <MediaRenderer
+                    media={{
+                      type: "image",
+                      src: thumb.src,
+                      alt: thumb.alt,
+                      width: thumb.width,
+                      height: thumb.height
+                    }}
+                    className="absolute inset-0"
+                    sizes="(max-width: 1024px) 50vw, 33vw"
+                  />
+                </motion.div>
+              </div>
+              <h2 className="works-card-title">{item.title}</h2>
+            </a>
+          );
+        })}
       </div>
 
       <AnimatePresence>

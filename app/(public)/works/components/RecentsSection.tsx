@@ -17,14 +17,18 @@ export function RecentsSection({ items }: { items: WorkItem[] }) {
           {items.map((item) => {
             const thumb = getMediaThumbnail(item.heroMedia);
             return (
-              <AppLink key={item.id} href={`/works/${item.category}/${item.slug}`} className="group">
+              <AppLink 
+                key={item.id} 
+                href={`/works/${item.category}/${item.slug}`} 
+                className="group"
+              >
                 <div className="relative aspect-4/3 rounded-sm overflow-hidden bg-surface-tint mb-2">
                   <Image
                     src={thumb.src}
                     alt={thumb.alt}
                     fill
                     sizes="(max-width: 640px) 50vw, 20vw"
-                    className="object-cover group-hover:opacity-90 transition-opacity"
+                    className="object-cover"
                   />
                 </div>
                 <div className="font-sans text-sm font-medium text-text truncate">{item.title}</div>

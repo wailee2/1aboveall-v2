@@ -106,7 +106,7 @@ export function DribbbleModal<T extends DesignItem | CanvasItem>({
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className=" bg-bg section-px lg:grid grid-cols-12 gap-[1.25em] rounded-t-sm mt-[5em] "
+        className=" bg-bg section-px py-[4em] lg:grid grid-cols-12 gap-[1.25em] rounded-t-sm mt-[5em] "
       >
         <button
           type="button"
@@ -117,11 +117,17 @@ export function DribbbleModal<T extends DesignItem | CanvasItem>({
           ✕
         </button>
 
-        <div
-          className=" md:col-start-2 md:col-span-10 relative w-full py-[4em] shrink-0 "
-        >
+        <div className="space-y-[0.25em] mb-[1em] md:col-start-2 md:col-span-10">
           <h2 className=" big-words">{item.title}</h2>
+          <time
+            dateTime={item.publishedDate}
+            className="text-xsmall uppercase  block"
+          >
+            {publishedLabel}
+          </time>
+        </div>
 
+        <div className=" md:col-start-2 md:col-span-10 relative w-full shrink-0 space-y-[5em] ">        
           <motion.div
             layoutId={`work-media-${originSlug}`}
             className="relative w-full aspect-4/3"
@@ -149,16 +155,15 @@ export function DribbbleModal<T extends DesignItem | CanvasItem>({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.25 }}
-            className="px-6 py-5"
+            className=""
           >
             <div className="flex items-start justify-between gap-4 mb-2">
-              <h2 className="font-sans text-lg font-medium text-[#F0F0EC]">{item.title}</h2>
               <button
                 type="button"
                 onClick={handleShare}
                 title="copy"
                 aria-label="Copy link to this item"
-                className="shrink-0 font-mono text-[11px] uppercase tracking-wide text-white/70 hover:text-white border border-white/20 rounded-sm px-3 py-1.5 transition-colors flex items-center gap-1.5"
+                className="shrink-0 font-mono text-[11px] uppercase tracking-wide border border-white/20 rounded-sm px-3 py-1.5 transition-colors flex items-center gap-1.5"
               >
                 <ShareIcon /> Share
               </button>
@@ -169,7 +174,7 @@ export function DribbbleModal<T extends DesignItem | CanvasItem>({
             </time>
 
             <div className="col-start-2 col-span-6">
-              <p className="">{item.shortDescription}</p>
+              <p className="">{item.shortDescription}n</p>
             </div>
 
             {item.otherMedia && item.otherMedia.length > 0 && (
