@@ -28,6 +28,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { LightboxTrigger } from "@/components/ui/LightboxTrigger";
 import { useToast } from "@/components/toast/ToastProvider";
+import ScrollProvider, { useScrollLock } from "@/components/providers/ScrollProvider";
 import { getMediaThumbnail } from "@/content/media-utils";
 import type { DesignItem, CanvasItem } from "@/content/works-types";
 
@@ -57,6 +58,12 @@ export function DribbbleModal<T extends DesignItem | CanvasItem>({
   onNavigate: (item: T) => void;
 }) {
   const { showToast } = useToast();
+  const { lock, unlock } = useScrollLock();
+
+  useEffect(() => {
+    lock();
+    return unlock;
+  }, [lock, unlock]);
 
   useEffect(() => {
     function handleKeydown(e: KeyboardEvent) {
@@ -67,14 +74,6 @@ export function DribbbleModal<T extends DesignItem | CanvasItem>({
     window.addEventListener("keydown", handleKeydown);
     return () => window.removeEventListener("keydown", handleKeydown);
   }, [onClose, onNavigate, prev, next]);
-
-  useEffect(() => {
-    const original = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = original;
-    };
-  }, []);
 
   const publishedLabel = new Date(item.publishedDate).toLocaleDateString("en-US", {
     year: "numeric",
@@ -104,137 +103,139 @@ export function DribbbleModal<T extends DesignItem | CanvasItem>({
       transition={{ duration: 0.3 }}
       className="fixed inset-0 w-full z-999! overflow-y-auto scrollbar-none bg-black/80 "
     >
-      <div
-        onClick={(e) => e.stopPropagation()}
-        className=" bg-bg section-px lg:px-0 mt-[5em] pt-[1.5em] pb-[4em]  rounded-t-md  "
-      >
-        <button
-          type="button"
-          onClick={onClose}
-          aria-label="Close"
-          className="secondary-clickable-button text-text! hover:bg-bg/10! fixed top-[3.5em] right-[1.7em] z-10 size-[2.2em] text-sm flex-center "
+      <ScrollProvider>
+        <div
+          onClick={(e) => e.stopPropagation()}
+          className=" bg-bg section-px lg:px-0 mt-[5em] pt-[1.5em] pb-[4em]  rounded-t-md  "
         >
-          ✕
-        </button>
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Close"
+            className="secondary-clickable-button text-text! hover:bg-bg/10! fixed top-[3.5em] right-[1.7em] z-10 size-[2.2em] text-sm flex-center "
+          >
+            ✕
+          </button>
 
-        <div className="lg:grid grid-cols-12 gap-[1.25em]">
-          <div className=" mb-[2em] md:col-start-2 md:col-span-10  space-y-[1em] sm:flex-between">
-            <div className="space-y-[0.25em]">
-              <h2 className=" big-words">{item.title}</h2>
-              <time
-                dateTime={item.publishedDate}
-                className="text-xsmall uppercase  block"
-              >
-                {publishedLabel}
-              </time>
-            </div>
-
-            <button
-              type="button"
-              onClick={handleShare}
-              title="copy link"
-              aria-label="Copy link to this item"
-              className="shrink-0 flex-center clickable-link gap-[0.25em] text-xsmall"
-            >
-              <ShareIcon /> Share
-            </button>
-          </div>
-
-          <div className=" md:col-start-2 md:col-span-10 relative w-full shrink-0 space-y-[5em] ">        
-            <motion.div
-              layoutId={`work-media-${originSlug}`}
-              className="relative w-full aspect-4/3"
-              transition={FRAME_TRANSITION}
-            >
-              <AnimatePresence mode="wait" initial={false}>
-                <motion.div
-                  key={item.slug}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.15 }}
-                  className="size-full "
+          <div className="lg:grid grid-cols-12 gap-[1.25em]">
+            <div className=" mb-[2em] md:col-start-2 md:col-span-10  space-y-[1em] sm:flex-between">
+              <div className="space-y-[0.25em]">
+                <h2 className=" big-words">{item.title}</h2>
+                <time
+                  dateTime={item.publishedDate}
+                  className="text-xsmall uppercase  block"
                 >
-                  <LightboxTrigger 
-                    media={item.heroMedia} 
-                    className="size-full " 
-                    sizes="90vw" priority
-                  />
-                </motion.div>
-              </AnimatePresence>
-            </motion.div>
+                  {publishedLabel}
+                </time>
+              </div>
 
-            <div className="">
-              <p className="md:max-w-[60%]">{item.shortDescription}</p>
-            </div>
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3, duration: 0.25 }}
-              className=""
-            >
-              {item.otherMedia && item.otherMedia.length > 0 && (
-                <div className="col-start-2 col-span-10 flex flex-col gap-y-[5em] ">
-                  {item.otherMedia.map((media, i) => (
-                    <LightboxTrigger 
-                      key={i}
-                      media={media} 
-                      mode="intrinsic"
-                      className="size-full" 
-                      sizes="90vw"
-                    />
-                  ))}
-                </div>
-              )}
-            </motion.div>
-
-            <div className="flex-center mx-auto mt-[3em] mb-[2em] ">
               <button
                 type="button"
-                onClick={onClose}
-                aria-label="Close"
-                className="secondary-clickable-button px-[1.4em] py-[0.7em] text-xsmall font-mono"
+                onClick={handleShare}
+                title="copy link"
+                aria-label="Copy link to this item"
+                className="shrink-0 flex-center clickable-link gap-[0.25em] text-xsmall"
               >
-                Esc
+                <ShareIcon /> Share
               </button>
             </div>
-          </div>  
-        </div>
 
-        <div className="lg:section-px md:grid grid-cols-12 gap-x-[1.25em] gap-y-[1.35em]">
-          <div className=' col-span-6  flex flex-col gap-1 '>
-            <NavButton 
-              disabled={!prev} 
-              onClick={() => prev && onNavigate(prev)} 
-              label="Previous item"
-            >
-              ← Previous Work
-            </NavButton>
+            <div className=" md:col-start-2 md:col-span-10 relative w-full shrink-0 space-y-[5em] ">        
+              <motion.div
+                layoutId={`work-media-${originSlug}`}
+                className="relative w-full aspect-4/3"
+                transition={FRAME_TRANSITION}
+              >
+                <AnimatePresence mode="wait" initial={false}>
+                  <motion.div
+                    key={item.slug}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.15 }}
+                    className="size-full "
+                  >
+                    <LightboxTrigger 
+                      media={item.heroMedia} 
+                      className="size-full " 
+                      sizes="90vw" priority
+                    />
+                  </motion.div>
+                </AnimatePresence>
+              </motion.div>
 
-            <PreviewThumb 
-              item={prev} 
-              label="Previous" 
-              onSelect={() => prev && onNavigate(prev)} 
-            />
+              <div className="">
+                <p className="md:max-w-[60%]">{item.shortDescription}</p>
+              </div>
+
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.3, duration: 0.25 }}
+                className=""
+              >
+                {item.otherMedia && item.otherMedia.length > 0 && (
+                  <div className="col-start-2 col-span-10 flex flex-col gap-y-[5em] ">
+                    {item.otherMedia.map((media, i) => (
+                      <LightboxTrigger 
+                        key={i}
+                        media={media} 
+                        mode="intrinsic"
+                        className="size-full" 
+                        sizes="90vw"
+                      />
+                    ))}
+                  </div>
+                )}
+              </motion.div>
+
+              <div className="flex-center mx-auto mt-[3em] mb-[2em] ">
+                <button
+                  type="button"
+                  onClick={onClose}
+                  aria-label="Close"
+                  className="secondary-clickable-button px-[1.4em] py-[0.7em] text-xsmall font-mono"
+                >
+                  Esc
+                </button>
+              </div>
+            </div>  
           </div>
 
-          <div className='col-span-6  flex flex-col gap-1 '>
-            <NavButton 
-              disabled={!next} 
-              onClick={() => next && onNavigate(next)} label="Next item"
-            >
-              Next Work → 
-            </NavButton>
+          <div className="lg:section-px md:grid grid-cols-12 gap-x-[1.25em] gap-y-[1.35em]">
+            <div className=' col-span-6  flex flex-col gap-1 '>
+              <NavButton 
+                disabled={!prev} 
+                onClick={() => prev && onNavigate(prev)} 
+                label="Previous item"
+              >
+                ← Previous Work
+              </NavButton>
 
-            <PreviewThumb 
-              item={next} 
-              label="Next" 
-              onSelect={() => next && onNavigate(next)}
-            />
+              <PreviewThumb 
+                item={prev} 
+                label="Previous" 
+                onSelect={() => prev && onNavigate(prev)} 
+              />
+            </div>
+
+            <div className='col-span-6  flex flex-col gap-1 '>
+              <NavButton 
+                disabled={!next} 
+                onClick={() => next && onNavigate(next)} label="Next item"
+              >
+                Next Work → 
+              </NavButton>
+
+              <PreviewThumb 
+                item={next} 
+                label="Next" 
+                onSelect={() => next && onNavigate(next)}
+              />
+            </div>
           </div>
         </div>
-      </div>
+      </ScrollProvider>
     </motion.div>
   );
 }

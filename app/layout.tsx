@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import ScrollProvider from "@/components/providers/ScrollProvider";
 import { ThemeProvider, themeInitScript } from "@/contexts/ThemeContext";
 import { ToastProvider } from "@/components/toast/ToastProvider";
 import { ImageLightboxProvider } from "@/components/providers/ImageLightboxProvider";
@@ -65,11 +66,13 @@ export default function RootLayout({
         <ThemeProvider>
           <AppQueryProvider>
             <ToastProvider>
-              <ImageLightboxProvider>
-                <NavigationProvider>
-                  {children}
-                </NavigationProvider>
-              </ImageLightboxProvider>
+              <ScrollProvider>
+                <ImageLightboxProvider>
+                  <NavigationProvider>
+                    {children}
+                  </NavigationProvider>
+                </ImageLightboxProvider>
+              </ScrollProvider>
             </ToastProvider>
           </AppQueryProvider>
         </ThemeProvider>

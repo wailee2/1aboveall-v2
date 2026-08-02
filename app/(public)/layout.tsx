@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import ScrollProvider from "@/components/providers/ScrollProvider";
+
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 
@@ -16,12 +16,10 @@ export default function PublicLayout({
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <ScrollProvider>
         <div className="flex flex-col">
           <main>{children}</main>
           <Footer />
         </div>
-      </ScrollProvider>
     </div>
   );
 }
