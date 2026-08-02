@@ -281,7 +281,6 @@ li{
   width: 4.5px !important;
   opacity: 1 !important; /*make opacity 0 for smaller screns*/
   z-index: 997 !important;
-  pointer-events: none !important; 
 }
 
 

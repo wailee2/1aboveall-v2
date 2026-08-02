@@ -6,14 +6,14 @@ export function Hero() {
     <section id="home" className="section-px flex flex-col">
       <ScrollReveal
         className="p-0 text-[#22293c]" 
-        innerClassName="bg-black pointer-events-none"
-        startHeightVh={1.2}
+        innerClassName="bg-black pointer-events-none  max-h-[calc(100vw*9/19)] md:max-h-none aspect-video "
+        startHeightVh={70}
         endHeightVh={100}
-        startWidthPercent={75}
+        startWidthPercent={80}
         endWidthPercent={100}
-        pinDurationVh={300}
+        pinDurationVh={250}
         ease="power3.out"
-        durationMs={200}
+        durationMs={300}
       >
         <div className="relative size-full overflow-hidden">
           <div className="absolute inset-0">

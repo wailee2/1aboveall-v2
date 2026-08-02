@@ -3,39 +3,40 @@
 /**
  * components/ui/ImageLightbox.tsx
  * ---------------------------------------------------------------
- * Rebuilt around the Dribbble/Behance pattern, not a "zoom in place"
- * pattern: the image expands to full viewport WIDTH (not fit-to-
- * screen), and if that makes it taller than the viewport, the
- * viewport itself becomes a real scrollable window into it — the
- * same way scrolling a normal webpage works, not a faked pan.
+ * Two structural changes from the previous version:
  *
- * Two things that make this actually smooth and correct, not just
- * visually similar:
+ * 1. Click-outside-closes is back, scoped correctly: clicking the
+ *    dimmed backdrop (outside the image) closes the lightbox;
+ *    clicking the IMAGE itself toggles expand/collapse instead. This
+ *    needs stopPropagation on every interactive child (image, close
+ *    button, zoom button) — otherwise their clicks bubble up to the
+ *    backdrop's onClick and close the lightbox as an unwanted side
+ *    effect of, say, pressing the zoom button.
  *
- * 1. The scroll container is a genuine `overflow-auto` div. Mouse
- *    wheel / trackpad scroll works on it with zero extra code —
- *    nothing here reimplements scrolling. Drag-to-pan manually sets
- *    the SAME scrollTop/scrollLeft wheel-scroll would, so the two
- *    input methods can never fight each other or drift out of sync.
+ * 2. Native image drag suppression, properly layered. draggable={false}
+ *    alone is NOT reliably enough — Safari in particular can still
+ *    initiate its own native "pick up this image" drag, which STEALS
+ *    the pointermove events this component's custom scroll-drag
+ *    needs. When that happens, this component never sees any
+ *    movement, so pointerup looks like a plain click — which is
+ *    exactly the reported bug (drag attempt reads as a click, image
+ *    looks like it's being "picked up" for a new tab). Fixed with
+ *    three layers together: draggable={false}, an onDragStart that
+ *    calls preventDefault(), and the WebKit-specific
+ *    -webkit-user-drag: none (Safari doesn't fully honor the
+ *    draggable attribute alone).
  *
- * 2. `overscroll-behavior: contain` (via the `overscroll-contain`
- *    class) plus locking `document.body`'s own scroll while open —
- *    together these are what stop scrolling inside the lightbox from
- *    "chaining" into scrolling the page behind it, which is exactly
- *    the requirement that scrolling the lightbox must not scroll the
- *    page underneath.
- *
- * Click vs. drag: a pointer press that moves less than
- * DRAG_CLICK_THRESHOLD px counts as a click (one-click zoom toggle);
- * anything past that is treated as a genuine drag and does NOT also
- * toggle zoom on release.
+ * Cursor states, exactly as specified:
+ *   - hovering the backdrop (outside the image): normal/default cursor
+ *   - hovering the image, not yet expanded: zoom-in
+ *   - hovering the image, expanded: grab (grabbing while actively dragged)
  */
 
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
+
 const FRAME_TRANSITION = { duration: 0.4, ease: [0.22, 1, 0.36, 1] as const };
-const ZOOMED_WIDTH_VW = 160;
 const DRAG_CLICK_THRESHOLD = 6;
 
 export function ImageLightbox({
@@ -51,14 +52,11 @@ export function ImageLightbox({
   height: number;
   onClose: () => void;
 }) {
-  const [zoomed, setZoomed] = useState(false);
+  const [expanded, setExpanded] = useState(false);
   const [dragging, setDragging] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const dragState = useRef({ startX: 0, startY: 0, scrollLeft: 0, scrollTop: 0, moved: false });
 
-  // Lock the PAGE's own scroll while the lightbox is open — this is
-  // what guarantees scrolling inside here never touches the page
-  // behind it, on top of overscroll-contain below.
   useEffect(() => {
     const original = document.body.style.overflow;
     document.body.style.overflow = "hidden";
@@ -75,53 +73,56 @@ export function ImageLightbox({
     return () => window.removeEventListener("keydown", handleKeydown);
   }, [onClose]);
 
-  function handlePointerDown(e: React.PointerEvent<HTMLDivElement>) {
-    const el = scrollRef.current;
-    if (!el) return;
+  function handlePointerDown(e: React.PointerEvent<HTMLImageElement>) {
+    const scrollEl = scrollRef.current;
+    if (!scrollEl) return;
     dragState.current = {
       startX: e.clientX,
       startY: e.clientY,
-      scrollLeft: el.scrollLeft,
-      scrollTop: el.scrollTop,
+      scrollLeft: scrollEl.scrollLeft,
+      scrollTop: scrollEl.scrollTop,
       moved: false,
     };
     setDragging(true);
-    el.setPointerCapture(e.pointerId);
+    e.currentTarget.setPointerCapture(e.pointerId);
   }
 
-  function handlePointerMove(e: React.PointerEvent<HTMLDivElement>) {
+  function handlePointerMove(e: React.PointerEvent<HTMLImageElement>) {
     if (!dragging) return;
-    const el = scrollRef.current;
-    if (!el) return;
+    const scrollEl = scrollRef.current;
+    if (!scrollEl) return;
     const dx = e.clientX - dragState.current.startX;
     const dy = e.clientY - dragState.current.startY;
     if (Math.abs(dx) > DRAG_CLICK_THRESHOLD || Math.abs(dy) > DRAG_CLICK_THRESHOLD) {
       dragState.current.moved = true;
     }
-    el.scrollLeft = dragState.current.scrollLeft - dx;
-    el.scrollTop = dragState.current.scrollTop - dy;
+    scrollEl.scrollLeft = dragState.current.scrollLeft - dx;
+    scrollEl.scrollTop = dragState.current.scrollTop - dy;
   }
 
-  function handlePointerUp(e: React.PointerEvent<HTMLDivElement>) {
+  function handlePointerUp(e: React.PointerEvent<HTMLImageElement>) {
     setDragging(false);
-    scrollRef.current?.releasePointerCapture(e.pointerId);
+    e.currentTarget.releasePointerCapture(e.pointerId);
     if (!dragState.current.moved) {
-      setZoomed((z) => !z);
+      setExpanded((v) => !v);
     }
   }
+
+  const imageCursor = !expanded ? "zoom-in" : dragging ? "grabbing" : "grab";
 
   return (
     <motion.div
       role="dialog"
       aria-modal="true"
       aria-label={alt}
+      onClick={onClose}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.25 }}
-      className="fixed inset-0 z-220 bg-black/90"
+      className="fixed inset-0 z-220 bg-black/90 cursor-auto"
     >
-      <div className="flex gap-[.6em] absolute top-[3em] right-7 z-10">
+      <div className="flex gap-[.6em] absolute top-7 right-7 z-10">
         <button
           type="button"
           onClick={onClose}
@@ -131,35 +132,31 @@ export function ImageLightbox({
           <CloseIcon />
         </button>
 
+
         <button
           type="button"
           onClick={(e) => {
             e.stopPropagation();
-            setZoomed((z) => !z);
+            setExpanded((v) => !v);
           }}
-          aria-label={zoomed ? "Zoom out" : "Zoom in"}
+          aria-label={expanded ? "Zoom out" : "Zoom in"}
           className="imagelightbox-button"
         >
-          <MagnifyIcon zoomed={zoomed} />
+          <MagnifyIcon zoomed={expanded} />
         </button>
       </div>
 
-      {/* The real scroll container — this IS the viewport onto the
-          image, bounded to 100vh, exactly like scrolling a page. */}
+      {/* Real scroll container — only has anything to scroll once
+          `expanded` makes the content taller than 100vh. */}
       <div
         ref={scrollRef}
-        onPointerDown={handlePointerDown}
-        onPointerMove={handlePointerMove}
-        onPointerUp={handlePointerUp}
-        onPointerCancel={handlePointerUp}
         className="w-full h-full overflow-auto overscroll-contain"
-        style={{ cursor: dragging ? "grabbing" : "grab" }}
       >
         <div className="min-h-full flex items-start justify-center">
-          <motion.div
-            layoutId={`lightbox-${src}`}
+          <motion.div 
+            layoutId={`lightbox-${src}`} 
             transition={FRAME_TRANSITION}
-            style={{ width: zoomed ? `${ZOOMED_WIDTH_VW}vw` : "100vw" }}
+            className="overflow-x-hidden"
           >
             <img
               src={src}
@@ -167,7 +164,19 @@ export function ImageLightbox({
               width={width}
               height={height}
               draggable={false}
-              className="w-full h-auto block select-none"
+              onDragStart={(e) => e.preventDefault()}
+              onClick={(e) => e.stopPropagation()}
+              onPointerDown={handlePointerDown}
+              onPointerMove={handlePointerMove}
+              onPointerUp={handlePointerUp}
+              onPointerCancel={handlePointerUp}
+              className="select-none block  "
+              style={{
+                height: expanded ? "auto" : "100vh",
+                width: expanded ? "100vw" : "auto",
+                maxWidth: expanded ? "100vw" : "none",
+                cursor: imageCursor,
+              }}
             />
           </motion.div>
         </div>
@@ -189,7 +198,6 @@ function MagnifyIcon({ zoomed }: { zoomed: boolean }) {
     <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth={2}>
       <circle cx="10.5" cy="10.5" r="6.5" />
       <path d="M20 20l-4.8-4.8" strokeLinecap="round" />
-      {/* Per the earlier spec: minus while zoomed OUT, plus while zoomed IN. */}
       {zoomed ? (
         <>
           <path d="M8 10.5h5" strokeLinecap="round" />
